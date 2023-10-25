@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-abstract class Square : MonoBehaviour
+public abstract class Square : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
