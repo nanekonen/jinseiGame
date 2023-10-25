@@ -22,6 +22,10 @@ public class Map : MonoBehaviour
 
     public void changeOfSeason()
     {
-        foreach(Sprite s in allsprite[(GameMain.nowseason + 1)%4])
+        int 
+        foreach(Sprite s in allsprite[(gamemain.nowseason + 1) % 4])
+        {
+
+        }
     }
 }
