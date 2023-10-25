@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AddressableAssets;
 public class Map : MonoBehaviour
 {
     public GameMain gamemain;
@@ -16,6 +16,13 @@ public class Map : MonoBehaviour
     }
     void Start()
     {
+        Addressables.LoadAssetAsync<Sprite>("seasons_squares/spring").Completed += sprite =>
+        {
+            foreach (SpriteRenderer sr in nowSprite){
+
+            }
+            Addressables.Release(sprite);
+        };
         
     }
 
