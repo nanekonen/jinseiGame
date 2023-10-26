@@ -20,6 +20,7 @@ public class Map : MonoBehaviour
     }
     async void Start()
     {
+        Debug.Log(JsonUtility.ToJson(this,true));
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/spring").Task;
         for(int i = 0;i < sprite.spriteCount; i++)
         {
