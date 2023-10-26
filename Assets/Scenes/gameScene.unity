@@ -1213,7 +1213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ae86d4c03edc4d4baf0347e7fc130c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamemain: {fileID: 2035635827}
   nowSprite:
   - {fileID: 1465666480}
   - {fileID: 1796488858}
@@ -2761,6 +2760,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d922dd4f4087cc4facd80d0fe2f46dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allPlayer: []
+  allForcedEvents: []
   nowSeason: 0
 --- !u!4 &2035635828
 Transform:

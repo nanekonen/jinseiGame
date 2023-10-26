@@ -22,8 +22,23 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: ecf5a2a89c6f1264984d4e4eca7d2be8
-    m_Address: seasons_squares
+  - m_GUID: 39263b09aada29d4bbe555e0ba7d6d63
+    m_Address: season/spring
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21a570c13aa811f4398068ae47923542
+    m_Address: season/summer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 169b69825e2415c46bdf0457c3bc2517
+    m_Address: season/winter
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4cf6e3fc355e8a04ba94372005ca1882
+    m_Address: season/autumn
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

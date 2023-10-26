@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
-    // Start is called before the first frame update
-    List<Player> allPlayer = new List<Player>();
-    List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
+    public static GameMain gamemain;
+
+    public List<Player> allPlayer = new List<Player>();
+    public List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
     public int nowSeason = 0;//0:spring,1:summer,2:autumn,3:winter
+
+    private void Awake()
+    {
+        gamemain = this;
+    }
     void Start()
     {
         

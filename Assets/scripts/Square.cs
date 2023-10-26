@@ -4,6 +4,16 @@ using UnityEngine;
 
 public abstract class Square : MonoBehaviour
 {
+
+    public static Square generateInstance(string name, List<Object> argument)
+    {
+        
+    }
+
+    private void Awake()
+    {
+        
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -17,4 +27,6 @@ public abstract class Square : MonoBehaviour
     }
 
     public abstract void execution();
+
+    public abstract void inicialization(List<Object>argument);
 }

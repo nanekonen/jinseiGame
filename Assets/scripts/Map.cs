@@ -1,28 +1,31 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.U2D;
 using UnityEngine.AddressableAssets;
 public class Map : MonoBehaviour
 {
-    public GameMain gamemain;
-    // List<List<Square>> allsquare = new List<List<Square>>();//argument_0:season,argument_1:number
-    //List<List<Sprite>> allsprite = new List<List<Sprite>>();//argument_0:season
+    public static Map map;
+
     public List<SpriteRenderer> nowSprite = new List<SpriteRenderer>();
     public List<Square> nowSquare = new List<Square>();
-    // Start is called before the first frame update
+
     private void Awake()
     {
-        
+        map = this;
     }
-    void Start()
+    async void Start()
     {
-        Addressables.LoadAssetAsync<Sprite>("seasons_squares/spring").Completed += sprite =>
+        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/spring").Task;
+        for(int i = 0;i < sprite.spriteCount; i++)
         {
-            foreach (SpriteRenderer sr in nowSprite){
-
-            }
-            Addressables.Release(sprite);
-        };
+            nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
+        }
+        Addressables.Release(sprite);
         
     }
 
@@ -32,13 +35,14 @@ public class Map : MonoBehaviour
         
     }
 
-    public void changeOfSeason(int season)
+    public async void changeOfSeason(int season)
     {
         string[] se = { "spring", "summer", "autumn", "winter" };
-        Sprite[] sp_ar = Resources.LoadAll<Sprite>("seasons_squares/" + se[season]);
-        for(int x = 0;x < nowSprite.Count; x++)
+        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
+        for (int i = 0; i < sprite.spriteCount; i++)
         {
-            nowSprite[x].sprite = sp_ar[x];
+            nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
         }
+        Addressables.Release(sprite);
     }
 }
