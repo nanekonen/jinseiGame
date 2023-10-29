@@ -25,7 +25,6 @@ public class SquareManager : MonoBehaviour
     public Square generateSprite(string name, Dictionary<string,Object> argument)
     {
         Square s = squareDictionary[name];
-        s.initialization(argument);
         return CopyHelper.DeepCopy(s);
     }
 }

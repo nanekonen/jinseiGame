@@ -13,6 +13,7 @@ public class Map : MonoBehaviour
 
     public List<SpriteRenderer> nowSprite = new List<SpriteRenderer>();
     public List<Square> nowSquare = new List<Square>();
+    public Dictionary<string, int> positions = new Dictionary<string, int>();
 
     private void Awake()
     {
@@ -20,14 +21,17 @@ public class Map : MonoBehaviour
     }
     async void Start()
     {
-        Debug.Log(JsonUtility.ToJson(this,true));
+        changeOfSeason(GameMain.gamemain.nowSeason);
+        /*
+        Map map = JsonUtility.FromJson<Map>("{\"nowSprite\":[{\"instanceID\":26196},{\"instanceID\":26220},{\"instanceID\":26118},{\"instanceID\":26250}],\"nowSquare\":[]}");
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/spring").Task;
         for(int i = 0;i < sprite.spriteCount; i++)
         {
             nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
-        
+        Debug.Log("json ->" + JsonUtility.ToJson(this));
+        */
     }
 
     // Update is called once per frame
@@ -45,5 +49,15 @@ public class Map : MonoBehaviour
             nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
+
+        switch (season)
+        {
+            case 0:
+                nowSquare = new SpringSquares().changeOfSquares();
+                break;
+            case 1:
+                nowSquare = new SummerSquares().changeOfSquares();
+                break;
+        }
     }
 }
