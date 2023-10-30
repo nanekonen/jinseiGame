@@ -97,7 +97,7 @@ public class GameMain : MonoBehaviour
     {
         foreach(ForcedEvent fe in allForcedEvents)
         {
-            fe.judgement(nowSeason, nowRound);
+            fe.execution(nowSeason, nowRound);
         }
     }
     public Player getPlayer(int id)
