@@ -9,12 +9,15 @@ public class Player : MonoBehaviour
 
     //Status
     public string name;
+    public int id;
     public bool sex;//true:man,false:woman
     public bool love_interest;//true:man,false:woman
     public int academic;
     public int apperance;
     public int luck;
-    public Dictionary<string, int> favorability = new Dictionary<string, int>();
+    public List<int> favorability = new List<int>();
+    public int lover;
+    public int activity;
 
     void Start()
     {
@@ -29,9 +32,9 @@ public class Player : MonoBehaviour
 
     public void proceed(int number)
     {
-        Map.map.positions[name] = (Map.map.positions[name] + number)%Map.map.positions.Count;
+        Map.map.positions[id] = (Map.map.positions[id] + number)%Map.map.positions.Count;
         //âÊñ è„Ç…îΩâf
 
-        Map.map.nowSquare[Map.map.positions[name]].execution(this);
+        Map.map.getSquare(Map.map.positions[id]).execution(this);
     }
 }

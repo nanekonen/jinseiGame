@@ -11,9 +11,12 @@ public class Map : MonoBehaviour
 {
     public static Map map;
 
-    public List<SpriteRenderer> nowSprite = new List<SpriteRenderer>();
-    public List<Square> nowSquare = new List<Square>();
-    public Dictionary<string, int> positions = new Dictionary<string, int>();
+    public GameObject squareObject;
+    public Transform mapTransform;
+
+    public List<RealSquare> rsquares = new List<RealSquare>();
+    private List<Square> nowSquare = new List<Square>();
+    public List<int> positions = new List<int>();
 
     private void Awake()
     {
@@ -21,23 +24,29 @@ public class Map : MonoBehaviour
     }
     async void Start()
     {
-        changeOfSeason(GameMain.gamemain.nowSeason);
-        /*
-        Map map = JsonUtility.FromJson<Map>("{\"nowSprite\":[{\"instanceID\":26196},{\"instanceID\":26220},{\"instanceID\":26118},{\"instanceID\":26250}],\"nowSquare\":[]}");
-        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/spring").Task;
-        for(int i = 0;i < sprite.spriteCount; i++)
-        {
-            nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
-        }
-        Addressables.Release(sprite);
-        Debug.Log("json ->" + JsonUtility.ToJson(this));
-        */
+        generateSquare();
+        changeOfSeason(GameMain.gameMain.nowSeason);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    private void generateSquare()
+    {
+        for(int s = 0; s < 10; s++)
+        {
+            Instantiate(squareObject, new Vector3((float)s - 5, 2f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+        }
+        for (int s = 0; s < 10; s++)
+        {
+            Instantiate(squareObject, new Vector3((float)5-s, 0, 0), Quaternion.identity).transform.SetParent(mapTransform);
+        }
+        for (int s = 0; s < 10; s++)
+        {
+            Instantiate(squareObject, new Vector3((float)s - 5, -2f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+        }
     }
 
     public async void changeOfSeason(int season)
@@ -46,18 +55,23 @@ public class Map : MonoBehaviour
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            nowSprite[i].sprite = sprite.GetSprite(i.ToString("0"));
+            rsquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
         switch (season)
         {
             case 0:
-                nowSquare = new SpringSquares().changeOfSquares();
+                nowSquare = new SpringSquares().changeOfSquares(RealSquare.srList,RealSquare.textList);
                 break;
             case 1:
-                nowSquare = new SummerSquares().changeOfSquares();
+                nowSquare = new SummerSquares().changeOfSquares(RealSquare.srList, RealSquare.textList);
                 break;
         }
+    }
+
+    public Square getSquare(int n)
+    {
+        return nowSquare[n];
     }
 }

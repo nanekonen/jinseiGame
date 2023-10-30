@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.AddressableAssets;
+using TMPro;
 
 public class SpringSquares : SeasonSquares
 {
@@ -17,7 +18,7 @@ public class SpringSquares : SeasonSquares
     {
         
     }
-    public  override List<Square> changeOfSquares()
+    public  override List<Square> changeOfSquares(List<SpriteRenderer> sprites, List<TextMeshPro> texts)
     {
 
         List<Square> squares = new List<Square>();

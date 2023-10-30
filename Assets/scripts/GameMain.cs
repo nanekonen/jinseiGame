@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class GameMain : MonoBehaviour
 {
-    public static GameMain gamemain;
+    public static GameMain gameMain;
 
-    public Dictionary<string, Player> allPlayer = new Dictionary<string, Player>();
-    public List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
+    private List<Player> allPlayer = new List<Player>();
+    private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
 
     public int numberOfRound;
 
+    public int nowYear { set; private get; }
     public int nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
     public int nowRound { get; private set; }
     public int nowTurn { get; private set; }
@@ -19,11 +20,12 @@ public class GameMain : MonoBehaviour
     public int roll;//else:rolled,0:not rolled the dice
     //サイコロが振られたら進むマス目の数を代入する
 
-    private List<string>order = new List<string>();
+    private List<int>order = new List<int>();
 
     private void Awake()
     {
-        gamemain = this;
+        gameMain = this;
+        nowYear = 0;
         nowSeason = 0;
         nowRound = 0;
         nowTurn = 0;
@@ -42,9 +44,9 @@ public class GameMain : MonoBehaviour
     }
     private void turn()
     {
-        ProgressUI.progressUI.changeOfTurn(getPlayerName(nowTurn));
+        ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
         StartCoroutine(dice());
-        allPlayer[getPlayerName(nowTurn)].proceed(roll);
+        allPlayer[getPlayerID(nowTurn)].proceed(roll);
     }
 
     IEnumerator dice()
@@ -82,22 +84,26 @@ public class GameMain : MonoBehaviour
             fe.judgement(nowSeason, nowRound);
         }
     }
-
-    public string getPlayerName(int number)
+    public Player getPlayer(int id)
     {
-        return order[number];
+        return allPlayer[id];
     }
 
-    public int getPlayerNumber(string name)
+    public int getPlayerOrder(int id)
     {
-        return order.IndexOf(name);
+        return order.IndexOf(id);
     }
 
-    public bool setOrder(List<string> o)
+    public int getPlayerID(int o)
+    {
+        return order[o];
+    }
+
+    public bool setOrder(List<int> o)
     {
         if(o.Count == order.Count)
         {
-            foreach(string n in order)
+            foreach(int n in order)
             {
                 if (order.Contains(n))
                 {

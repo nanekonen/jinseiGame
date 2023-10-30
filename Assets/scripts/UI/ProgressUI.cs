@@ -20,7 +20,7 @@ public class ProgressUI : MonoBehaviour
         
     }
 
-    public void changeOfTurn(string name)
+    public void changeOfTurn(int id)
     {
 
     }
