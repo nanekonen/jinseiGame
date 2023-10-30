@@ -34,7 +34,6 @@ public class GameMain : MonoBehaviour
     void Start()
     {
         season();
-        season();
     }
 
     // Update is called once per frame
@@ -73,8 +72,17 @@ public class GameMain : MonoBehaviour
             nowRound++;
         }
         nowRound = 0;
-        nowSeason = (nowSeason + 1) % 4;
-        Map.map.changeOfSeason(nowSeason);
+        
+    }
+
+    private void year()
+    {
+        for(int s = 0;s < 4; s++)
+        {
+            season();
+            nowSeason = (nowSeason + 1) % 4;
+            Map.map.changeOfSeason(nowSeason);
+        }
     }
 
     private void eventOccur()

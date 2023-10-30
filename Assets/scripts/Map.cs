@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.AddressableAssets;
+using TMPro;
 public class Map : MonoBehaviour
 {
     public static Map map;
@@ -14,7 +15,6 @@ public class Map : MonoBehaviour
     public GameObject squareObject;
     public Transform mapTransform;
 
-    public List<RealSquare> rsquares = new List<RealSquare>();
     private List<Square> nowSquare = new List<Square>();
     public List<int> positions = new List<int>();
 
@@ -24,8 +24,13 @@ public class Map : MonoBehaviour
     }
     async void Start()
     {
+        List<TextMeshPro> tl = RealSquare.getTextMeshPro();
         generateSquare();
         changeOfSeason(GameMain.gameMain.nowSeason);
+        for(int s = 0;s < 30; s++)
+        {
+            tl[s].text = s.ToString("0");
+        }
     }
 
     // Update is called once per frame
@@ -37,35 +42,36 @@ public class Map : MonoBehaviour
     {
         for(int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, 2f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            Instantiate(squareObject, new Vector3((float)s - 5, 1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)5-s, 0, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            Instantiate(squareObject, new Vector3((float)4-s, 0, 0), Quaternion.identity).transform.SetParent(mapTransform);
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, -2f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            Instantiate(squareObject, new Vector3((float)s - 5, -1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
         }
     }
 
     public async void changeOfSeason(int season)
     {
+        List<SpriteRenderer> srl = RealSquare.getSpriteRenderer();
         string[] se = { "spring", "summer", "autumn", "winter" };
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            rsquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
+            srl[i].sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
         switch (season)
         {
             case 0:
-                nowSquare = new SpringSquares().changeOfSquares(RealSquare.srList,RealSquare.textList);
+                nowSquare = new SpringSquares().changeOfSquares(srl,RealSquare.getTextMeshPro());
                 break;
             case 1:
-                nowSquare = new SummerSquares().changeOfSquares(RealSquare.srList, RealSquare.textList);
+                nowSquare = new SummerSquares().changeOfSquares(srl, RealSquare.getTextMeshPro());
                 break;
         }
     }
