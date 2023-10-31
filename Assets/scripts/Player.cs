@@ -70,7 +70,7 @@ public class Player:MonoBehaviour
     {
         position = Map.map.getPosition(id);
         int a = Map.map.getArragement(id);
-        transform.position = Map.map.route[position];
+        transform.position = Map.map.getRoute(position);
         transform.position += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
     }
 

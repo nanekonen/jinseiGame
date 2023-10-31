@@ -14,7 +14,7 @@ public class Map : MonoBehaviour
 
     public RealSquare squareObject;
 
-    public List<Vector3> route = new List<Vector3>();
+    private List<Vector3> route = new List<Vector3>();
 
     private List<RealSquare> nowRSquare = new List<RealSquare>();
     private List<Square> nowSquare = new List<Square>();
@@ -117,5 +117,9 @@ public class Map : MonoBehaviour
     public int getSquarePeople(int n)
     {
         return positions.Count(item => item == n);
+    }
+    public Vector3 getRoute(int n)
+    {
+        return route[n];
     }
 }
