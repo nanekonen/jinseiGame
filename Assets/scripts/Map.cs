@@ -57,6 +57,7 @@ public class Map : MonoBehaviour
     public async void changeOfSeason(int season)
     {
         List<SpriteRenderer> srl = RealSquare.getSpriteRenderer();
+        Debug.Log(srl.Count);
         string[] se = { "spring", "summer", "autumn", "winter" };
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)

@@ -6,7 +6,7 @@ using TMPro;
 public abstract class Square : MonoBehaviour
 {
     public SpriteRenderer sr;
-    public TextMeshProUGUI text;
+    public TextMeshPro text;
     public abstract void execution(Player player);
 
 }

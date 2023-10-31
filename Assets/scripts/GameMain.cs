@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public class GameMain : MonoBehaviour
 {
@@ -30,10 +31,12 @@ public class GameMain : MonoBehaviour
         nowRound = 0;
         nowTurn = 0;
         roll = 0;
+        order.Add(0);
     }
     void Start()
     {
         season();
+        Debug.Log("Start");
     }
 
     // Update is called once per frame
@@ -41,16 +44,20 @@ public class GameMain : MonoBehaviour
     {
         
     }
-    private void turn()
+    private async void turn()
     {
         ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
-        StartCoroutine(dice());
+        Debug.Log("Nice");
+        await UniTask.WaitUntil(() => roll != 0);
+        Debug.Log(roll);
+        Debug.Log("Bad");
         allPlayer[getPlayerID(nowTurn)].proceed(roll);
     }
 
     IEnumerator dice()
     {
         yield return new WaitUntil(() => roll != 0);
+        yield return null;
     }
     
     private void round()
@@ -59,6 +66,7 @@ public class GameMain : MonoBehaviour
         {
             turn();
             nowTurn++;
+            Debug.Log("OMG");
         }
         nowTurn = 0;
         eventOccur();
