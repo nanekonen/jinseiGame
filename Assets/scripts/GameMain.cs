@@ -3,40 +3,73 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using TMPro;
 
 public class GameMain : MonoBehaviour
 {
     public static GameMain gameMain;
 
+    public Player playerObject;
+
     private List<Player> allPlayer = new List<Player>();
     private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
 
-    public int numberOfRound;
+    public int numberOfPlayer = 2;
 
-    public int nowYear { set; private get; }
+    private int numberOfYear = 1;
+    private int numberOfSeason = 2;
+    private int numberOfRound = 5;
+    
+    
+    public int nowYear { get;private set; }
     public int nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
     public int nowRound { get; private set; }
     public int nowTurn { get; private set; }
 
     public int roll;//else:rolled,0:not rolled the dice
     //サイコロが振られたら進むマス目の数を代入する
+    public bool turn;//true:Finished Square,false:In operation
 
     private List<int>order = new List<int>();
 
     private void Awake()
     {
         gameMain = this;
+        numberOfPlayer = 2;
         nowYear = 0;
-        nowSeason = 0;
-        nowRound = 0;
-        nowTurn = 0;
         roll = 0;
         order.Add(0);
+        
     }
-    void Start()
+    async void Start()
     {
-        season();
-        Debug.Log("Start");
+        Debug.Log("Yeahhh");
+        Map.map.generateSquare();
+        generatePlayer();
+        List<RealSquare> tl = Map.map.getNowRSquare();
+        for (int s = 0; s < 30; s++)
+        {
+            tl[s].text.text = s.ToString("0");
+        }
+        for (nowSeason = 0; nowSeason < numberOfSeason; nowSeason++)
+        {
+            Map.map.changeOfSeason(nowSeason);
+            for (nowRound = 0; nowRound < numberOfRound; nowRound++)
+            {
+                for(nowTurn = 0;nowTurn < allPlayer.Count; nowTurn++)
+                {
+                    Debug.Log("Nice");
+                    ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
+                    ProgressUI.progressUI.waitDice();
+                    await UniTask.WaitUntil(() => roll != 0);
+                    Debug.Log("roll:" + roll);
+                    Debug.Log("Bad");
+                    allPlayer[getPlayerID(nowTurn)].proceed(roll);
+                    await UniTask.WaitUntil(() => turn);
+                }
+                eventOccur();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -44,52 +77,15 @@ public class GameMain : MonoBehaviour
     {
         
     }
-    private async void turn()
+    private void generatePlayer()
     {
-        ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
-        Debug.Log("Nice");
-        await UniTask.WaitUntil(() => roll != 0);
-        Debug.Log(roll);
-        Debug.Log("Bad");
-        allPlayer[getPlayerID(nowTurn)].proceed(roll);
-    }
-
-    IEnumerator dice()
-    {
-        yield return new WaitUntil(() => roll != 0);
-        yield return null;
-    }
-    
-    private void round()
-    {
-        for (int t = 0; t < order.Count; t++)
+        for(int p = 0;p < numberOfPlayer; p++)
         {
-            turn();
-            nowTurn++;
-            Debug.Log("OMG");
-        }
-        nowTurn = 0;
-        eventOccur();
-    }
-
-    private void season()
-    {
-        for(int r = 0;r < numberOfRound;r++)
-        {
-            round();
-            nowRound++;
-        }
-        nowRound = 0;
-        
-    }
-
-    private void year()
-    {
-        for(int s = 0;s < 4; s++)
-        {
-            season();
-            nowSeason = (nowSeason + 1) % 4;
-            Map.map.changeOfSeason(nowSeason);
+            new PlayerInformation();
+            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
+            pl.transform.SetParent(transform);
+            pl.initialization(p);
+            allPlayer.Add(pl);
         }
     }
 
@@ -100,10 +96,12 @@ public class GameMain : MonoBehaviour
             fe.execution(nowSeason, nowRound);
         }
     }
+    /*
     public Player getPlayer(int id)
     {
         return allPlayer[id];
     }
+    */
 
     public int getPlayerOrder(int id)
     {

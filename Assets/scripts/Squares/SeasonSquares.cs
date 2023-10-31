@@ -5,5 +5,5 @@ using TMPro;
 
 public abstract class SeasonSquares
 {
-    public abstract List<Square> changeOfSquares(List<SpriteRenderer>sprites,List<TextMeshPro>texts);
+    public abstract List<Square> changeOfSquares(List<RealSquare>rsquares);
 }

@@ -12,25 +12,23 @@ public class Map : MonoBehaviour
 {
     public static Map map;
 
-    public GameObject squareObject;
+    public RealSquare squareObject;
     public Transform mapTransform;
 
+    public List<Vector3> route = new List<Vector3>();
+
+    private List<RealSquare> nowRSquare = new List<RealSquare>();
     private List<Square> nowSquare = new List<Square>();
-    public List<int> positions = new List<int>();
+    private List<int> positions = new List<int>();
+    private List<List<int>> arragement = new List<List<int>>();
 
     private void Awake()
     {
         map = this;
     }
-    async void Start()
-    {
-        List<TextMeshPro> tl = RealSquare.getTextMeshPro();
-        generateSquare();
-        changeOfSeason(GameMain.gameMain.nowSeason);
-        for(int s = 0;s < 30; s++)
-        {
-            tl[s].text = s.ToString("0");
-        }
+    void Start()
+    {   
+
     }
 
     // Update is called once per frame
@@ -38,47 +36,87 @@ public class Map : MonoBehaviour
     {
         
     }
-    private void generateSquare()
+    public void generateSquare()
     {
-        for(int s = 0; s < 10; s++)
+        for(int s = 0;s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, 1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)s - 5f, 1f,0));
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)4-s, 0, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)4 - s, 0, 0));
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, -1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)s - 5f, -1f, 0));
+        }
+        foreach (Vector3 v in route)
+        {
+            RealSquare rs = Instantiate(squareObject, v, Quaternion.identity);
+            rs.transform.SetParent(map.transform);
+            nowRSquare.Add(rs);
         }
     }
 
     public async void changeOfSeason(int season)
     {
-        List<SpriteRenderer> srl = RealSquare.getSpriteRenderer();
-        Debug.Log(srl.Count);
         string[] se = { "spring", "summer", "autumn", "winter" };
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            srl[i].sprite = sprite.GetSprite(i.ToString("0"));
+            nowRSquare[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
         switch (season)
         {
             case 0:
-                nowSquare = new SpringSquares().changeOfSquares(srl,RealSquare.getTextMeshPro());
+                nowSquare = new SpringSquares().changeOfSquares(nowRSquare);
                 break;
             case 1:
-                nowSquare = new SummerSquares().changeOfSquares(srl, RealSquare.getTextMeshPro());
+                nowSquare = new SummerSquares().changeOfSquares(nowRSquare);
                 break;
         }
+    }
+
+    public List<RealSquare> getNowRSquare()
+    {
+        return nowRSquare;
     }
 
     public Square getSquare(int n)
     {
         return nowSquare[n];
+    }
+    public void addPosition(int id)
+    {
+        for(int i = 0;arragement.Count < 30; i++)
+        {
+            arragement.Add(new List<int>());
+        }
+        if(id == positions.Count)
+        {
+            positions.Add(0);
+            
+            arragement[0].Add(id);
+        }
+    }
+    public int getPosition(int id)
+    {
+        return positions[id];
+    }
+    public int getArragement(int id)
+    {
+        return arragement[positions[id]].IndexOf(id);
+    }
+    public void setPosition(int id,int n)
+    {
+        arragement[positions[id]].Remove(arragement[positions[id]].IndexOf(id));
+        positions[id] = n;
+        arragement[n].Add(id);
+    }
+    public int getSquarePeople(int n)
+    {
+        return positions.Count(item => item == n);
     }
 }
