@@ -63,10 +63,10 @@ public class Player:MonoBehaviour
         position = 0;
         sr.color = new Color(Random.value, Random.value, Random.value, 1f);
         Map.map.addPosition(id);
-        arrangement();
+        arrange();
     }
 
-    private void arrangement()
+    private void arrange()
     {
         position = Map.map.getPosition(id);
         int a = Map.map.getArragement(id);
@@ -77,7 +77,7 @@ public class Player:MonoBehaviour
     public void proceed(int number)
     {
         Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.numberOfPlayer);
-        arrangement();
+        arrange();
         Map.map.getSquare(position).execution(this);
         GameMain.gameMain.turn = true;
     }

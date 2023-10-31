@@ -16,7 +16,7 @@ public class Map : MonoBehaviour
 
     private List<Vector3> route = new List<Vector3>();
 
-    private List<RealSquare> nowRSquare = new List<RealSquare>();
+    private List<RealSquare> realSquares = new List<RealSquare>();
     private List<Square> nowSquare = new List<Square>();
     private List<int> positions = new List<int>();
     private List<List<int>> arragement = new List<List<int>>();
@@ -53,7 +53,7 @@ public class Map : MonoBehaviour
         {
             RealSquare rs = Instantiate(squareObject, v, Quaternion.identity);
             rs.transform.SetParent(transform);
-            nowRSquare.Add(rs);
+            realSquares.Add(rs);
         }
     }
 
@@ -63,24 +63,24 @@ public class Map : MonoBehaviour
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            nowRSquare[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
+            realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
         switch (season)
         {
             case 0:
-                nowSquare = new SpringSquares().changeOfSquares(nowRSquare);
+                nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case 1:
-                nowSquare = new SummerSquares().changeOfSquares(nowRSquare);
+                nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
         }
     }
 
-    public List<RealSquare> getNowRSquare()
+    public List<RealSquare> getRealSquares()
     {
-        return nowRSquare;
+        return realSquares;
     }
 
     public Square getSquare(int n)

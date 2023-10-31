@@ -46,7 +46,7 @@ public class GameMain : MonoBehaviour
         Debug.Log("Yeahhh");
         Map.map.generateSquare();
         generatePlayer();
-        List<RealSquare> tl = Map.map.getNowRSquare();
+        List<RealSquare> tl = Map.map.getRealSquares();
         for (int s = 0; s < 30; s++)
         {
             tl[s].text.text = s.ToString("0");
