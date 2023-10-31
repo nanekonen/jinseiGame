@@ -13,7 +13,6 @@ public class Map : MonoBehaviour
     public static Map map;
 
     public RealSquare squareObject;
-    public Transform mapTransform;
 
     public List<Vector3> route = new List<Vector3>();
 
@@ -53,7 +52,7 @@ public class Map : MonoBehaviour
         foreach (Vector3 v in route)
         {
             RealSquare rs = Instantiate(squareObject, v, Quaternion.identity);
-            rs.transform.SetParent(map.transform);
+            rs.transform.SetParent(transform);
             nowRSquare.Add(rs);
         }
     }
