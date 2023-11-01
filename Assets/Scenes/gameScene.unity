@@ -597,8 +597,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: -165}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: -81.02133, y: -165.04616}
+  m_SizeDelta: {x: 626.9335, y: 84.3385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836452489
 MonoBehaviour:
@@ -683,7 +683,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -99.851654, w: 0}
+  m_margin: {x: 0, y: 0, z: -0.010223389, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -727,8 +727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   squareObject: {fileID: 6287538104720109499, guid: 968e6a41ffa504e41b1ca75bf7af6809, type: 3}
-  mapTransform: {fileID: 1841717385}
-  route: []
 --- !u!4 &1841717385
 Transform:
   m_ObjectHideFlags: 0

@@ -65,7 +65,9 @@ public class GameMain : MonoBehaviour
                     Debug.Log("roll:" + roll);
                     Debug.Log("Bad");
                     allPlayer[getPlayerID(nowTurn)].proceed(roll);
+                    roll = 0;
                     await UniTask.WaitUntil(() => turn);
+                    turn = false;
                 }
                 eventOccur();
             }
