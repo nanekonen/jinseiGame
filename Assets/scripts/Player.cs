@@ -8,13 +8,13 @@ public class Player:MonoBehaviour
     public SpriteRenderer sr;
 
     //Status
-    public string name;
-    public int id;
-    public bool sex;//true:man,false:woman
-    public bool love_interest;//true:man,false:woman
+    public string name { get; private set; }
+    public int id { get; private set; }
+    public bool sex { get; private set; }//true:man,false:woman
+    public bool love_interest { get; private set; }//true:man,false:woman
     public int academic;
     public int apperance;
-    public Sprite sprite;
+    public Sprite sprite { get; private set; }
     public int luck;
     public List<int> favorability = new List<int>();
     public int lover;
@@ -76,7 +76,8 @@ public class Player:MonoBehaviour
 
     public void proceed(int number)
     {
-        Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.numberOfPlayer);
+        Debug.Log("proceed");
+        Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.lengthOfSeason);
         arrange();
         Map.map.getSquare(position).execution(this);
         GameMain.gameMain.turn = true;

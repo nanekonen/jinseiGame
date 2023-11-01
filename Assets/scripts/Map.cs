@@ -77,6 +77,7 @@ public class Map : MonoBehaviour
                 break;
             case -1:
                 nowSquare = new TestSeason().changeOfSquares(realSquares);
+                Debug.Log("Count"+nowSquare.Count.ToString("0"));
                 break;
         }
     }

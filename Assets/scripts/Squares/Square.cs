@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public abstract class Square
+public abstract class Square:MonoBehaviour
 {
     public SpriteRenderer sr;
     public TextMeshPro text;

@@ -15,10 +15,11 @@ public class GameMain : MonoBehaviour
     private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
 
     public int numberOfPlayer = 2;
+    public int lengthOfSeason = 30;
 
-    private int numberOfYear = 1;
-    private int numberOfSeason = 2;
-    private int numberOfRound = 5;
+    private int maxNumberOfYear = 1;
+    private int maxNumberOfSeason = 2;
+    private int maxNumberOfRound = 5;
     
     
     public int nowYear { get;private set; }
@@ -53,10 +54,10 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        for (nowSeason = 0; nowSeason < numberOfSeason; nowSeason++)
+        for (nowSeason = 0; nowSeason < maxNumberOfSeason; nowSeason++)
         {
             Map.map.changeOfSeason(nowSeason);
-            for (nowRound = 0; nowRound < numberOfRound; nowRound++)
+            for (nowRound = 0; nowRound < maxNumberOfRound; nowRound++)
             {
                 for(nowTurn = 0;nowTurn < allPlayer.Count; nowTurn++)
                 {
@@ -100,12 +101,12 @@ public class GameMain : MonoBehaviour
             fe.execution(nowSeason, nowRound);
         }
     }
-    /*
+    
     public Player getPlayer(int id)
     {
         return allPlayer[id];
     }
-    */
+    
 
     public int getPlayerOrder(int id)
     {
