@@ -66,7 +66,7 @@ public class Map : MonoBehaviour
             realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
-
+        season = -1;//DEBUG
         switch (season)
         {
             case 0:
@@ -74,6 +74,9 @@ public class Map : MonoBehaviour
                 break;
             case 1:
                 nowSquare = new SummerSquares().changeOfSquares(realSquares);
+                break;
+            case -1:
+                nowSquare = new TestSeason().changeOfSquares(realSquares);
                 break;
         }
     }

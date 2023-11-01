@@ -38,8 +38,10 @@ public class GameMain : MonoBehaviour
         numberOfPlayer = 2;
         nowYear = 0;
         roll = 0;
-        order.Add(0);
-        
+        for(int i = 0;i < numberOfPlayer; i++)
+        {
+            order.Add(i);
+        }
     }
     async void Start()
     {
