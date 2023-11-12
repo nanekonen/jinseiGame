@@ -8,7 +8,7 @@ public class TestSquare : Square
     private TextMeshProUGUI text;
     private string sentence;
     private int academic;
-    private int apperance;
+    private int appearance;
     private int luck;
 
     private Player player;
@@ -31,9 +31,10 @@ public class TestSquare : Square
     IEnumerator space()
     {
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        player.academic += academic;
-        player.apperance += apperance;
-        player.luck += luck;
+
+        player.pi.academic.add(new Deviation(academic));
+        player.pi.appearance.add(new Deviation(appearance));
+        player.pi.luck.add(new Deviation(luck));
         text.enabled = false;
         ProgressUI.progressUI.changeOfTurn(GameMain.gameMain.nowTurn);
         GameMain.gameMain.turn = true;
