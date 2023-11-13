@@ -6,6 +6,11 @@ public abstract class Activity
 
     public const int UNDEFINED = -1;
 
-
+    protected int id = UNDEFINED;
     public abstract Results doActivity(Situation situation);
+
+    public int getID()
+    {
+        return id;
+    }
 }

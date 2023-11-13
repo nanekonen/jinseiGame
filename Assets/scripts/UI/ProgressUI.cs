@@ -39,12 +39,12 @@ public class ProgressUI : MonoBehaviour
     {
         Player p = GameMain.gameMain.getPlayer(id);
         string[] s = { "春", "夏", "秋", "冬" };
-        nameText.text = p.name;nowText.text = s[GameMain.gameMain.nowSeason] + ":" + (GameMain.gameMain.nowRound + 1).ToString("0") + "ターン目";
-        academicText.text = "学力 " + p.academic.ToString("0");
-        apperanceText.text = "容姿 " + p.apperance.ToString("0");
+        nameText.text = p.name;nowText.text = s[GameMain.gameMain.nowSeason.getID()] + ":" + (GameMain.gameMain.nowRound + 1).ToString("0") + "ターン目";
+        academicText.text = "学力 " + p.academic.getValue().ToString("0");
+        apperanceText.text = "容姿 " + p.appearance.getValue().ToString("0");
         luckText.text = "運 " + p.luck;
         string[] a = { "バスケ部", "吹奏楽部", "バイト" };
-        affiliationText.text = "所属 " + a[p.activity];
+        affiliationText.text = "所属 " + a[p.activity.getID()];
     }
     
     public void waitDice()

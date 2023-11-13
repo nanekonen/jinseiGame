@@ -2,7 +2,7 @@ public class PartTime : Activity
 {
     public PartTime()
     {
-
+        id = PARTTIME;
     }
     public override Results doActivity(Situation situation)
     {

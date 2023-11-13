@@ -2,7 +2,7 @@ public class BrassBandClub : Activity
 {
     public BrassBandClub()
     {
-
+        id = BRASSBANDCLUB;
     }
 
     public override Results doActivity(Situation situation)

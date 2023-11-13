@@ -1,9 +1,8 @@
 public class BasketballClub : Activity
 {
-
     public BasketballClub()
     {
-
+        id = BASKETBALLCLUB;
     }
 
     
