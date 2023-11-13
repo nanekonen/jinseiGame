@@ -54,24 +54,24 @@ public class Map : MonoBehaviour
         }
     }
 
-    public async void changeOfSeason(int season)
+    public async void changeOfSeason(Season season)
     {
         List<SpriteRenderer> srl = RealSquare.getSpriteRenderer();
         Debug.Log(srl.Count);
         string[] se = { "spring", "summer", "autumn", "winter" };
-        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season]).Task;
+        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season.getID()]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
             srl[i].sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
-        switch (season)
+        switch (season.getID())
         {
-            case 0:
+            case Season.SPRING:
                 nowSquare = new SpringSquares().changeOfSquares(srl,RealSquare.getTextMeshPro());
                 break;
-            case 1:
+            case Season.SUMMER:
                 nowSquare = new SummerSquares().changeOfSquares(srl, RealSquare.getTextMeshPro());
                 break;
         }

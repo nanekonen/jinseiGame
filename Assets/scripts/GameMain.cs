@@ -14,7 +14,7 @@ public class GameMain : MonoBehaviour
     public int numberOfRound;
 
     public int nowYear { set; private get; }
-    public int nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
+    public Season nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
     public int nowRound { get; private set; }
     public int nowTurn { get; private set; }
 
@@ -27,7 +27,7 @@ public class GameMain : MonoBehaviour
     {
         gameMain = this;
         nowYear = 0;
-        nowSeason = 0;
+        nowSeason = new Season( Season.SPRING );
         nowRound = 0;
         nowTurn = 0;
         roll = 0;
@@ -88,7 +88,7 @@ public class GameMain : MonoBehaviour
         for(int s = 0;s < 4; s++)
         {
             season();
-            nowSeason = (nowSeason + 1) % 4;
+            nowSeason = nowSeason.getNextSeason();
             Map.map.changeOfSeason(nowSeason);
         }
     }

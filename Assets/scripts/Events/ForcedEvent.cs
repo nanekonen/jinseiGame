@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class ForcedEvent : MonoBehaviour
 {
-    public abstract void execution(int season,int round);
+    public abstract void execution(Season season,int round);
 }
