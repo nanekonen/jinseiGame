@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{   
-    //hierarchy
-    public Transform transform;
+public class Player:MonoBehaviour
+{
+
+    public SpriteRenderer sr;
 
     //Status
     public string name;
@@ -23,6 +23,16 @@ public class Player : MonoBehaviour
     public Lover lover = Lover.UNDEFINED;
 
     public Activity activity = new PartTime();
+
+    public int activity;
+    public int position;
+
+    public float speed;
+    public float error;
+    private bool move;
+
+    private Vector3 dst;
+    private Vector3 dir;
     //public int activity;
 
     void Start()
@@ -33,15 +43,47 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (move)
+        {
+            transform.position += dir * speed;
+            if((dst - transform.position).sqrMagnitude < error)
+            {
+                move = false;
+                transform.position = dst;
+                Map.map.getSquare(position).execution(this);
+            }
+        }
+    }
+    public void initialization(int id)
+    {
+        PlayerInformation pi = PlayerInformation.getInformation(id);
+        name = pi.name;this.id = id;sex = pi.sex;
+        love_interest = pi.love_interest;
+        academic = pi.academic;
+        apperance = pi.apperance;
+        sprite = pi.sprite;
+        luck = pi.luck;
+        position = 0;
+        sr.color = new Color(Random.value, Random.value, Random.value, 1f);
+        Map.map.addPosition(id);
+        arrange();
+    }
+
+    private void arrange()
+    {
+        position = Map.map.getPosition(id);
+        int a = Map.map.getArragement(id);
+        transform.position = Map.map.getRoute(position);
+        transform.position += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
     }
 
     public void proceed(int number)
     {
-        Map.map.positions[id] = (Map.map.positions[id] + number)%Map.map.positions.Count;
-        //‰æ–Êã‚É”½‰f
-
-        Map.map.getSquare(Map.map.positions[id]).execution(this);
+        Debug.Log("proceed");
+        Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.lengthOfSeason);
+        arrange();
+        Map.map.getSquare(position).execution(this);
+        GameMain.gameMain.turn = true;
     }
 
     public void reflectResult( Results result )

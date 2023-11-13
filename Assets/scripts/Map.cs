@@ -12,25 +12,22 @@ public class Map : MonoBehaviour
 {
     public static Map map;
 
-    public GameObject squareObject;
-    public Transform mapTransform;
+    public RealSquare squareObject;
 
+    private List<Vector3> route = new List<Vector3>();
+
+    private List<RealSquare> realSquares = new List<RealSquare>();
     private List<Square> nowSquare = new List<Square>();
-    public List<int> positions = new List<int>();
+    private List<int> positions = new List<int>();
+    private List<List<int>> arragement = new List<List<int>>();
 
     private void Awake()
     {
         map = this;
     }
-    async void Start()
-    {
-        List<TextMeshPro> tl = RealSquare.getTextMeshPro();
-        generateSquare();
-        changeOfSeason(GameMain.gameMain.nowSeason);
-        for(int s = 0;s < 30; s++)
-        {
-            tl[s].text = s.ToString("0");
-        }
+    void Start()
+    {   
+
     }
 
     // Update is called once per frame
@@ -38,31 +35,35 @@ public class Map : MonoBehaviour
     {
         
     }
-    private void generateSquare()
+    public void generateSquare()
     {
-        for(int s = 0; s < 10; s++)
+        for(int s = 0;s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, 1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)s - 5f, 1f,0));
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)4-s, 0, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)4 - s, 0, 0));
         }
         for (int s = 0; s < 10; s++)
         {
-            Instantiate(squareObject, new Vector3((float)s - 5, -1f, 0), Quaternion.identity).transform.SetParent(mapTransform);
+            route.Add(new Vector3((float)s - 5f, -1f, 0));
+        }
+        foreach (Vector3 v in route)
+        {
+            RealSquare rs = Instantiate(squareObject, v, Quaternion.identity);
+            rs.transform.SetParent(transform);
+            realSquares.Add(rs);
         }
     }
 
     public async void changeOfSeason(Season season)
     {
-        List<SpriteRenderer> srl = RealSquare.getSpriteRenderer();
-        Debug.Log(srl.Count);
         string[] se = { "spring", "summer", "autumn", "winter" };
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season.getID()]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            srl[i].sprite = sprite.GetSprite(i.ToString("0"));
+            realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
 
@@ -74,11 +75,55 @@ public class Map : MonoBehaviour
             case Season.SUMMER:
                 nowSquare = new SummerSquares().changeOfSquares(srl, RealSquare.getTextMeshPro());
                 break;
+            case -1:
+                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                Debug.Log("Count" + nowSquare.Count.ToString("0"));
+                break;
         }
+    }
+
+    public List<RealSquare> getRealSquares()
+    {
+        return realSquares;
     }
 
     public Square getSquare(int n)
     {
         return nowSquare[n];
+    }
+    public void addPosition(int id)
+    {
+        for(int i = 0;arragement.Count < 30; i++)
+        {
+            arragement.Add(new List<int>());
+        }
+        if(id == positions.Count)
+        {
+            positions.Add(0);
+            
+            arragement[0].Add(id);
+        }
+    }
+    public int getPosition(int id)
+    {
+        return positions[id];
+    }
+    public int getArragement(int id)
+    {
+        return arragement[positions[id]].IndexOf(id);
+    }
+    public void setPosition(int id,int n)
+    {
+        arragement[positions[id]].Remove(arragement[positions[id]].IndexOf(id));
+        positions[id] = n;
+        arragement[n].Add(id);
+    }
+    public int getSquarePeople(int n)
+    {
+        return positions.Count(item => item == n);
+    }
+    public Vector3 getRoute(int n)
+    {
+        return route[n];
     }
 }

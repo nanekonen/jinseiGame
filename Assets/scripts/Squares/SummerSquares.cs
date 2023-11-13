@@ -17,7 +17,7 @@ public class SummerSquares : SeasonSquares
         
     }
 
-    public override List<Square> changeOfSquares(List<SpriteRenderer> sprites, List<TextMeshPro> texts)
+    public override List<Square> changeOfSquares(List<RealSquare> rsquares)
     {
         List<Square> squares = new List<Square>();
 
