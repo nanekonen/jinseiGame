@@ -24,7 +24,7 @@ public class Player:MonoBehaviour
 
     public Activity activity = new PartTime();
 
-    public int activity;
+    /// public int activity;
     public int position;
 
     public float speed;
@@ -57,7 +57,7 @@ public class Player:MonoBehaviour
     public void initialization(int id)
     {
         PlayerInformation pi = PlayerInformation.getInformation(id);
-        name = pi.name;this.id = id;sex = pi.sex;
+        name = pi.name;this.id = id;gender = pi.gender;
         love_interest = pi.love_interest;
         academic = pi.academic;
         apperance = pi.apperance;

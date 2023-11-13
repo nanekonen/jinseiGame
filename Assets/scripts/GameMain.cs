@@ -57,7 +57,7 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        for (nowSeason = 0; nowSeason < maxNumberOfSeason; nowSeason++)
+        for (; nowSeason.getID() < maxNumberOfSeason; nowSeason = nowSeason.getNextSeason())
         {
             Map.map.changeOfSeason(nowSeason);
             for (nowRound = 0; nowRound < maxNumberOfRound; nowRound++)

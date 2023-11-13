@@ -3,22 +3,31 @@ using Unity.VisualScripting;
 
 public class Gender
 {
-    public static readonly Gender UNDEFINED_GENDER = new Gender();
+    public static readonly Gender UNDEFINED_GENDER = new Gender(-1);
+    public static readonly Gender MAN = new Gender(0);
+    public static readonly Gender WOMAN = new Gender(1);
 
-    public const int MAN = 0;
-    public const int WOMAN = 1;
-    public const int UNDEFINED = -1;
-
-    private int gender = UNDEFINED;
+    private Gender gender = UNDEFINED_GENDER;
 
     public Gender( int gender )
     {
-        this.gender = gender;
+        switch(gender)
+        {
+            case -1:
+                this.gender = UNDEFINED_GENDER;
+                break;
+            case 0:
+                this.gender = MAN;
+                break;
+            case 1:
+                this.gender = WOMAN;
+                break;
+        }
     }
 
-    private Gender()
+    public Gender getGender()
     {
-        this.gender = UNDEFINED;
+        return gender;
     }
 
 }
