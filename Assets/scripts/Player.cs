@@ -8,23 +8,8 @@ public class Player:MonoBehaviour
 
     public SpriteRenderer sr;
 
-    //Status
-    public string name;
-    public int id;
+    public int id; 
 
-    public Favorabilities favorabilities;
-    public Gender gender = Gender.UNDEFINED_GENDER;
-    public Academic academic = Academic.UNDEFINED_ACADEMIC;
-    public Appearance appearance = Appearance.UNDEFINED_APPEARANCE;
-    public Luck luck = Luck.UNDEFINED_LUCK;
-    public LoveInterest loveInterest = LoveInterest.UNDEFINED_LOVE_INTEREST;
-
-    public Lovers lovers = new Lovers();
-    public Lover lover = Lover.UNDEFINED;
-
-    public Activity activity = new PartTime();
-
-    public int activity;
     public int position;
 
     public float speed;
@@ -33,8 +18,8 @@ public class Player:MonoBehaviour
 
     private Vector3 dst;
     private Vector3 dir;
-    //public int activity;
 
+    public PlayerInformation pi;
     void Start()
     {
         
@@ -56,13 +41,9 @@ public class Player:MonoBehaviour
     }
     public void initialization(int id)
     {
-        PlayerInformation pi = PlayerInformation.getInformation(id);
-        name = pi.name;this.id = id;sex = pi.sex;
-        love_interest = pi.love_interest;
-        academic = pi.academic;
-        apperance = pi.apperance;
-        sprite = pi.sprite;
-        luck = pi.luck;
+        this.pi = PlayerInformation.getInformation(id);
+        this.id = id;
+
         position = 0;
         sr.color = new Color(Random.value, Random.value, Random.value, 1f);
         Map.map.addPosition(id);
@@ -86,35 +67,5 @@ public class Player:MonoBehaviour
         GameMain.gameMain.turn = true;
     }
 
-    public void reflectResult( Results result )
-    {
-        for( int i = 0; i < Favorabilities.NUM_OF_PARTNERS; i++ )
-        {
-            //favorabilities.favorabilities[i].reflectResult( result.academicDev );
-        }
 
-        academic.add(result.academicDev);
-        appearance.add(result.appearanceDev);
-        luck.add(result.luckDev);
-
-
-    }
-
-    public void setActivity( int activityID )
-    {
-        switch( activityID )
-        {
-            case Activity.BASKETBALLCLUB:
-                this.activity = new BasketballClub();
-                break;
-            case Activity.BRASSBANDCLUB:
-                this.activity = new BrassBandClub();
-                break;
-            case Activity.PARTTIME:
-                this.activity = new PartTime();
-                break;
-            default:
-                break;
-        }
-    }
 }
