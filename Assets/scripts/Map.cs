@@ -60,7 +60,7 @@ public class Map : MonoBehaviour
     public async void changeOfSeason(Season season)
     {
         string[] se = { "spring", "summer", "autumn", "winter" };
-        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[season.getID()]).Task;
+        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[Season.UNDEFINED == season.getID()?Season.SPRING:season.getID()]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
             realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
@@ -70,14 +70,13 @@ public class Map : MonoBehaviour
         switch (season.getID())
         {
             case Season.SPRING:
-                nowSquare = new SpringSquares().changeOfSquares(srl,RealSquare.getTextMeshPro());
+                nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
-                nowSquare = new SummerSquares().changeOfSquares(srl, RealSquare.getTextMeshPro());
+                nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case -1:
                 nowSquare = new TestSeason().changeOfSquares(realSquares);
-                Debug.Log("Count" + nowSquare.Count.ToString("0"));
                 break;
         }
     }
@@ -89,7 +88,7 @@ public class Map : MonoBehaviour
 
     public Square getSquare(int n)
     {
-        return nowSquare[n];
+        return nowSquare[n % GameMain.gameMain.lengthOfSeason];
     }
     public void addPosition(int id)
     {

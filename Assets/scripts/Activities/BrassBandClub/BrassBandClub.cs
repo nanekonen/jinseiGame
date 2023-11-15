@@ -2,7 +2,7 @@ public class BrassBandClub : Activity
 {
     public BrassBandClub()
     {
-
+        base.name = "‘tŠy•”";
     }
 
     public override Results doActivity(Situation situation)

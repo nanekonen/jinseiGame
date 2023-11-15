@@ -27,29 +27,33 @@ public class GameMain : MonoBehaviour
     public int nowRound { get; private set; }
     public int nowTurn { get; private set; }
 
-    public int roll;//else:rolled,0:not rolled the dice
-    //�T�C�R�����U��ꂽ��i�ރ}�X�ڂ̐���������
-    public bool turn;//true:Finished Square,false:In operation
-
     private List<int>order = new List<int>();
+
 
     private void Awake()
     {
+        Debug.Log("Awake");
         gameMain = this;
-        numberOfPlayer = 2;
         nowYear = 0;
         nowSeason = new Season( Season.SPRING );
         nowRound = 0;
         nowTurn = 0;
-        roll = 0;
+        numberOfPlayer = 2;
+        lengthOfSeason = 30;
         for(int i = 0;i < numberOfPlayer; i++)
         {
             order.Add(i);
         }
+        
+        startingGame();
     }
-    async void Start()
+    void Start()
     {
-        Debug.Log("Yeahhh");
+        Debug.Log("Start");
+    }
+    private void startingGame()
+    {
+        Debug.Log("startingGame");
         Map.map.generateSquare();
         generatePlayer();
         List<RealSquare> tl = Map.map.getRealSquares();
@@ -57,34 +61,40 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        for (nowSeason = 0; nowSeason < maxNumberOfSeason; nowSeason++)
+        Map.map.changeOfSeason(new Season(Season.UNDEFINED));//debug
+        turnStart();
+    }
+    private void turnStart()
+    {
+        Debug.Log("turnStart");
+        if(nowTurn == allPlayer.Count())
         {
-            nowSeason = nowSeason.getNextSeason();
-            Map.map.changeOfSeason(nowSeason);
-            for (nowRound = 0; nowRound < maxNumberOfRound; nowRound++)
+            eventOccur();
+            nowRound++;
+            nowTurn = 0;
+            if(nowRound == maxNumberOfRound)
             {
-                for(nowTurn = 0;nowTurn < allPlayer.Count; nowTurn++)
-                {
-                    Debug.Log("Nice");
-                    ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
-                    ProgressUI.progressUI.waitDice();
-                    await UniTask.WaitUntil(() => roll != 0);
-                    Debug.Log("roll:" + roll);
-                    Debug.Log("Bad");
-                    allPlayer[getPlayerID(nowTurn)].proceed(roll);
-                    roll = 0;
-                    await UniTask.WaitUntil(() => turn);
-                    turn = false;
-                }
-                eventOccur();
+                nowSeason = nowSeason.getNextSeason();
+                nowRound = 0;
+                Map.map.changeOfSeason(nowSeason);
             }
         }
+        ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
+        ProgressUI.progressUI.waitDice();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void processAfterRollingDice(int roll)
     {
+        Debug.Log("processAfterRollingDice");
+        StartCoroutine(wait(100,roll));
         
+    }
+
+    public void processTransition()
+    {
+        Debug.Log("processTransition");
+        nowTurn++;
+        turnStart();
     }
     private void generatePlayer()
     {
@@ -141,5 +151,12 @@ public class GameMain : MonoBehaviour
         order = o;
 
         return true;
+    }
+    private IEnumerator wait(int frame,int roll)
+    {
+        for(int i = 0;i < frame; i++)
+        {
+            yield return null;
+        }allPlayer[getPlayerID(nowTurn)].proceed(roll);
     }
 }

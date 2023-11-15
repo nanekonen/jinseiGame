@@ -17,8 +17,8 @@ public class ProgressUI : MonoBehaviour
 
     public TextMeshProUGUI diceText;
     public TextMeshProUGUI spaceText;
-    
-    
+
+    private bool waittingDice = false;
     
     private void Awake()
     {
@@ -32,7 +32,10 @@ public class ProgressUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (waittingDice&&Input.GetKeyDown(KeyCode.Space))
+        {
+            waittingDice = false;dice();
+        }
     }
 
     public void changeOfTurn(int id)
@@ -43,21 +46,21 @@ public class ProgressUI : MonoBehaviour
         academicText.text = "学力 " + p.pi.academic.getValue().ToString("0");
         apperanceText.text = "容姿 " + p.pi.appearance.getValue().ToString("0");
         luckText.text = "運 " + p.pi.luck.getValue().ToString("0");
-        string[] a = { "バスケ部", "吹奏楽部", "バイト" };
-        affiliationText.text = "所属 " + a[p.activity];
+        affiliationText.text = "所属 " + p.pi.activity.getName();
     }
     
     public void waitDice()
     {
         Debug.Log("waitDice");
         spaceText.enabled = true;
-        StartCoroutine(dice());
+        spaceText.text = "Push your space";
+        waittingDice = true;
     }
-    IEnumerator dice()
+    private void dice()
     {
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         int d = Random.Range(1, 6);
-        diceText.text = d.ToString("0");spaceText.enabled = false;
-        GameMain.gameMain.roll = d;
+        diceText.text = d.ToString("0");
+        spaceText.enabled = false;
+        GameMain.gameMain.processAfterRollingDice(d);
     }
 }

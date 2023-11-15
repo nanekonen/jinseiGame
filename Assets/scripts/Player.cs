@@ -64,7 +64,6 @@ public class Player:MonoBehaviour
         Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.lengthOfSeason);
         arrange();
         Map.map.getSquare(position).execution(this);
-        GameMain.gameMain.turn = true;
     }
 
 

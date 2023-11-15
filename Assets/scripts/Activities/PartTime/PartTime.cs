@@ -2,7 +2,7 @@ public class PartTime : Activity
 {
     public PartTime()
     {
-
+        base.name = "ƒoƒCƒg";
     }
     public override Results doActivity(Situation situation)
     {
