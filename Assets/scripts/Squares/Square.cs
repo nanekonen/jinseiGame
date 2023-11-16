@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public abstract class Square:MonoBehaviour
+public abstract class Square
 {
     public SpriteRenderer sr;
     public TextMeshPro text;
-    public string name;
-    public abstract void execution(Player player);
+    public abstract void execute(Player player);
     protected void finish()
     {
         GameMain.gameMain.processTransition();

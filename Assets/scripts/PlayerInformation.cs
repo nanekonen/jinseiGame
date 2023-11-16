@@ -46,6 +46,11 @@ public class PlayerInformation
         this.luck = luck;
         list.Add(this);
     }
+    public void updata()
+    {
+        list.Remove(this);
+        list.Insert(id, this);
+    }
     
     public static PlayerInformation getInformation(int id)
     {

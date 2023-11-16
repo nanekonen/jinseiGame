@@ -44,8 +44,8 @@ public class GameMain : MonoBehaviour
         {
             order.Add(i);
         }
-        
         startingGame();
+        
     }
     void Start()
     {
@@ -72,7 +72,7 @@ public class GameMain : MonoBehaviour
             eventOccur();
             nowRound++;
             nowTurn = 0;
-            if(nowRound == maxNumberOfRound)
+            if(nowRound == maxNumberOfRound - 1)
             {
                 nowSeason = nowSeason.getNextSeason();
                 nowRound = 0;
@@ -86,7 +86,7 @@ public class GameMain : MonoBehaviour
     public void processAfterRollingDice(int roll)
     {
         Debug.Log("processAfterRollingDice");
-        StartCoroutine(wait(100,roll));
+        StartCoroutine(wait(1,roll));
         
     }
 
@@ -100,7 +100,9 @@ public class GameMain : MonoBehaviour
     {
         for(int p = 0;p < numberOfPlayer; p++)
         {
-            new PlayerInformation();
+            PlayerInformation pi = new PlayerInformation();
+            pi.name = "Player" + p;
+            pi.updata();
             Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
             pl.transform.SetParent(transform);
             pl.initialization(p);

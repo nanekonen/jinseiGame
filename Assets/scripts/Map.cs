@@ -66,7 +66,10 @@ public class Map : MonoBehaviour
             realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
-
+        //foreach(Square s in nowSquare)
+        //{
+        //    Destroy(s);
+        //}
         switch (season.getID())
         {
             case Season.SPRING:

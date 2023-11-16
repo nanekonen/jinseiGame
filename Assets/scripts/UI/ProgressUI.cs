@@ -18,7 +18,6 @@ public class ProgressUI : MonoBehaviour
     public TextMeshProUGUI diceText;
     public TextMeshProUGUI spaceText;
 
-    private bool waittingDice = false;
     
     private void Awake()
     {
@@ -32,10 +31,7 @@ public class ProgressUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (waittingDice&&Input.GetKeyDown(KeyCode.Space))
-        {
-            waittingDice = false;dice();
-        }
+
     }
 
     public void changeOfTurn(int id)
@@ -54,7 +50,7 @@ public class ProgressUI : MonoBehaviour
         Debug.Log("waitDice");
         spaceText.enabled = true;
         spaceText.text = "Push your space";
-        waittingDice = true;
+        KeyManager.keyManager.setDownSpace(dice);
     }
     private void dice()
     {

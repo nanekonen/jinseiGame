@@ -35,7 +35,7 @@ public class Player:MonoBehaviour
             {
                 move = false;
                 transform.position = dst;
-                Map.map.getSquare(position).execution(this);
+                Map.map.getSquare(position).execute(this);
             }
         }
     }
@@ -63,7 +63,7 @@ public class Player:MonoBehaviour
         Debug.Log("proceed");
         Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.lengthOfSeason);
         arrange();
-        Map.map.getSquare(position).execution(this);
+        Map.map.getSquare(position).execute(this);
     }
 
 

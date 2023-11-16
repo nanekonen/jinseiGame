@@ -10,8 +10,7 @@ public class TestSeason : SeasonSquares
         List<Square> sl = new List<Square>();
         for(int i = 0;i < GameMain.gameMain.lengthOfSeason; i++)
         {
-            Square s = SquareManager.sm.getSquare("TestSquare");
-            ((TestSquare)s).set("–¢¬”NŽÒ‹i‰Œ‚ð‚µ‚½.Šw—Í‚Æ—eŽp‚Æ‰^‚ª1‚¸‚Â‰º‚ª‚Á‚½", -1, -1, -1);
+            Square s = new TestSquare("–¢¬”NŽÒ‹i‰Œ‚ð‚µ‚½.Šw—Í‚Æ—eŽp‚Æ‰^‚ª1‚¸‚Â‰º‚ª‚Á‚½", -1, -1, -1);
             sl.Add(s);
         }
         return sl;
