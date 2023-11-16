@@ -30,9 +30,10 @@ public class TestSquare : Square
     }
     private void processAfterSpace()
     {
-        player.pi.academic.add(new Deviation(academic));
-        player.pi.appearance.add(new Deviation(appearance));
-        player.pi.luck.add(new Deviation(luck));
+        academic = 3;
+        player.pi.academic.add(academic);
+        player.pi.appearance.add(appearance);
+        player.pi.luck.add(luck);
         base.finish();
     }
 }

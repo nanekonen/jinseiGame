@@ -33,11 +33,6 @@ public class Luck
         this.value = value;
     }
 
-    public void add( Deviation dev )
-    {
-        this.value += dev.getValue();
-    }
-
     public void add( int value )
     {
         int temp_value = this.value + value; 

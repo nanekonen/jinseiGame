@@ -51,10 +51,6 @@ public class Academic
         this.value = temp_value;
     }
 
-    public void add( Deviation dev )
-    {
-        this.value += dev.getValue();
-    }
 
     public void sub( int value )
     {

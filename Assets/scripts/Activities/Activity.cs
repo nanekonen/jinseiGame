@@ -2,7 +2,7 @@ public abstract class Activity
 {
     protected ActivityID id;
     protected string name;
-    public abstract Results doActivity(Situation situation);
+
 
     public ActivityID getID()
     {

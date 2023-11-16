@@ -4,14 +4,5 @@ public class PartTime : Activity
     {
         base.name = "ƒoƒCƒg";
     }
-    public override Results doActivity(Situation situation)
-    {
-        return new Results
-        (
-            new Deviation(0), 
-            new Deviation(0), 
-            new Deviation(0), 
-            new FavorabilityDeviation(0,0)
-        ); 
-    }
+
 }

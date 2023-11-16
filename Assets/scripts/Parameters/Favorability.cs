@@ -39,10 +39,6 @@ public class Favorability
         this.partner = Lover.UNDEFINED;
     }
     
-    public void add( Deviation dev )
-    {
-        this.value += dev.getValue();
-    }
 
     public void add( int value )
     {

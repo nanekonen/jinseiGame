@@ -86,8 +86,7 @@ public class GameMain : MonoBehaviour
     public void processAfterRollingDice(int roll)
     {
         Debug.Log("processAfterRollingDice");
-        StartCoroutine(wait(1,roll));
-        
+        allPlayer[getPlayerID(nowTurn)].proceed(roll);
     }
 
     public void processTransition()
@@ -153,12 +152,5 @@ public class GameMain : MonoBehaviour
         order = o;
 
         return true;
-    }
-    private IEnumerator wait(int frame,int roll)
-    {
-        for(int i = 0;i < frame; i++)
-        {
-            yield return null;
-        }allPlayer[getPlayerID(nowTurn)].proceed(roll);
     }
 }

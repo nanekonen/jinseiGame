@@ -57,17 +57,7 @@ public class PlayerInformation
         return list[id];
     }
 
-    public void reflectResult( Results result )
-    {
-        for( int i = 0; i < Favorabilities.NUM_OF_PARTNERS; i++ )
-        {
-            //favorabilities.favorabilities[i].reflectResult( result.academicDev );
-        }
 
-        academic.add(result.academicDev);
-        appearance.add(result.appearanceDev);
-        luck.add(result.luckDev);
-    }
 
     public void setActivity( ActivityID activityID )
     {
