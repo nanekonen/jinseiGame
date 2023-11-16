@@ -38,7 +38,7 @@ public class ProgressUI : MonoBehaviour
     {
         Player p = GameMain.gameMain.getPlayer(id);
         string[] s = { "èt", "âƒ", "èH", "ì~" };
-        nameText.text = p.name;nowText.text = s[GameMain.gameMain.nowSeason.getID()] + ":" + (GameMain.gameMain.nowRound + 1).ToString("0") + "É^Å[Éìñ⁄";
+        nameText.text = p.pi.name;nowText.text = s[GameMain.gameMain.nowSeason.getID() == Season.UNDEFINED?Season.SPRING:GameMain.gameMain.nowSeason.getID()] + ":" + (GameMain.gameMain.nowRound + 1).ToString("0") + "É^Å[Éìñ⁄";
         academicText.text = "äwóÕ " + p.pi.academic.getValue().ToString("0");
         apperanceText.text = "óeép " + p.pi.appearance.getValue().ToString("0");
         luckText.text = "â^ " + p.pi.luck.getValue().ToString("0");

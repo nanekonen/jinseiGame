@@ -30,7 +30,6 @@ public class TestSquare : Square
     }
     private void processAfterSpace()
     {
-        academic = 3;
         player.pi.academic.add(academic);
         player.pi.appearance.add(appearance);
         player.pi.luck.add(luck);

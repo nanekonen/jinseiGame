@@ -49,6 +49,12 @@ public class Player:MonoBehaviour
         Map.map.addPosition(id);
         arrange();
     }
+    public void resetPosition()
+    {
+        position = 0;
+        Map.map.setPosition(id, 0);
+        arrange();
+    }
 
     private void arrange()
     {

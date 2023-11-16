@@ -45,6 +45,7 @@ public class PlayerInformation
         this.sprite = sprite;
         this.luck = luck;
         list.Add(this);
+        Debug.Log("ADD" + list.Count);
     }
     public void updata()
     {

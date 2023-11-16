@@ -35,7 +35,8 @@ public class GameMain : MonoBehaviour
         Debug.Log("Awake");
         gameMain = this;
         nowYear = 0;
-        nowSeason = new Season( Season.SPRING );
+        //test!:nowSeason = new Season( Season.SPRING );
+        nowSeason = new Season(Season.UNDEFINED);
         nowRound = 0;
         nowTurn = 0;
         numberOfPlayer = 2;
@@ -44,12 +45,10 @@ public class GameMain : MonoBehaviour
         {
             order.Add(i);
         }
-        startingGame();
-        
     }
     void Start()
     {
-        Debug.Log("Start");
+        Debug.Log("Start");startingGame();
     }
     private void startingGame()
     {
@@ -61,7 +60,7 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        Map.map.changeOfSeason(new Season(Season.UNDEFINED));//debug
+        Map.map.changeOfSeason(nowSeason);
         turnStart();
     }
     private void turnStart()
@@ -74,9 +73,15 @@ public class GameMain : MonoBehaviour
             nowTurn = 0;
             if(nowRound == maxNumberOfRound - 1)
             {
+                Debug.Log("Change season");
                 nowSeason = nowSeason.getNextSeason();
                 nowRound = 0;
+                Debug.Log(nowSeason.getID());
                 Map.map.changeOfSeason(nowSeason);
+                foreach(Player p in allPlayer)
+                {
+                    p.resetPosition();
+                }
             }
         }
         ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
@@ -99,9 +104,7 @@ public class GameMain : MonoBehaviour
     {
         for(int p = 0;p < numberOfPlayer; p++)
         {
-            PlayerInformation pi = new PlayerInformation();
-            pi.name = "Player" + p;
-            pi.updata();
+            new PlayerInformation(p.ToString("0"),Gender.MAN,Gender.WOMAN,new Academic(p * 50),null,new Luck(p * 50));
             Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
             pl.transform.SetParent(transform);
             pl.initialization(p);
@@ -122,7 +125,6 @@ public class GameMain : MonoBehaviour
         return allPlayer[id];
     }
     
-
     public int getPlayerOrder(int id)
     {
         return order.IndexOf(id);
