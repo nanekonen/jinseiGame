@@ -47,7 +47,7 @@ public class PlayerInformation
         list.Add(this);
         Debug.Log("ADD" + list.Count);
     }
-    public void updata()
+    public void update()
     {
         list.Remove(this);
         list.Insert(id, this);

@@ -9,52 +9,43 @@ public class GameMain : MonoBehaviour
 {
     public static GameMain gameMain;
 
+    public Players players;
+
     public Player playerObject;
 
-    private List<Player> allPlayer = new List<Player>();
     private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
 
-    public int numberOfPlayer = 2;
-    public int lengthOfSeason = 30;
+    public const int lengthOfSeason = 30;
 
-    public int nowYear { set; private get; }
+    private Year year = new Year();
     public Season nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
-    private const int maxNumberOfYear = 1;
-    private const int maxNumberOfSeason = 2;
-    private const int maxNumberOfRound = 5;
-    
-    
-    public int nowRound { get; private set; }
-    public int nowTurn { get; private set; }
 
-    private List<int>order = new List<int>();
 
+    private Round round = new Round();
+    private Turn turn = new Turn(Players.numberOfPlayer);
 
     private void Awake()
     {
         Debug.Log("Awake");
         gameMain = this;
-        nowYear = 0;
+
+
         //test!:nowSeason = new Season( Season.SPRING );
         nowSeason = new Season(Season.UNDEFINED);
-        nowRound = 0;
-        nowTurn = 0;
-        numberOfPlayer = 2;
-        lengthOfSeason = 30;
-        for(int i = 0;i < numberOfPlayer; i++)
-        {
-            order.Add(i);
-        }
+        players.setOrder();
     }
     void Start()
     {
-        Debug.Log("Start");startingGame();
+        Debug.Log("Start");
+        startGame();
     }
-    private void startingGame()
+    private void startGame()
     {
         Debug.Log("startingGame");
         Map.map.generateSquare();
-        generatePlayer();
+
+        players.generatePlayer();
+
         List<RealSquare> tl = Map.map.getRealSquares();
         for (int s = 0; s < 30; s++)
         {
@@ -66,26 +57,36 @@ public class GameMain : MonoBehaviour
     private void turnStart()
     {
         Debug.Log("turnStart");
-        if(nowTurn == allPlayer.Count())
+        if( turn.checkIsFinished() )
         {
             eventOccur();
-            nowRound++;
-            nowTurn = 0;
-            if(nowRound == maxNumberOfRound - 1)
+
+            round.increment();
+            turn.reset();
+
+            if(round.checkIsFinished())
             {
-                Debug.Log("Change season");
-                nowSeason = nowSeason.getNextSeason();
-                nowRound = 0;
-                Debug.Log(nowSeason.getID());
-                Map.map.changeOfSeason(nowSeason);
-                foreach(Player p in allPlayer)
-                {
-                    p.resetPosition();
-                }
+                changeSeason();
             }
         }
-        ProgressUI.progressUI.changeOfTurn(getPlayerID(nowTurn));
+        ProgressUI.progressUI.changeOfTurn(player.getPlayer(nowTurn));
         ProgressUI.progressUI.waitDice();
+    }
+
+    private void changeSeason()
+    {
+        Debug.Log("Change season");
+        nowSeason = nowSeason.getNextSeason();
+
+        round.reset();
+
+        Debug.Log(nowSeason.getID());
+        Map.map.changeOfSeason(nowSeason);
+        foreach(Player p in players.getAllPlayers())
+        {
+            p.resetPosition();
+        }
+
     }
 
     public void processAfterRollingDice(int roll)
@@ -97,62 +98,16 @@ public class GameMain : MonoBehaviour
     public void processTransition()
     {
         Debug.Log("processTransition");
-        nowTurn++;
+        turn.increment();
         turnStart();
-    }
-    private void generatePlayer()
-    {
-        for(int p = 0;p < numberOfPlayer; p++)
-        {
-            new PlayerInformation(p.ToString("0"),Gender.MAN,Gender.WOMAN,new Academic(p * 50),null,new Luck(p * 50));
-            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
-            pl.transform.SetParent(transform);
-            pl.initialization(p);
-            allPlayer.Add(pl);
-        }
     }
 
     private void eventOccur()
     {
         foreach(ForcedEvent fe in allForcedEvents)
         {
-            fe.execution(nowSeason, nowRound);
+            fe.execution(nowSeason, round);
         }
     }
     
-    public Player getPlayer(int id)
-    {
-        return allPlayer[id];
-    }
-    
-    public int getPlayerOrder(int id)
-    {
-        return order.IndexOf(id);
-    }
-
-    public int getPlayerID(int o)
-    {
-        return order[o];
-    }
-
-    public bool setOrder(List<int> o)
-    {
-        if(o.Count == order.Count)
-        {
-            foreach(int n in order)
-            {
-                if (order.Contains(n))
-                {
-                    return false;
-                }
-            }
-        }
-        else
-        {
-            return false;
-        }
-        order = o;
-
-        return true;
-    }
 }

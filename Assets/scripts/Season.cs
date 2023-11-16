@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Season
 {
+    private const int maxNumberOfSeason = 2;
+
     public const int SPRING = 0;
     public const int SUMMER = 1;
     public const int AUTUMN = 2;
