@@ -64,7 +64,7 @@ public class Player:MonoBehaviour
         transform.position += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
     }
 
-    public void proceed(int number)
+    public void proceed(in int number)
     {
         Debug.Log("proceed");
         Map.map.setPosition(id,(Map.map.getPosition(id) + number)%Season.lengthOfSeason);

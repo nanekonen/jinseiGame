@@ -74,4 +74,9 @@ public class Academic
     {
         return this.value;
     }
+
+    public string getValueInString()
+    {
+        return this.value.ToString("0");
+    }
 }

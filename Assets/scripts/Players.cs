@@ -26,11 +26,6 @@ public class Players
         }
     }
 
-    public Player getPlayer(in int id)
-    {
-        return players[id];
-    }
-
     public Player getPlayer(in Turn turn)
     {
         return players[turn.getTurn()];
@@ -41,16 +36,6 @@ public class Players
         return players;
     }
     
-    public int getPlayerOrder(int id)
-    {
-        return order.IndexOf(id);
-    }
-
-    public int getPlayerID(int o)
-    {
-        return order[o];
-    }
-
     
     public void add(Player player)
     {

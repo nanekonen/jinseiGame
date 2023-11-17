@@ -11,7 +11,6 @@ public class PlayerInformation
     public string name;
     public int id;
 
-    public Favorabilities favorabilities;
     public Gender gender = Gender.UNDEFINED;
     public Academic academic = Academic.UNDEFINED_ACADEMIC;
     public Appearance appearance = Appearance.UNDEFINED_APPEARANCE;
@@ -35,6 +34,7 @@ public class PlayerInformation
         Gender love_interest,
         Academic academic,
         Sprite sprite,
+        Appearance appearance,
         Luck luck
     )
     {
@@ -43,6 +43,7 @@ public class PlayerInformation
         this.loveInterest = love_interest;
         this.academic = academic;
         this.sprite = sprite;
+        this.appearance = appearance;
         this.luck = luck;
         list.Add(this);
         Debug.Log("ADD" + list.Count);

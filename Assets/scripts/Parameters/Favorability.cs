@@ -12,11 +12,8 @@ public class Favorability
 
     private int value = UNDEFINED;
 
-    private Lover partner = Lover.UNDEFINED;
-
-    public Favorability( int value, Lover partner )
+    public Favorability( int value )
     {
-        this.partner = partner;
 
         int temp_value = value;
         if( temp_value > MAX )
@@ -36,7 +33,6 @@ public class Favorability
     private Favorability()
     {
         this.value = UNDEFINED;
-        this.partner = Lover.UNDEFINED;
     }
     
 

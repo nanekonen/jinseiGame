@@ -22,4 +22,17 @@ public class Lovers
         lovers.Add(l1);
         lovers.Add(l2);
     }
+
+    public Lover getLoverByName(in string name)
+    {
+        for( int i = 0; i < lovers.Count; i++ )
+        {
+            if (lovers[i].getName() == name)
+            {
+                return lovers[i];
+            }
+        }
+
+        return Lover.UNDEFINED;
+    }
 }

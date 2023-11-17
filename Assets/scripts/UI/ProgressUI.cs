@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ProgressUI : MonoBehaviour
 {
@@ -44,32 +45,33 @@ public class ProgressUI : MonoBehaviour
         nowText.text = 
             s
             [
-                GameMain.gameMain.nowSeason.getID() == Season.UNDEFINED?
+                GameMain.gameMain.season.getID() == Season.UNDEFINED?
                 Season.SPRING:
-                GameMain.gameMain.nowSeason.getID()
+                GameMain.gameMain.season.getID()
             ] + 
             ":" + 
             round.getRoundInStr() +
-            "É^Å[Éìñ⁄";
+            "th";
 
-        academicText.text = "äwóÕ " + player.pi.academic.getValue().ToString("0");
-        apperanceText.text = "óeép " + player.pi.appearance.getValue().ToString("0");
-        luckText.text = "â^ " + player.pi.luck.getValue().ToString("0");
-        affiliationText.text = "èäëÆ " + player.pi.activity.getName();
+        //academicText.text = "äwóÕ " + player.pi.academic.getValueInString();
+        //apperanceText.text = "óeép " + player.pi.appearance.getValueInString();
+        //luckText.text = "â^ " + player.pi.luck.getValueInString();
+        //affiliationText.text = "èäëÆ " + player.pi.activity.getName();
+        academicText.text = "academic" + player.pi.academic.getValueInString();
+        apperanceText.text = "appearance" + player.pi.appearance.getValueInString();
+        luckText.text = "luck" + player.pi.luck.getValueInString();
+        affiliationText.text = "activity" + player.pi.activity.getName();
     }
     
-    public void waitDice()
+    public void setDiceNumber(int dice)
     {
-        Debug.Log("waitDice");
+        diceText.text = dice.ToString("0");
+        spaceText.enabled = false;
+    }
+
+    public void setSpaceTextEnabled()
+    {
         spaceText.enabled = true;
         spaceText.text = "Push your space";
-        KeyManager.keyManager.setDownSpace(dice);
-    }
-    private void dice()
-    {
-        int d = Random.Range(1, 6);
-        diceText.text = d.ToString("0");
-        spaceText.enabled = false;
-        GameMain.gameMain.processAfterRollingDice(d);
     }
 }

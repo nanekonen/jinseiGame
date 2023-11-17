@@ -75,4 +75,8 @@ public class Appearance
     {
         return this.value;
     }
+    public string getValueInString()
+    {
+        return this.value.ToString("0");
+    }
 }

@@ -73,4 +73,9 @@ public class Luck
     {
         return this.value;
     }
+
+    public string getValueInString()
+    {
+        return this.value.ToString("0");
+    }
 }

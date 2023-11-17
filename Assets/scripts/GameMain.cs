@@ -15,15 +15,16 @@ public class GameMain : MonoBehaviour
 
     public const bool english = true;
 
-    private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
-
-
     private Year year = new Year();
-    public Season nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
+    public Season season { get; private set; }//0:spring,1:summer,2:autumn,3:winter
 
 
     private Round round = new Round();
     private Turn turn = new Turn(Players.numberOfPlayer);
+
+    private Dice dice = new Dice();
+
+    private ForcedEvents fevents = new ForcedEvents();
 
     private void Awake()
     {
@@ -31,8 +32,8 @@ public class GameMain : MonoBehaviour
         gameMain = this;
 
 
-        //test!:nowSeason = new Season( Season.SPRING );
-        nowSeason = new Season(Season.UNDEFINED);
+        //season = new Season( Season.SPRING );
+        season = new Season(Season.UNDEFINED);
         players.setOrder();
     }
     public void generatePlayer()
@@ -46,6 +47,7 @@ public class GameMain : MonoBehaviour
                 Gender.WOMAN,
                 new Academic(p * 50),
                 null,
+                new Appearance(p * 50), 
                 new Luck(p * 50)
             );
 
@@ -68,19 +70,22 @@ public class GameMain : MonoBehaviour
         generatePlayer();
 
         List<RealSquare> tl = Map.map.getRealSquares();
-        for (int s = 0; s < 30; s++)
+        for (int s = 0; s < Season.lengthOfSeason; s++)
         {
             tl[s].text.text = s.ToString("0");
         }
-        Map.map.changeOfSeason(nowSeason);
+        Map.map.changeOfSeason(season);
         turnStart();
     }
-    private void turnStart()
+    public void turnStart()
     {
         Debug.Log("turnStart");
+
+        turn.increment();
+        fevents.execute(season, round);
+
         if( turn.checkIsFinished() )
         {
-            eventOccur();
 
             round.increment();
             turn.reset();
@@ -92,18 +97,18 @@ public class GameMain : MonoBehaviour
         }
         currentPlayer = players.getPlayer(turn);
         ProgressUI.progressUI.changeOfTurn(currentPlayer, round);
-        ProgressUI.progressUI.waitDice();
+        dice.setCallback(this.diceCallback);
     }
 
     private void changeSeason()
     {
         Debug.Log("Change season");
-        nowSeason = nowSeason.getNextSeason();
+        season = season.getNextSeason();
 
         round.reset();
 
-        Debug.Log(nowSeason.getID());
-        Map.map.changeOfSeason(nowSeason);
+        Debug.Log(season.getID());
+        Map.map.changeOfSeason(season);
         foreach(Player p in players.getAllPlayers())
         {
             p.resetPosition();
@@ -111,25 +116,11 @@ public class GameMain : MonoBehaviour
 
     }
 
-    public void processAfterRollingDice(int roll)
+    private void diceCallback(int dice)
     {
         Debug.Log("processAfterRollingDice");
-        currentPlayer.proceed(roll);
+        currentPlayer.proceed(dice);
     }
 
-    public void processTransition()
-    {
-        Debug.Log("processTransition");
-        turn.increment();
-        turnStart();
-    }
-
-    private void eventOccur()
-    {
-        foreach(ForcedEvent fe in allForcedEvents)
-        {
-            fe.execution(nowSeason, round);
-        }
-    }
     
 }

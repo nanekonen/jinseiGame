@@ -7,10 +7,18 @@ public class Lover
     private string name = "";
     private ActivityID activity = ActivityID.UNDEFINED;
 
-    public Lover(string name, ActivityID activity)
+    private Favorability fav = Favorability.UNDEFINED_FAVORABILITY;
+
+    public Lover(string name, ActivityID activity, Favorability fav)
     {
         this.name = name;
         this.activity = activity;
+        this.fav = fav;
+    }
+
+    public string getName()
+    {
+        return this.name;
     }
 
     private Lover()
