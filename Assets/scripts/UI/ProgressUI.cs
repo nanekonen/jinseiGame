@@ -34,16 +34,28 @@ public class ProgressUI : MonoBehaviour
 
     }
 
-    public void changeOfTurn(Player player)
+    public void changeOfTurn(in Player player, in Round round)
     {
-        Player p = GameMain.gameMain.getPlayer(id);
-        string[] s = { "èt", "âƒ", "èH", "ì~" };
-        nameText.text = p.pi.name;
-        nowText.text = s[GameMain.gameMain.nowSeason.getID() == Season.UNDEFINED?Season.SPRING:GameMain.gameMain.nowSeason.getID()] + ":" + (GameMain.gameMain.nowRound + 1).ToString("0") + "É^Å[Éìñ⁄";
-        academicText.text = "äwóÕ " + p.pi.academic.getValue().ToString("0");
-        apperanceText.text = "óeép " + p.pi.appearance.getValue().ToString("0");
-        luckText.text = "â^ " + p.pi.luck.getValue().ToString("0");
-        affiliationText.text = "èäëÆ " + p.pi.activity.getName();
+        //string[] s = { "èt", "âƒ", "èH", "ì~" };
+        string[] s = {"spring", "summer", "autumn", "winter"};
+
+
+        nameText.text = player.pi.name;
+        nowText.text = 
+            s
+            [
+                GameMain.gameMain.nowSeason.getID() == Season.UNDEFINED?
+                Season.SPRING:
+                GameMain.gameMain.nowSeason.getID()
+            ] + 
+            ":" + 
+            round.getRoundInStr() +
+            "É^Å[Éìñ⁄";
+
+        academicText.text = "äwóÕ " + player.pi.academic.getValue().ToString("0");
+        apperanceText.text = "óeép " + player.pi.appearance.getValue().ToString("0");
+        luckText.text = "â^ " + player.pi.luck.getValue().ToString("0");
+        affiliationText.text = "èäëÆ " + player.pi.activity.getName();
     }
     
     public void waitDice()

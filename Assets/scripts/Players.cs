@@ -1,24 +1,23 @@
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-
-public class Players
+public class Players 
 {
 
     private List<Player> players = new List<Player>();
+    public Player playerObject;
 
     public const int numberOfPlayer = 2;
 
     private List<int>order = new List<int>();
 
-    private Players() { }
-
-    public Player getNextPlayer()
+    public Players()
     {
 
     }
-    
+
     public void setOrder()
     {
         for(int i = 0;i < Players.numberOfPlayer; i++)
@@ -27,29 +26,14 @@ public class Players
         }
     }
 
-    public void generatePlayer()
-    {
-        for(int p = 0 ;p < numberOfPlayer; p++)
-        {
-            new PlayerInformation
-            (
-                p.ToString("0"),
-                Gender.MAN,
-                Gender.WOMAN,
-                new Academic(p * 50),
-                null,
-                new Luck(p * 50)
-            );
-
-            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
-            pl.transform.SetParent(transform);
-            pl.initialization(p);
-            players.Add(pl);
-        }
-    }
     public Player getPlayer(in int id)
     {
         return players[id];
+    }
+
+    public Player getPlayer(in Turn turn)
+    {
+        return players[turn.getTurn()];
     }
 
     public List<Player> getAllPlayers()
@@ -68,6 +52,10 @@ public class Players
     }
 
     
+    public void add(Player player)
+    {
+        players.Add(player);
+    }
 
     public bool setOrder(List<int> o)
     {

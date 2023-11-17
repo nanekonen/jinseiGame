@@ -35,5 +35,9 @@ public class Round
         this.value = 0;
     }
 
+    public string getRoundInStr()
+    {
+        return (this.value + 1).ToString("0");
+    }
 
 }

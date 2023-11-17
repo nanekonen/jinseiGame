@@ -9,13 +9,14 @@ public class GameMain : MonoBehaviour
 {
     public static GameMain gameMain;
 
-    public Players players;
-
+    public Players players = new Players();
     public Player playerObject;
+    private Player currentPlayer;
+
+    public const bool english = true;
 
     private List<ForcedEvent> allForcedEvents = new List<ForcedEvent>();
 
-    public const int lengthOfSeason = 30;
 
     private Year year = new Year();
     public Season nowSeason { get; private set; }//0:spring,1:summer,2:autumn,3:winter
@@ -34,6 +35,26 @@ public class GameMain : MonoBehaviour
         nowSeason = new Season(Season.UNDEFINED);
         players.setOrder();
     }
+    public void generatePlayer()
+    {
+        for(int p = 0 ;p < Players.numberOfPlayer; p++)
+        {
+            new PlayerInformation
+            (
+                p.ToString("0"),
+                Gender.MAN,
+                Gender.WOMAN,
+                new Academic(p * 50),
+                null,
+                new Luck(p * 50)
+            );
+
+            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
+            pl.transform.SetParent(transform);
+            pl.initialization(p);
+            players.add(pl);
+        }
+    }
     void Start()
     {
         Debug.Log("Start");
@@ -44,7 +65,7 @@ public class GameMain : MonoBehaviour
         Debug.Log("startingGame");
         Map.map.generateSquare();
 
-        players.generatePlayer();
+        generatePlayer();
 
         List<RealSquare> tl = Map.map.getRealSquares();
         for (int s = 0; s < 30; s++)
@@ -69,7 +90,8 @@ public class GameMain : MonoBehaviour
                 changeSeason();
             }
         }
-        ProgressUI.progressUI.changeOfTurn(player.getPlayer(nowTurn));
+        currentPlayer = players.getPlayer(turn);
+        ProgressUI.progressUI.changeOfTurn(currentPlayer, round);
         ProgressUI.progressUI.waitDice();
     }
 
@@ -92,7 +114,7 @@ public class GameMain : MonoBehaviour
     public void processAfterRollingDice(int roll)
     {
         Debug.Log("processAfterRollingDice");
-        allPlayer[getPlayerID(nowTurn)].proceed(roll);
+        currentPlayer.proceed(roll);
     }
 
     public void processTransition()

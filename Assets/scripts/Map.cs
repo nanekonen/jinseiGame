@@ -87,7 +87,7 @@ public class Map : MonoBehaviour
 
     public Square getSquare(int n)
     {
-        return nowSquare[n % GameMain.gameMain.lengthOfSeason];
+        return nowSquare[n % Season.lengthOfSeason];
     }
     public void addPosition(int id)
     {

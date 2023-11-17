@@ -1,8 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class Season
 {
+    public const int lengthOfSeason = 30;
+
     private const int maxNumberOfSeason = 2;
 
     public const int SPRING = 0;
@@ -13,6 +16,7 @@ public class Season
     public const int UNDEFINED = -1;
 
     private int season = UNDEFINED;
+
 
     public Season( int s )
     {

@@ -67,7 +67,7 @@ public class Player:MonoBehaviour
     public void proceed(int number)
     {
         Debug.Log("proceed");
-        Map.map.setPosition(id,(Map.map.getPosition(id) + number)%GameMain.gameMain.lengthOfSeason);
+        Map.map.setPosition(id,(Map.map.getPosition(id) + number)%Season.lengthOfSeason);
         arrange();
         Map.map.getSquare(position).execute(this);
     }

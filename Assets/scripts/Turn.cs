@@ -18,7 +18,7 @@ public class Turn
 
     public bool checkIsFinished()
     {
-        if( this.value == maxNumberOfTurn )
+        if( this.value >= maxNumberOfTurn )
         {
             return true;
         }
@@ -30,7 +30,14 @@ public class Turn
 
     public void increment()
     {
-        this.value++;
+        if( this.value >= maxNumberOfTurn )
+        {
+
+        }
+        else
+        {
+            this.value++;
+        }
     }
 
     public void reset()
