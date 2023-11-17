@@ -16,7 +16,7 @@ public class GameMain : MonoBehaviour
     public const bool english = true;
 
     private Year year = new Year();
-    public Season season { get; private set; }//0:spring,1:summer,2:autumn,3:winter
+    private Season season;
 
 
     private Round round = new Round();
@@ -96,7 +96,7 @@ public class GameMain : MonoBehaviour
             }
         }
         currentPlayer = players.getPlayer(turn);
-        ProgressUI.progressUI.changeOfTurn(currentPlayer, round);
+        ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
         dice.setCallback(this.diceCallback);
     }
 

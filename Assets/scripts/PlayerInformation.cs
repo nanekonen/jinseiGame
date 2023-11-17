@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInformation
@@ -9,7 +10,7 @@ public class PlayerInformation
     Sprite sprite;
 
     public string name;
-    public int id;
+    //public int id;
 
     public Gender gender = Gender.UNDEFINED;
     public Academic academic = Academic.UNDEFINED_ACADEMIC;
@@ -20,7 +21,6 @@ public class PlayerInformation
     public Lovers lovers = new Lovers();
     public Lover lover = Lover.UNDEFINED;
 
-    public Activity activity = new PartTime();
 
     public PlayerInformation()
     {
@@ -48,35 +48,17 @@ public class PlayerInformation
         list.Add(this);
         Debug.Log("ADD" + list.Count);
     }
-    public void update()
-    {
-        list.Remove(this);
-        list.Insert(id, this);
-    }
-    
+    //public void update()
+    //{
+        //list.Remove(this);
+        //list.Insert(id, this);
+    //}
+
     public static PlayerInformation getInformation(int id)
     {
         return list[id];
     }
 
 
-
-    public void setActivity( ActivityID activityID )
-    {
-        switch( activityID )
-        {
-            case ActivityID.BASKETBALL:
-                this.activity = new BasketballClub();
-                break;
-            case ActivityID.BRASSBAND:
-                this.activity = new BrassBandClub();
-                break;
-            case ActivityID.PARTTIME:
-                this.activity = new PartTime();
-                break;
-            default:
-                break;
-        }
-    }
 
 }

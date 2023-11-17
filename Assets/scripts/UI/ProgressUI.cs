@@ -35,7 +35,7 @@ public class ProgressUI : MonoBehaviour
 
     }
 
-    public void changeOfTurn(in Player player, in Round round)
+    public void changeOfTurn(in Player player, in Round round, in Season season)
     {
         //string[] s = { "èt", "âƒ", "èH", "ì~" };
         string[] s = {"spring", "summer", "autumn", "winter"};
@@ -45,9 +45,9 @@ public class ProgressUI : MonoBehaviour
         nowText.text = 
             s
             [
-                GameMain.gameMain.season.getID() == Season.UNDEFINED?
+                season.getID() == Season.UNDEFINED?
                 Season.SPRING:
-                GameMain.gameMain.season.getID()
+                season.getID()
             ] + 
             ":" + 
             round.getRoundInStr() +
@@ -60,7 +60,7 @@ public class ProgressUI : MonoBehaviour
         academicText.text = "academic" + player.pi.academic.getValueInString();
         apperanceText.text = "appearance" + player.pi.appearance.getValueInString();
         luckText.text = "luck" + player.pi.luck.getValueInString();
-        affiliationText.text = "activity" + player.pi.activity.getName();
+        //affiliationText.text = "activity" + player.pi.activity.getName();
     }
     
     public void setDiceNumber(int dice)
