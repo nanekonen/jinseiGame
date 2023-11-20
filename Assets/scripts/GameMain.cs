@@ -81,12 +81,17 @@ public class GameMain : MonoBehaviour
     {
         Debug.Log("turnStart");
 
-        turn.increment();
+        currentPlayer = players.getPlayer(turn);
+        ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
+        dice.setCallback(this.diceCallback);
+    }
+    public void turnEnd()
+    {
+        Debug.Log("turnEnd");
         fevents.execute(season, round);
-
+        turn.increment();
         if( turn.checkIsFinished() )
         {
-
             round.increment();
             turn.reset();
 
@@ -95,9 +100,6 @@ public class GameMain : MonoBehaviour
                 changeSeason();
             }
         }
-        currentPlayer = players.getPlayer(turn);
-        ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
-        dice.setCallback(this.diceCallback);
     }
 
     private void changeSeason()

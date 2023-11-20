@@ -53,8 +53,10 @@ private List<int>order
   - ゲーム開始の関数
 - private void startGame() 
   - 始めの各種設定を行っている関数 
-- private void turnStart() 
-  - ターン開始時に呼び出される関数 
+- public void turnStart() 
+  - ターン開始時に呼び出される関数
+  public void turnEnd()
+    マス目の効果が終了した時に呼び出される関数
 - private void changeSeason()
 - private void diceCallback()
 - private void generatePlayer() 

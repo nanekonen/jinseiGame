@@ -4,5 +4,16 @@ using UnityEngine;
 
 public abstract class ForcedEvent
 {
-    public abstract void execution(Season season, Round round);
+    public delegate void Finish();
+    protected Finish fin;
+    public abstract void execute(Season season, Round round);
+
+    public void added(Finish f)
+    {
+        fin = f;
+    }
+    protected void finish()
+    {
+        fin();
+    }
 }
