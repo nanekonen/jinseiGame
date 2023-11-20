@@ -5,7 +5,7 @@ public class Turn
     private int maxNumberOfTurn = 5;
 
     private int value; 
-    public Turn( int playerNumber )
+    public Turn( in int playerNumber )
     {
         this.maxNumberOfTurn = playerNumber;
         this.value = 0;

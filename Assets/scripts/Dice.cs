@@ -29,7 +29,4 @@ public class Dice
 
         this.diceCallback(d);
     }
-    public void setCallback(KeyManager.DownSpace callback)
-    {
-    }
 }

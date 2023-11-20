@@ -8,7 +8,7 @@ public class Player:MonoBehaviour
 
     public SpriteRenderer sr;
 
-    public int id; 
+    public int id;
 
     public int position;
 
@@ -19,7 +19,7 @@ public class Player:MonoBehaviour
     private Vector3 dst;
     private Vector3 dir;
 
-    public PlayerInformation pi;
+    public PlayerInformation pi = new PlayerInformation();
     void Start()
     {
         
@@ -39,9 +39,8 @@ public class Player:MonoBehaviour
             }
         }
     }
-    public void initialization(int id)
+    public void initialize(int id)
     {
-        this.pi = PlayerInformation.getInformation(id);
         this.id = id;
 
         position = 0;

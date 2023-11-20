@@ -34,13 +34,16 @@ public class GameMain : MonoBehaviour
 
         //season = new Season( Season.SPRING );
         season = new Season(Season.UNDEFINED);
-        players.setOrder();
     }
     public void generatePlayer()
     {
         for(int p = 0 ;p < Players.numberOfPlayer; p++)
         {
-            new PlayerInformation
+            
+            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
+            pl.transform.SetParent(transform);
+            pl.initialize(p);
+            pl.pi.setPlayerInfo
             (
                 p.ToString("0"),
                 Gender.MAN,
@@ -51,9 +54,6 @@ public class GameMain : MonoBehaviour
                 new Luck(p * 50)
             );
 
-            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
-            pl.transform.SetParent(transform);
-            pl.initialization(p);
             players.add(pl);
         }
     }

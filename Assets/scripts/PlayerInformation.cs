@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class PlayerInformation
 {
-    private static List<PlayerInformation> list = new List<PlayerInformation>();
+    //private static List<PlayerInformation> list = new List<PlayerInformation>();
 
     Sprite sprite;
 
     public string name;
-    //public int id;
+    public int id;
 
     public Gender gender = Gender.UNDEFINED;
     public Academic academic = Academic.UNDEFINED_ACADEMIC;
@@ -24,10 +24,10 @@ public class PlayerInformation
 
     public PlayerInformation()
     {
-        list.Add(this);
+
     }
 
-    public PlayerInformation
+    public void setPlayerInfo
     (
         string name,
         Gender gender,
@@ -45,19 +45,15 @@ public class PlayerInformation
         this.sprite = sprite;
         this.appearance = appearance;
         this.luck = luck;
-        list.Add(this);
-        Debug.Log("ADD" + list.Count);
+        //list.Add(this);
+        //Debug.Log("ADD" + list.Count);
     }
-    //public void update()
-    //{
-        //list.Remove(this);
-        //list.Insert(id, this);
-    //}
 
-    public static PlayerInformation getInformation(int id)
-    {
-        return list[id];
-    }
+
+    //public static PlayerInformation getInformation(int id)
+    //{
+    //    return list[id];
+    //}
 
 
 

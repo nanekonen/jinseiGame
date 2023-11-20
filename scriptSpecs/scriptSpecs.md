@@ -19,33 +19,6 @@
 - private Dice dice = new Dice()
 - private ForcedEvents fevents;
 
-すべての季節の関係ない強制イベントを格納したList 
-
-public int numberOfPlayer 
-
-playerの数を指定する変数 
-
-private int maxNumberOfYear 
-
-学年の上限を決める変数 
-
-private int maxNumberOfSeason 
-
-季節の上限を決める変数 
-
-private int umberOfRound 
-
-ラウンド数の上限を決める変数 
-
-
-UIの作成者はサイコロが振られると、この値を変更する 
-
-マス目の効果を発動中か否かを示す変数.true:マス目終了、false:マス目実行中 
-
-private List<int>order 
-
-プレイヤーの順序をallPlayerの引数で表しているList 
-
 ## 関数
 - private void Awake() 
   - 各種変数の初期化 
@@ -447,8 +420,83 @@ Private int value;
   - 値を返す。 
 
 # public class Lovers
-# public class Dice
+主人公が付き合うことが可能な恋愛対象をまとめたクラス。
+
+## フィールド
+- private List<Lover>lovers = new List<Lover>();
+  - 恋愛対象たちを格納する変数。
+
+## 関数
+- public Lovers()
+  - コンストラクタ
+- public void add(Lover l)
+  - 恋人を追加する関数。
+- public Lover getLoverByName(in string name)
+  - 恋愛対象の名前検索をする。
+- public Lover getHightestLover()
+  - 一番好感度の高い恋愛対象を返す。
+
+# public class Dice   
+さいころ処理のクラス。
+
+## フィールド
+- public delegate void DiceCallback(int dice);
+- private DiceCallback diceCallback;
+  - スペースキーが押されたときに呼び出すコールバック関数を格納。
+
+## 関数
+- public Dice()
+  - コンストラクタ
+- public void setCallback(DiceCallback callback)
+  - スペースキーが押されたときに呼び出すコールバック関数をセットする。
+- private void spacekeyCallback()
+  - スペースキーが押されたときに呼び出される関数。今のところ1-6のランダムな値を生成し、diceCallback関数に渡して実行させている。
+
 # public class Language
 # public class Round
+
+## フィールド
+- private const int maxNumberOfRound = 5;
+- private int value; 
+
+## 関数
+- public Round()
+- public int getRound()
+- public bool checkIsFinished()
+- public void increment()
+- public void reset()
+- public string getRoundInStr()
+
 # public class Turn
+各ラウンドにおけるターン数を管理するクラス。
+
+## フィールド
+- private int maxNumberOfTurn = 5;
+  - 何ターンまわすか。プレイヤーの数。
+- private int value; 
+  - ターン数
+
+## 関数
+- public Turn( int playerNumber )
+  - コンストラクタ。プレイヤー数でmaxNumberOfTurnを初期化
+- public int getTurn()
+- public bool checkIsFinished()
+  - valueとmaxNumberOfTurnを比較し、一ラウンド終わったかどうかを確認する。
+- public void increment()
+  - ターン数をインクリメントする。
+- public void reset()
+  - ターン数をリセットする。
+
 # public class Year
+年を管理するクラス。
+
+## フィールド
+- private const int maxYear = 1;
+- private int value; 
+
+## 関数
+- public Year()
+- public int getYear()
+- public bool checkIsFinished()
+- public void increment()
+- public void reset()

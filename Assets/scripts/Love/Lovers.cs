@@ -6,21 +6,14 @@ public class Lovers
 {
     private List<Lover> lovers = new List<Lover>();
 
-    public Lovers(Lover l1, Lover l2)
-    {
-        lovers.Add(l1);
-        lovers.Add(l2);
-    }
-
     public Lovers()
     {
 
     }
 
-    public void add(Lover l1, Lover l2)
+    public void add(Lover l)
     {
-        lovers.Add(l1);
-        lovers.Add(l2);
+        lovers.Add(l);
     }
 
     public Lover getLoverByName(in string name)
@@ -33,6 +26,11 @@ public class Lovers
             }
         }
 
+        return Lover.UNDEFINED;
+    }
+
+    public Lover getHightestLover()
+    {
         return Lover.UNDEFINED;
     }
 }
