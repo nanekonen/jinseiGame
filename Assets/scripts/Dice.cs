@@ -15,14 +15,14 @@ public class Dice
     public void setCallback(DiceCallback callback)
     {
         this.diceCallback = callback;
+        ProgressUI.progressUI.setSpaceTextEnabled();
         KeyManager.keyManager.setDownSpace(spacekeyCallback);
-        
     }
 
     private void spacekeyCallback()
     {
         Debug.Log("waitDice");
-        ProgressUI.progressUI.setSpaceTextEnabled();
+        
 
         int d = Random.Range(1, 6);
         ProgressUI.progressUI.setDiceNumber(d);

@@ -10,6 +10,6 @@ public abstract class Square
     public abstract void execute(in Player player);
     protected void finish()
     {
-        GameMain.gameMain.turnStart();
+        GameMain.gameMain.turnEnd();
     }
 }

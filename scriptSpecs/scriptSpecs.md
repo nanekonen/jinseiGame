@@ -26,8 +26,10 @@
   - ゲーム開始の関数
 - private void startGame() 
   - 始めの各種設定を行っている関数 
-- private void turnStart() 
-  - ターン開始時に呼び出される関数 
+- public void turnStart() 
+  - ターン開始時に呼び出される関数
+  public void turnEnd()
+    マス目の効果が終了した時に呼び出される関数
 - private void changeSeason()
 - private void diceCallback()
 - private void generatePlayer() 
@@ -241,14 +243,35 @@
 
 すべての強制イベントの親クラス 
 
+## フィールド
+- public delegate void Finish()
+    強制イベント終了時に呼び出す関数を格納するためのメソッドを定義している
+- protected Finish fin
+    強制イベント終了時に呼び出す関数を格納する変数
+
 ## 関数 
 - public abstract void execution(Season season,int round) 
-  - seasonとroundなどから強制イベントの発生条件を満たすと効果を発動する関数 
+  - seasonとroundなどから強制イベントの発生条件を満たすと効果を発動する関数 public void added(Finish f)
+  - 強制イベント終了時に呼び出す関数を設定する関数
+  protected void finsh()
+    強制イベント終了時に呼び出す必要がある関数
 
 # public class ForcedEvents 
-- private List<ForcedEvent> fevents = new List<ForcedEvent>();
+
+##フィールド
+- private List<ForcedEvent> fevents = new List<ForcedEvent>()
+- private int evenIndex
+    現在実行中の強制イベントの引数
+- private Season season
+- private Round round
+
+##関数
 - public ForcedEvents()
+- public void add(ForecedEvent fe)
+    強制イベントを追加する関数
 - public void execute(in Season season, in Round round)
+- private void eventFinish()
+    各強制イベント終了時に呼び出される関数
 
 
 # public class ProgressUI:MonoBehaviour 
