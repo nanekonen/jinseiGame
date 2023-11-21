@@ -7,7 +7,7 @@ public abstract class Square
 {
     public SpriteRenderer sr;
     public TextMeshPro text;
-    public abstract void execute(in Player player);
+    public abstract void execute(Player player);
     protected void finish()
     {
         GameMain.gameMain.turnEnd();

@@ -7,7 +7,7 @@ public class SimpleFuncSquare : Square
 {
     private TextMeshProUGUI text;
     private string sentence;
-    private delegate void ChangeInAbility(int d);
+    public delegate void ChangeInAbility(int d);
     private ChangeInAbility func;
     private int d;
 
@@ -35,22 +35,19 @@ public class SimpleFuncSquare : Square
         this.d = d;
     }
 
-    public override void execution(Player player)
+    public override void execute(Player player)
     {
         this.player = player;
         text = ProgressUI.progressUI.spaceText;
         text.enabled = true;
         text.text = sentence;
-        StartCoroutine(space());
+        KeyManager.keyManager.setDownSpace(space);
     }
 
-    IEnumerator space()
+    public void space()
     {
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-
         func(this.d);
         text.enabled = false;
-        ProgressUI.progressUI.changeOfTurn(GameMain.gameMain.nowTurn);
-        GameMain.gameMain.turn = true;
+        base.finish();
     }
 }

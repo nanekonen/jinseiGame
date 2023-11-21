@@ -24,18 +24,20 @@ public class SpringSquares : SeasonSquares
         List<Square> squares = new List<Square>();
 
         //1日目
-        squares s1 = new SimpleFuncSquare(
+        /*
+        squares[0] = new SimpleFuncSquare(
             "新学期、コンタクトを初めて付けて、新たなスタイルで再出発しました。容姿が2up!",
-            x => this.player.pi.appearance.add(x),//ここではラムダ式やけどふつーにメソッド定義してもいいと思う
-            2
+            x => squares[0].player.pi.appearance.add(x),//ここではラムダ式やけどふつーにメソッド定義してもいいと思う
+            ,2
             );
         //2日目
-        squares s2 = new SimpleFuncSquare(
+        squares[1] = new SimpleFuncSquare(
             "5月病にかかり、調子がよくない状態に。次のステップで改善する方法を模索しましょう。運気、勉強が2up!",
-            x => this.player.pi.luck.add(x),
-            x => this.player.pi.academic.add(x),
+            ,//x => this.player.pi.luck.add(x),
+            ,//x => this.player.pi.academic.add(x),
             2
             );
+        */
         //3日目
         //4日目
         //5日目

@@ -19,7 +19,7 @@ public class TestSquare : Square
         this.appearance = appearance;
         this.luck = luck;
     }
-    public override void execute(in Player player)
+    public override void execute(Player player)
     {
         Debug.Log("execution");
         this.player = player;
