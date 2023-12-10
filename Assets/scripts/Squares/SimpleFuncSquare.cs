@@ -5,7 +5,6 @@ using TMPro;
 
 public class SimpleFuncSquare : Square
 {
-    private TextMeshProUGUI text;
     private string sentence;
     public delegate void ChangeInAbility(int d);
     private ChangeInAbility func;
@@ -38,16 +37,17 @@ public class SimpleFuncSquare : Square
     public override void execute(Player player)
     {
         this.player = player;
-        text = ProgressUI.progressUI.spaceText;
-        text.enabled = true;
-        text.text = sentence;
-        KeyManager.keyManager.setDownSpace(space);
+        ProgressUI.progressUI.setInstructionSpace(sentence);
+        //text = ProgressUI.progressUI.spaceText;
+        //text.enabled = true;
+        //text.text = sentence;
+        //KeyManager.keyManager.setSpaceCallback(space);
     }
 
     public void space()
     {
         func(this.d);
         text.enabled = false;
-        base.finish();
+        //base.finish();
     }
 }

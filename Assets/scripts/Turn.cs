@@ -30,14 +30,7 @@ public class Turn
 
     public void increment()
     {
-        if( this.value >= maxNumberOfTurn )
-        {
-
-        }
-        else
-        {
-            this.value++;
-        }
+        this.value++;
     }
 
     public void reset()

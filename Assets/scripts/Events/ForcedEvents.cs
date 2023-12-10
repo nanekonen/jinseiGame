@@ -1,46 +1,64 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor.Search;
+using UnityEngine;
 
-public class ForcedEvents
+
+public class ForcedEvents : MonoBehaviour
 {
+    private const string csvDir = "Assets/Resources_moved/CSV/fevents/";
+
     private List<ForcedEvent> fevents = new List<ForcedEvent>();
-    private int eventIndex = 0;
     private Season season;
     private Round round;
 
     public ForcedEvents()
     {
+        using (StreamReader reader = new StreamReader(csvDir + "spring1.csv"))
+        {
+            ForcedEvent fevent;
+            reader.ReadLine();
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                string[] values = line.Split(',');
+
+                int timing = 0;
+                int.TryParse(values[1], out timing);
+
+                int favorability1 = 0;
+                int.TryParse(values[2], out favorability1); 
+                
+                int favorability2 = 0;
+                int.TryParse(values[3], out favorability2);
+
+                fevent = new SpringForcedEvent
+                (
+                    values[0],
+                    timing,
+                    favorability1,
+                    favorability2
+                );
+                //fevent.setText(values[0]);
+                //foreach (string value in values)
+                //Debug.Log(value);
+                fevents.Add(fevent);
+            }
+        }
 
     }
+
     public void add(ForcedEvent fe)
     {
-        fe.added(eventFinish);
         fevents.Add(fe);
     }
 
-    public void execute(in Season season, in Round round)
+    public IEnumerator execute(Season season, Round round, Player player)
     {
-        eventIndex = 0;
-        this.season = season;
-        this.round = round;
-        if(eventIndex < fevents.Count)
+        for( int i = 0; i <  fevents.Count; i++ ) 
         {
-            fevents[eventIndex].execute(season, round);
-        }
-        else
-        {
-            GameMain.gameMain.turnStart();
-        }
-    }
-    private void eventFinish()
-    {
-        eventIndex++;
-        if(eventIndex < fevents.Count)
-        {
-            fevents[eventIndex].execute(season, round);
-        }
-        else
-        {
-            GameMain.gameMain.turnStart();
+            yield return fevents[i].execute(season, round, player);
         }
     }
 }

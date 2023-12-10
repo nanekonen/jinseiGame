@@ -18,7 +18,7 @@ public class PlayerInformation
     public Luck luck = Luck.UNDEFINED_LUCK;
     public Gender loveInterest = Gender.UNDEFINED;
 
-    public Lovers lovers = new Lovers();
+    public Lovers lovers;
     public Lover lover = Lover.UNDEFINED;
 
 
@@ -45,6 +45,8 @@ public class PlayerInformation
         this.sprite = sprite;
         this.appearance = appearance;
         this.luck = luck;
+
+        lovers = new Lovers(gender);
         //list.Add(this);
         //Debug.Log("ADD" + list.Count);
     }

@@ -23,16 +23,12 @@ public class TestSquare : Square
     {
         Debug.Log("execution");
         this.player = player;
-        TextMeshProUGUI text;
-        (text = ProgressUI.progressUI.spaceText).enabled = true;
-        text.text = sentence;
-        KeyManager.keyManager.setDownSpace(processAfterSpace);
-    }
-    private void processAfterSpace()
-    {
+
+        ProgressUI.progressUI.setInstructionSpace(sentence);
+
         player.pi.academic.add(academic);
         player.pi.appearance.add(appearance);
         player.pi.luck.add(luck);
-        base.finish();
+
     }
 }

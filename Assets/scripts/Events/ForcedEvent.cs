@@ -1,19 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class ForcedEvent
 {
-    public delegate void Finish();
-    protected Finish fin;
-    public abstract void execute(Season season, Round round);
+    public abstract IEnumerator execute(Season season, Round round, Player player);
 
-    public void added(Finish f)
-    {
-        fin = f;
-    }
-    protected void finish()
-    {
-        fin();
-    }
+    protected string text = "";
+    protected int timing = 0;
+    protected int favorability1 = 0;
+    protected int favorability2 = 0;
+
+
+
 }

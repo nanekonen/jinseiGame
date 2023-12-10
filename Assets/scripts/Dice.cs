@@ -11,22 +11,12 @@ public class Dice
     {
 
     }
-
-    public void setCallback(DiceCallback callback)
+    public int run()
     {
-        this.diceCallback = callback;
-        ProgressUI.progressUI.setSpaceTextEnabled();
-        KeyManager.keyManager.setDownSpace(spacekeyCallback);
-    }
-
-    private void spacekeyCallback()
-    {
-        Debug.Log("waitDice");
-        
-
         int d = Random.Range(1, 6);
         ProgressUI.progressUI.setDiceNumber(d);
 
-        this.diceCallback(d);
+        return d;
+
     }
 }
