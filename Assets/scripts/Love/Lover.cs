@@ -6,7 +6,7 @@ public class Lover
 
     private string name = "";
 
-    private Favorability fav = Favorability.UNDEFINED_FAVORABILITY;
+    public Favorability fav = Favorability.UNDEFINED_FAVORABILITY;
 
     public Lover(string name, Favorability fav)
     {

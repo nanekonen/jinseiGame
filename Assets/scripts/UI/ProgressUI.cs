@@ -39,6 +39,12 @@ public class ProgressUI : MonoBehaviour
 
     }
 
+    public void setInstructionSpace(in string text)
+    {
+        spaceText.enabled = true;
+        spaceText.text = text;
+    }
+
     public void changeOfTurn(in Player player, in Round round, in Season season)
     {
         //string[] s = { "t", "‰Ä", "H", "“~" };

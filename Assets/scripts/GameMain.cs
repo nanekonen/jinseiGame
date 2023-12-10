@@ -32,8 +32,8 @@ public class GameMain : MonoBehaviour
         gameMain = this;
 
 
-        //season = new Season( Season.SPRING );
-        season = new Season(Season.UNDEFINED);
+        season = new Season( Season.SPRING );
+        //season = new Season(Season.UNDEFINED);
     }
     public void generatePlayer()
     {
@@ -60,9 +60,31 @@ public class GameMain : MonoBehaviour
     void Start()
     {
         Debug.Log("Start");
-        startGame();
+        configureGame();
+
+        StartCoroutine(main());
     }
-    private void startGame()
+
+    IEnumerator main()
+    {
+        while( true )
+        {
+            currentPlayer = players.getPlayer(turn);
+            ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
+
+            yield return KeyManager.keyManager.waitForSpace();
+
+            int d = dice.run();
+            currentPlayer.proceed(d);
+
+            yield return KeyManager.keyManager.waitForSpace();
+
+            yield return StartCoroutine(turnEnd());
+
+        }
+    }
+
+    private void configureGame()
     {
         Debug.Log("startingGame");
         Map.map.generateSquare();
@@ -75,24 +97,16 @@ public class GameMain : MonoBehaviour
             tl[s].text.text = s.ToString("0");
         }
         Map.map.changeOfSeason(season);
-        turnStart();
     }
-    public void turnStart()
+    private IEnumerator turnEnd()
     {
-        Debug.Log("turnStart");
-
-        currentPlayer = players.getPlayer(turn);
-        ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
-        dice.setCallback(this.diceCallback);
-    }
-    public void turnEnd()
-    {
-        Debug.Log("turnEnd");
-        fevents.execute(season, round);
         turn.increment();
         if( turn.checkIsFinished() )
         {
             round.increment();
+
+            yield return StartCoroutine(fevents.execute(season, round, currentPlayer));
+
             turn.reset();
 
             if(round.checkIsFinished())
@@ -118,11 +132,4 @@ public class GameMain : MonoBehaviour
 
     }
 
-    private void diceCallback(int dice)
-    {
-        Debug.Log("processAfterRollingDice");
-        currentPlayer.proceed(dice);
-    }
-
-    
 }

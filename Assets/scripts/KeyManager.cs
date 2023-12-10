@@ -1,22 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class KeyManager : MonoBehaviour
 {
     public static KeyManager keyManager;
 
-    public delegate void DownSpace();
-    private List<DownSpace> downSpace = new List<DownSpace>();
-    private bool downSpaceBool = false;
+    public delegate void KeyCallback();
 
-    public delegate void DownUpArrow();
-    private List<DownUpArrow> downUpArrow = new List<DownUpArrow>();
-    private bool downUpArrowBool = false;
+    private KeyCallback space = KeyManager.empty;
+    private bool isSpaceCallbackReserved = false;
 
-    public delegate void DownDownArrow();
-    private List<DownDownArrow> downDownArrow = new List<DownDownArrow>();
-    private bool downDownArrowBool = false;
+    private KeyCallback upArrow = KeyManager.empty;
+    private bool isUpArrowCallbackReserved = false;
+
+    private KeyCallback downArrow = KeyManager.empty;
+    private bool isDownArrowCallbackReserved = false;
 
     private void Awake()
     {
@@ -25,39 +25,164 @@ public class KeyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (downSpaceBool && Input.GetKeyDown(KeyCode.Space))
+        if (isSpaceCallbackReserved && Input.GetKeyDown(KeyCode.Space))
         {
-            downSpaceBool = downSpace.Count == 1 ? false:true ;
-            downSpace[0]();
-            downSpace.Remove(downSpace[0]);
+            isSpaceCallbackReserved = false;
+            space();
+            //space = KeyManager.empty;
         }
-        if (downUpArrowBool && Input.GetKeyDown(KeyCode.UpArrow))
+
+        if (isUpArrowCallbackReserved && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            downUpArrowBool = downUpArrow.Count == 1?false:true;
-            downUpArrow[0]();
-            downUpArrow.Remove(downUpArrow[0]);
+            isUpArrowCallbackReserved = false;
+            upArrow();
+            upArrow = KeyManager.empty;
         }
-        if (downDownArrowBool && Input.GetKeyDown(KeyCode.DownArrow))
+
+        if (isDownArrowCallbackReserved && Input.GetKeyDown(KeyCode.DownArrow))
         {
-            downDownArrowBool = downDownArrow.Count == 1?false:true;
-            downDownArrow[0]();
-            downDownArrow.Remove(downDownArrow[0]);
+            isDownArrowCallbackReserved = false;
+            downArrow();
+            downArrow = KeyManager.empty;
         }
     }
 
-    public void setDownSpace(DownSpace ds)
+    public bool setSpaceCallback(KeyCallback ds)
     {
-        downSpace.Add(ds);
-        downSpaceBool = true;
+        bool success = false; 
+        if( isSpaceCallbackReserved )
+        {
+            success = false;
+            return success;
+        }
+        else
+        {
+            space = ds;
+            isSpaceCallbackReserved = true;
+
+            success = true;
+
+            return success;
+        }
+
     }
-    public void setDownUpArrow(DownUpArrow dua)
+    public IEnumerator waitForAOrB()
     {
-        downUpArrow.Add(dua);
-        downUpArrowBool = true;
+        bool A = true;
+        while( true )
+        {
+            if( Input.GetKeyDown(KeyCode.B))
+            {
+                A = false;
+                break;
+            }
+
+            if( Input.GetKeyDown(KeyCode.A))
+            {
+                A = true;
+                break;
+            }
+            yield return null;
+        }
+
+        string text = "";
+            
+        if( A )
+        {
+            text = "A";
+        }
+        else
+        {
+            text = "B"; 
+        }
+
+        yield return text;
     }
-    public void setDownDownArrow(DownDownArrow dda)
+    public IEnumerator waitForRightOrLeftArrow()
     {
-        downDownArrow.Add(dda);
-        downDownArrowBool = true;
+        bool left = true;
+        while( true )
+        {
+            if( Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                left = false;
+                break;
+            }
+
+            if( Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                left = true;
+                break;
+            }
+            yield return null;
+        }
+
+        string text = "";
+            
+        if( left )
+        {
+            text = "left";
+        }
+        else
+        {
+            text = "right"; 
+        }
+
+        yield return text;
     }
+    public IEnumerator waitForSpace()
+    {
+        bool done = false;
+        while(!done)
+        {
+            if( Input.GetKeyDown(KeyCode.Space))
+            {
+                done = true;
+            }
+            yield return null;
+        }
+    }
+    public bool setUpArrowCallback(KeyCallback dua)
+    {
+        bool success = false; 
+        if( isUpArrowCallbackReserved )
+        {
+            success = false;
+            return success;
+        }
+        else
+        {
+            upArrow = dua;
+            isUpArrowCallbackReserved = true;
+
+            success = true;
+
+            return success;
+        }
+    }
+    public bool setDownArrowCallback(KeyCallback dda)
+    {
+        bool success = false; 
+        if( isDownArrowCallbackReserved )
+        {
+            success = false;
+            return success;
+        }
+        else
+        {
+            downArrow = dda;
+            isDownArrowCallbackReserved = true;
+
+            success = true;
+
+            return success;
+        }
+    }
+
+    private static void empty()
+    { 
+
+    }
+
+
 }

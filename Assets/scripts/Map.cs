@@ -69,13 +69,17 @@ public class Map : MonoBehaviour
         switch (season.getID())
         {
             case Season.SPRING:
-                nowSquare = new SpringSquares().changeOfSquares(realSquares);
+                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                //nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
-                nowSquare = new SummerSquares().changeOfSquares(realSquares);
+                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:
                 nowSquare = new TestSeason().changeOfSquares(realSquares);
+                break;
+            default:
                 break;
         }
     }
@@ -90,7 +94,7 @@ public class Map : MonoBehaviour
         return nowSquare[n % Season.lengthOfSeason];
     }
     public void addPosition(int id)
-    {
+    { 
         for(int i = 0;arragement.Count < 30; i++)
         {
             arragement.Add(new List<int>());
