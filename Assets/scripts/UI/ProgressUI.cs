@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AddressableAssets;
 using TMPro;
 using System;
 
@@ -18,6 +20,8 @@ public class ProgressUI : MonoBehaviour
 
     public TextMeshProUGUI diceText;
     public TextMeshProUGUI spaceText;
+
+    public Image background;
 
     
     private void Awake()
@@ -57,9 +61,9 @@ public class ProgressUI : MonoBehaviour
         //apperanceText.text = "óeép " + player.pi.appearance.getValueInString();
         //luckText.text = "â^ " + player.pi.luck.getValueInString();
         //affiliationText.text = "èäëÆ " + player.pi.activity.getName();
-        academicText.text = "academic" + player.pi.academic.getValueInString();
-        apperanceText.text = "appearance" + player.pi.appearance.getValueInString();
-        luckText.text = "luck" + player.pi.luck.getValueInString();
+        academicText.text = player.pi.academic.getValueInString();
+        apperanceText.text = player.pi.appearance.getValueInString();
+        luckText.text = player.pi.luck.getValueInString();
         //affiliationText.text = "activity" + player.pi.activity.getName();
     }
     
@@ -73,5 +77,31 @@ public class ProgressUI : MonoBehaviour
     {
         spaceText.enabled = true;
         spaceText.text = "Push your space";
+    }
+
+    public void setText(string text)
+    {
+        spaceText.enabled = true;
+        spaceText.text = text;
+    }
+
+    public void disableText()
+    {
+        spaceText.enabled = false;
+    }
+
+    public async void setBackground(string path)
+    {
+        background.enabled = true;
+        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path).Task;
+        
+        Debug.Log("Yes");
+        background.sprite = s;
+        Addressables.Release(s);
+    }
+
+    public void disableeBackground()
+    {
+        background.enabled = false;
     }
 }

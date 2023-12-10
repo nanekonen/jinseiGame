@@ -224,6 +224,7 @@
   - スペースキーが押された瞬間に呼び出される関数を格納するためのデリゲート 
 - private List<DownSpace>downSpace 
   - スペースキーが押されたときに実行する予定のすべての関数を格納するリスト 
+  - 
 - private bool downSpaceBool 
   - スペースキーが押された時に関数を呼び出すべきか否かを格納する変数 
   - 以下DownUpArrow,downUpArrow,downUpArrowBool, DownDownArrow,downDownArrow,downDownArrowBoolについても同じ 
