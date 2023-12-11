@@ -71,5 +71,8 @@ public class Lovers
         return names;
     }
 
+    public Lover getLoverByActivity(Activity activity){
+        return lovers[(int)activity];
+    }
 
 }

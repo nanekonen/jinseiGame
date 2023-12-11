@@ -69,11 +69,11 @@ public class Map : MonoBehaviour
         switch (season.getID())
         {
             case Season.SPRING:
-                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 //nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
-                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:

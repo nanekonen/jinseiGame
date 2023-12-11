@@ -21,7 +21,7 @@ public class PlayerInformation
     public Lovers lovers;
     public Lover lover = Lover.UNDEFINED;
 
-
+    public Activity activity = Activity.UNDEFINED;
     public PlayerInformation()
     {
 
@@ -35,7 +35,8 @@ public class PlayerInformation
         Academic academic,
         Sprite sprite,
         Appearance appearance,
-        Luck luck
+        Luck luck,
+        Activity activity
     )
     {
         this.name = name;   

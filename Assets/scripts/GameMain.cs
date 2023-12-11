@@ -51,7 +51,8 @@ public class GameMain : MonoBehaviour
                 new Academic(p * 50),
                 null,
                 new Appearance(p * 50), 
-                new Luck(p * 50)
+                new Luck(p * 50),
+                Activity.UNDEFINED
             );
 
             players.add(pl);
