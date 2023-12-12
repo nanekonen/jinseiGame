@@ -5,7 +5,6 @@ public class getToggleValue : MonoBehaviour
 {
     public ToggleGroup toggleGroup; // Toggle Group‚Ö‚ÌQÆ
     public static string gender = "";
-    public static string targetGender = "";
 
     // Start is called before the first frame update
     void Start()
@@ -30,17 +29,8 @@ public class getToggleValue : MonoBehaviour
         {
             // Toggle‚ªƒIƒ“‚É‚È‚Á‚½ê‡‚Ìˆ—
             Debug.Log("Toggle " + toggle.gameObject.name + " is ON");
-            if (toggle.gameObject.name.Contains("target"))
-            {
-                targetGender = toggle.GetComponentInChildren<Text>().text;
-                Debug.Log("targetGender: " + targetGender);
-            }
-            else
-            {
-                gender = toggle.GetComponentInChildren<Text>().text;
-                Debug.Log("gender: " + gender);
-            }
-                ;
+            gender = toggle.GetComponentInChildren<Text>().text;
+            Debug.Log("gender: " + gender);
         }
     }
 

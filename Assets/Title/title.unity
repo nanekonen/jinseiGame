@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 69236471}
   - component: {fileID: 69236470}
   - component: {fileID: 69236469}
+  - component: {fileID: 69236472}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -378,6 +379,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69236467}
   m_CullTransparentMesh: 1
+--- !u!114 &69236472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69236467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c6f55aa01201e4f8ebc8558417e12d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &241966821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,6 +1149,7 @@ GameObject:
   - component: {fileID: 1351068062}
   - component: {fileID: 1351068061}
   - component: {fileID: 1351068060}
+  - component: {fileID: 1351068063}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1245,6 +1259,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1351068058}
   m_CullTransparentMesh: 1
+--- !u!114 &1351068063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351068058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29d3fa30bed6694bbb7fa303d001726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: InputForm
 --- !u!1 &1390630870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,7 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a4ed68ef86b846a5ba7a458e291e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: InputForm
+  changeSceneName: 
 --- !u!114 &1638980807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1710,7 +1737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a4ed68ef86b846a5ba7a458e291e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: 
+  changeSceneName: 
 --- !u!114 &1639161774
 MonoBehaviour:
   m_ObjectHideFlags: 0

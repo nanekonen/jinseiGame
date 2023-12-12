@@ -7,12 +7,12 @@ public class AudioManager : MonoBehaviour
     private AudioSource bgmAudioSource;
     private string currentBGM;
 
-    // シーンごとのBGMを管理するディクショナリ
+    // managing dictionary
     private System.Collections.Generic.Dictionary<string, AudioClip> bgmDictionary;
 
     void Awake()
     {
-        // AudioManagerが1つだけ存在するようにする
+        // not allow duplicate instance
         if (Instance == null)
         {
             Instance = this;
@@ -24,34 +24,33 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // AudioSourceコンポーネントを取得
         bgmAudioSource = gameObject.AddComponent<AudioSource>();
 
-        // BGMを管理するディクショナリの初期化
+        // initialize
         bgmDictionary = new System.Collections.Generic.Dictionary<string, AudioClip>();
-        // シーンごとのBGMを追加（必要に応じて拡充）
-        bgmDictionary.Add("Scene1", Resources.Load<AudioClip>("BGM/Scene1BGM"));
-        bgmDictionary.Add("Scene2", Resources.Load<AudioClip>("BGM/Scene2BGM"));
+        // set bgm
+        bgmDictionary.Add("title", Resources.Load<AudioClip>("BGM/Scene1BGM"));
+        bgmDictionary.Add("InputForm", Resources.Load<AudioClip>("BGM/Scene2BGM"));
 
-        // シーンが切り替わるたびに呼び出されるメソッドを登録
+        // when changing scene, register method
         UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
-        // シーンがロードされたときにBGMを切り替え
+        // changingBGM
         if (bgmDictionary.ContainsKey(scene.name))
         {
             PlayBGM(scene.name);
         }
     }
 
-    // BGMを再生
+    // play BGM
     public void PlayBGM(string bgmName)
     {
         if (bgmDictionary.ContainsKey(bgmName))
         {
-            // 同じBGMが再生中でない場合のみ切り替える
+            // changing BGM without corespondancing current BGM
             if (bgmAudioSource.isPlaying && currentBGM == bgmName)
             {
                 return;
@@ -68,7 +67,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // BGMを停止
+    // stop BGM
     public void StopBGM()
     {
         bgmAudioSource.Stop();
