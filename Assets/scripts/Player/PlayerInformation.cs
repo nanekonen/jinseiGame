@@ -47,7 +47,7 @@ public class PlayerInformation
         this.appearance = appearance;
         this.luck = luck;
 
-        lovers = new Lovers(gender);
+        lovers = new Lovers(love_interest);
         //list.Add(this);
         //Debug.Log("ADD" + list.Count);
     }

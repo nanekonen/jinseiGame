@@ -40,18 +40,15 @@ public class SummerSquares : SeasonSquares
 
         for(int i = 0; i < activitySquareData[0].Count; i++){//部活マスの追加
             List<string> sentence = new List<string>();
-            List<int> academic = new List<int>();
-            List<int> appearance = new List<int>();
-            List<int> luck = new List<int>();
             List<int> favorability = new List<int>();
+            List<string> nameOfLovers = new List<string>();
             foreach(List<string[]> dataByActivity in activitySquareData){
                 sentence.Add(dataByActivity[i][0]);
-                academic.Add(int.Parse(dataByActivity[i][1]));
-                appearance.Add(int.Parse(dataByActivity[i][2]));
-                luck.Add(int.Parse(dataByActivity[i][3]));
-                favorability.Add(int.Parse(dataByActivity[i][4]));
+                favorability.Add(int.Parse(dataByActivity[i][1]));
+                nameOfLovers.Add(dataByActivity[i][2]);
+                nameOfLovers.Add(dataByActivity[i][3]);
             }
-            squares.Add(new ActivitySquare(sentence,academic,appearance,luck,favorability));
+            squares.Add(new ActivitySquare(sentence,favorability,nameOfLovers));
         }
  
         return squares;
