@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class DiceUI : MonoBehaviour
+public class DiceUI : PartsUI
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<Image> dices;
 
-    // Update is called once per frame
-    void Update()
+    public void rolling(int n)
     {
-        
+        foreach(Image i in dices)
+        {
+            i.enabled = false;
+        }
+        if(0 <= n&&n < dices.Count)
+        {
+            dices[n].enabled = true;
+        }
     }
 }

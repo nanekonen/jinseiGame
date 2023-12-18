@@ -6,10 +6,6 @@ public class SugorokuUI : MonoBehaviour
 {
     public List<PartsUI> sugoroku_parts;
     
-    public void setDiceNumber(int i)
-    {
-
-    }
     public void turnOn()
     {
         foreach(PartsUI p in sugoroku_parts)

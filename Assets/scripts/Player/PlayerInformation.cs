@@ -7,7 +7,7 @@ public class PlayerInformation
 {
     //private static List<PlayerInformation> list = new List<PlayerInformation>();
 
-    Sprite sprite;
+    public Sprite sprite;
 
     public string name;
     public int id;

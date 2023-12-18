@@ -10,19 +10,17 @@ public class ProgressUI : MonoBehaviour
 {
     public static ProgressUI progressUI;
 
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI nowText;
+    public List<Canvas> sugorokuUI;
 
-    public TextMeshProUGUI academicText;
-    public TextMeshProUGUI apperanceText;
-    public TextMeshProUGUI luckText;
-    public TextMeshProUGUI affiliationText;
+    public AccountUI accountUI;
+    public ParametersUI parametersUI;
+    public NowUI nowUI;
+    public FavorabilityUI favorabilityUI;
+    public SentenceUI sentenceUI;
+    public DiceUI diceUI;
 
-    public TextMeshProUGUI diceText;
-    public TextMeshProUGUI spaceText;
 
-    public Image background;
-
+    public LoveUI loveUI;
     
     private void Awake()
     {
@@ -30,7 +28,7 @@ public class ProgressUI : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -41,73 +39,48 @@ public class ProgressUI : MonoBehaviour
 
     public void setInstructionSpace(in string text)
     {
-        spaceText.enabled = true;
-        spaceText.text = text;
+        sentenceUI.change(text);
     }
 
     public void changeOfTurn(in Player player, in Round round, in Season season)
     {
-        //string[] s = { "èt", "âƒ", "èH", "ì~" };
-        string[] s = {"spring", "summer", "autumn", "winter"};
-
-
-        nameText.text = player.pi.name;
-        nowText.text = 
-            s
-            [
-                season.getID() == Season.UNDEFINED?
-                Season.SPRING:
-                season.getID()
-            ] + 
-            ":" + 
-            round.getRoundInStr() +
-            "th";
-
-        //academicText.text = "äwóÕ " + player.pi.academic.getValueInString();
-        //apperanceText.text = "óeép " + player.pi.appearance.getValueInString();
-        //luckText.text = "â^ " + player.pi.luck.getValueInString();
-        //affiliationText.text = "èäëÆ " + player.pi.activity.getName();
-        academicText.text = player.pi.academic.getValueInString();
-        apperanceText.text = player.pi.appearance.getValueInString();
-        luckText.text = player.pi.luck.getValueInString();
-        //affiliationText.text = "activity" + player.pi.activity.getName();
+        nowUI.change(player,round,season);
+        parametersUI.change(player.pi);
+        accountUI.change(player.pi);
     }
     
     public void setDiceNumber(int dice)
     {
-        diceText.text = dice.ToString("0");
-        spaceText.enabled = false;
+        diceUI.rolling(dice);
     }
 
     public void setSpaceTextEnabled()
     {
-        spaceText.enabled = true;
-        spaceText.text = "Push your space";
+        sentenceUI.change("Push your space");
     }
 
-    public void setText(string text)
+    private void turnLove()
     {
-        spaceText.enabled = true;
-        spaceText.text = text;
+        foreach(Canvas c in sugorokuUI)
+        {
+            c.enabled = false;
+        }
+        loveUI.turnOff();
     }
 
-    public void disableText()
+    private void turnSugoroku()
     {
-        spaceText.enabled = false;
+        foreach(Canvas c in sugorokuUI)
+        {
+            c.enabled = true;
+        }
+        loveUI.turnOn();
     }
-
     public async void setBackground(string path)
     {
-        background.enabled = true;
+        turnLove();
         Sprite s = await Addressables.LoadAssetAsync<Sprite>(path).Task;
-        
-        Debug.Log("Yes");
-        background.sprite = s;
+        loveUI.changeBackGround(s);
         Addressables.Release(s);
-    }
-
-    public void disableeBackground()
-    {
-        background.enabled = false;
     }
 }

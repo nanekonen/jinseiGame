@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
-public class ParametersUI : MonoBehaviour
+public class ParametersUI : PartsUI
 {
-    // Start is called before the first frame update
-    void Start()
+    public TextMeshProUGUI academic;
+    public TextMeshProUGUI appearance;
+    public TextMeshProUGUI luck;
+    public void change(PlayerInformation pi)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        academic.text = pi.academic.getValue().ToString("0");
+        appearance.text = pi.appearance.getValue().ToString("0");
+        luck.text = pi.luck.getValue().ToString("0");
     }
 }
