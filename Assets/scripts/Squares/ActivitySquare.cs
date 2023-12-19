@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ActivitySquare : Square
 {
@@ -26,7 +27,9 @@ public class ActivitySquare : Square
             ProgressUI.progressUI.setInstructionSpace("activityが未定義");
         }else{
             player.pi.lovers.getLoverByName(nameOfLovers[(int)player.pi.activity*2 + (int)player.pi.gender]).fav.add(favorability[(int)player.pi.activity]);
-            ProgressUI.progressUI.setInstructionSpace(sentence[(int)player.pi.activity].Replace("Name",nameOfLovers[(int)player.pi.activity*2 + (int)player.pi.loveInterest]));
+            ProgressUI.progressUI.setInstructionSpace(
+                sentence[(int)player.pi.activity].
+                Replace("Name",nameOfLovers[(int)player.pi.activity*2 + Math.Abs((int)player.pi.gender-1)]));
         }
         
     }

@@ -21,9 +21,9 @@ public class Lovers
     public Lover yuto = new Lover("悠斗", "田中悠斗", new Favorability(30));
     public Lover yusuke = new Lover("悠介先輩", "中村悠介", new Favorability(30));
     public Lover daiti = new Lover("大地", "小林大地", new Favorability(30));
-    public Lovers(Gender love_interest)
+    public Lovers(Gender gender)
     {
-        if( love_interest == Gender.MAN )
+        if( gender == Gender.WOMAN )
         {
             add(ren);
             add(kenta);

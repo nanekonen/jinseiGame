@@ -47,7 +47,6 @@ public class GameMain : MonoBehaviour
             (
                 p.ToString("0"),
                 Gender.MAN,
-                Gender.WOMAN,
                 new Academic(p * 50),
                 null,
                 new Appearance(p * 50), 

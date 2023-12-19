@@ -9,7 +9,7 @@ public class Players
     private List<Player> players = new List<Player>();
     public Player playerObject;
 
-    public const int numberOfPlayer = 2;
+    public const int numberOfPlayer = 3;
 
 
     public Players()
