@@ -16,7 +16,6 @@ public class PlayerInformation
     public Academic academic = Academic.UNDEFINED_ACADEMIC;
     public Appearance appearance = Appearance.UNDEFINED_APPEARANCE;
     public Luck luck = Luck.UNDEFINED_LUCK;
-    public Gender loveInterest = Gender.UNDEFINED;
 
     public Lovers lovers;
     public Lover lover = Lover.UNDEFINED;
@@ -31,7 +30,6 @@ public class PlayerInformation
     (
         string name,
         Gender gender,
-        Gender love_interest,
         Academic academic,
         Sprite sprite,
         Appearance appearance,
@@ -41,13 +39,12 @@ public class PlayerInformation
     {
         this.name = name;   
         this.gender = gender;
-        this.loveInterest = love_interest;
         this.academic = academic;
         this.sprite = sprite;
         this.appearance = appearance;
         this.luck = luck;
 
-        lovers = new Lovers(love_interest);
+        lovers = new Lovers(gender);
         //list.Add(this);
         //Debug.Log("ADD" + list.Count);
     }
