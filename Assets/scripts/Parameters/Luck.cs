@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 public class Luck 
 {
     public static readonly Luck UNDEFINED_LUCK = new Luck();
+    public const int DEFAULT = 60;
 
     public const int MIN = 0;
     public const int MAX = 100;
@@ -11,27 +12,27 @@ public class Luck
 
     private int value = UNDEFINED;
 
-    private Luck()
+    public Luck()
     {
-        this.value = UNDEFINED;
+        this.value = DEFAULT;
     }
 
-    public Luck( int value )
-    {
-        int temp_value = value;
-        if( temp_value > MAX )
-        {
-            this.value = MAX;
-            return;
-        }
-        if( temp_value < MIN )
-        {
-            this.value = MIN;
-            return;
-        }
+    //public Luck( int value )
+    //{
+    //    int temp_value = value;
+    //    if( temp_value > MAX )
+    //    {
+    //        this.value = MAX;
+    //        return;
+    //    }
+    //    if( temp_value < MIN )
+    //    {
+    //        this.value = MIN;
+    //        return;
+    //    }
 
-        this.value = value;
-    }
+    //    this.value = value;
+    //}
 
     public void add( int value )
     {

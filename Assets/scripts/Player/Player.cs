@@ -20,6 +20,7 @@ public class Player:MonoBehaviour
     private Vector3 dir;
 
     public PlayerInformation pi = new PlayerInformation();
+
     void Start()
     {
         

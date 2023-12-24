@@ -25,6 +25,7 @@ public class GameMain : MonoBehaviour
     private Dice dice = new Dice();
 
     private ForcedEvents fevents = new ForcedEvents();
+    private ExamEvent examEvent = new ExamEvent();
 
     private void Awake()
     {
@@ -35,27 +36,37 @@ public class GameMain : MonoBehaviour
         season = new Season( Season.SPRING );
         //season = new Season(Season.UNDEFINED);
     }
-    public void generatePlayer()
-    {
-        for(int p = 0 ;p < Players.numberOfPlayer; p++)
-        {
-            
-            Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
-            pl.transform.SetParent(transform);
-            pl.initialize(p);
-            pl.pi.setPlayerInfo
-            (
-                p.ToString("0"),
-                Gender.MAN,
-                new Academic(p * 50),
-                null,
-                new Appearance(p * 50), 
-                new Luck(p * 50),
-                Activity.UNDEFINED
-            );
 
-            players.add(pl);
-        }
+    private Player generatePlayer
+    (
+        int id,
+        string name,
+        Gender gender,
+        Activity act
+    )
+    {
+        Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
+        pl.transform.SetParent(transform);
+        pl.initialize(id);
+        pl.pi.setPlayerInfo
+        (
+            name,
+            Gender.MAN,
+            null,
+            act
+        );
+
+        return pl;
+
+        //players.add(pl);
+
+    }
+    public void generatePlayers()
+    {
+        players.add(generatePlayer(0, "こうへい",　Gender.MAN, Activity.BASKET));
+        players.add(generatePlayer(1, "ゆうや", Gender.WOMAN, Activity.PART_TIME));
+        players.add(generatePlayer(2, "しょうへい", Gender.MAN, Activity.BRASS_BAND));
+
     }
     void Start()
     {
@@ -70,7 +81,7 @@ public class GameMain : MonoBehaviour
         while( true )
         {
             currentPlayer = players.getPlayer(turn);
-            ProgressUI.progressUI.changeOfTurn(currentPlayer, round, season);
+            ProgressUI.progressUI.changeTurn(currentPlayer, round, season);
 
             yield return KeyManager.keyManager.waitForSpace();
 
@@ -89,7 +100,7 @@ public class GameMain : MonoBehaviour
         Debug.Log("startingGame");
         Map.map.generateSquare();
 
-        generatePlayer();
+        generatePlayers();
 
         List<RealSquare> tl = Map.map.getRealSquares();
         for (int s = 0; s < Season.lengthOfSeason; s++)
@@ -105,7 +116,9 @@ public class GameMain : MonoBehaviour
         {
             round.increment();
 
-            yield return StartCoroutine(fevents.execute(season, round, currentPlayer));
+            yield return StartCoroutine(fevents.execute(season, round, players.getRandomPlayer()));
+            yield return StartCoroutine(examEvent.execute(season, round, players));
+            //yield return fevents.execute(season, round, players.getRandomPlayer());
 
             turn.reset();
 
@@ -113,6 +126,7 @@ public class GameMain : MonoBehaviour
             {
                 changeSeason();
             }
+
         }
     }
 

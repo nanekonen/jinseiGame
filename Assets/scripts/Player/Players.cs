@@ -11,10 +11,22 @@ public class Players
 
     public const int numberOfPlayer = 3;
 
+    private System.Random rand = new System.Random();
 
     public Players()
     {
 
+    }
+
+    public Player getRandomPlayer()
+    {
+        int index = rand.Next(0, numberOfPlayer);
+        return players[index];
+    }
+
+    public Player getPlayer(int index)
+    {
+        return players[index];
     }
 
     public Player getPlayer(in Turn turn)

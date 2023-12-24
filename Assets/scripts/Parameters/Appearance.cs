@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 public class Appearance 
 {
     public static readonly Appearance UNDEFINED_APPEARANCE = new Appearance();
+    public const int DEFAULT = 60;
 
     public const int MIN = 0;
     public const int MAX = 100;
@@ -11,27 +12,27 @@ public class Appearance
 
     private int value = UNDEFINED;
 
-    private Appearance()
+    public Appearance()
     {
-        this.value = UNDEFINED;
+        this.value = DEFAULT;
     }
 
-    public Appearance( int value )
-    {
-        int temp_value = value;
-        if( temp_value > MAX )
-        {
-            this.value = MAX;
-            return;
-        }
-        if( temp_value < MIN )
-        {
-            this.value = MIN;
-            return;
-        }
+    //public Appearance( int value )
+    //{
+    //    int temp_value = value;
+    //    if( temp_value > MAX )
+    //    {
+    //        this.value = MAX;
+    //        return;
+    //    }
+    //    if( temp_value < MIN )
+    //    {
+    //        this.value = MIN;
+    //        return;
+    //    }
 
-        this.value = value;
-    }
+    //    this.value = value;
+    //}
 
 
 

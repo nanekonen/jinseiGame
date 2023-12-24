@@ -33,19 +33,16 @@ public class PlayerInformation
     (
         string name,
         Gender gender,
-        Academic academic,
         Sprite sprite,
-        Appearance appearance,
-        Luck luck,
         Activity activity
     )
     {
         this.name = name;   
         this.gender = gender;
-        this.academic = academic;
+        this.academic = new Academic();
         this.sprite = sprite;
-        this.appearance = appearance;
-        this.luck = luck;
+        this.appearance = new Appearance();
+        this.luck = new Luck();
 
         lovers = new Lovers(gender);
         //list.Add(this);
