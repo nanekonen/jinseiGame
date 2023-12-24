@@ -18,6 +18,7 @@ public class ProgressUI : MonoBehaviour
     public FavorabilityUI favorabilityUI;
     public SentenceUI sentenceUI;
     public DiceUI diceUI;
+    public RankUI rankUI;
 
 
     public LoveUI loveUI;
@@ -47,6 +48,15 @@ public class ProgressUI : MonoBehaviour
         nowUI.change(player,round,season);
         parametersUI.change(player.pi);
         accountUI.change(player.pi);
+        if(player.pi.activity != Activity.UNDEFINED)
+        {
+            favorabilityUI.turnOn();
+            favorabilityUI.setLovers(player.pi.lovers);
+        }
+        else
+        {
+            favorabilityUI.turnOff();
+        }
     }
     
     public void setDiceNumber(int dice)
@@ -59,28 +69,55 @@ public class ProgressUI : MonoBehaviour
         sentenceUI.change("Push your space");
     }
 
-    private void turnLove()
+    public void beingLove()
     {
         foreach(Canvas c in sugorokuUI)
         {
             c.enabled = false;
         }
-        loveUI.turnOff();
+        loveUI.turnOn();
     }
 
-    private void turnSugoroku()
+    public void beingSugoroku()
     {
         foreach(Canvas c in sugorokuUI)
         {
             c.enabled = true;
         }
-        loveUI.turnOn();
+        loveUI.turnOff();
     }
-    public async void setBackground(string path)
+    public async void setLove(string path_back,string path_sub,string sentence,string name)
     {
-        turnLove();
-        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path).Task;
+        beingLove();
+        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path_back).Task;
         loveUI.changeBackGround(s);
         Addressables.Release(s);
+        s = await Addressables.LoadAssetAsync<Sprite>(path_sub).Task;
+        loveUI.changeBackGround(s);
+        Addressables.Release(s);
+        loveUI.changeSentence(sentence);
+        loveUI.changeName(name);
+    }
+    public async void setLove_sentenc_subject(string path_sub,string sentence)
+    {
+        beingLove();
+        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path_sub).Task;
+        loveUI.changeBackGround(s);
+        Addressables.Release(s);
+        loveUI.changeSentence(sentence);
+    }
+    public void setLove_sentence(string s)
+    {
+        beingLove();
+        loveUI.changeSentence(s);
+    }
+    public void updataLoversPercent(Lover l)
+    {
+        favorabilityUI.setPercent(l);
+    }
+
+    public void updataRnaking(List<PlayerInformation> pi_list)
+    {
+        rankUI.updata(pi_list);
     }
 }

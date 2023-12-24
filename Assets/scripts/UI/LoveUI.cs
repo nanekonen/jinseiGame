@@ -7,6 +7,7 @@ using TMPro;
 public class LoveUI : PartsUI
 {
     public Image background;
+    public Image subject;
 
     public RectTransform rect;
     public TextMeshProUGUI name;
@@ -29,5 +30,10 @@ public class LoveUI : PartsUI
     public void changeBackGround(Sprite s)
     {
         background.sprite = s;
+    }
+
+    public void changeSubject(Sprite s)
+    {
+        subject.sprite = s;
     }
 }

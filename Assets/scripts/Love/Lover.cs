@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEngine;
 
 public class Lover
 {
@@ -6,6 +7,8 @@ public class Lover
 
     private string name = "";
     private string fullName = "";
+
+    private Sprite icon;
 
     public Favorability fav = Favorability.UNDEFINED_FAVORABILITY;
 
@@ -23,6 +26,11 @@ public class Lover
     public string getFullName()
     {
         return this.fullName;
+    }
+
+    public Sprite getIcon()
+    {
+        return icon;
     }
 
     private Lover()

@@ -293,7 +293,8 @@
 - public void setDiceNumber(int dice)
 - public void setSpaceTextEnabled()
 
- 
+
+# public class
 
 # Public class Season 
 

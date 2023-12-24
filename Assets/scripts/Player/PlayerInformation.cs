@@ -21,6 +21,9 @@ public class PlayerInformation
     public Lover lover = Lover.UNDEFINED;
 
     public Activity activity = Activity.UNDEFINED;
+
+    public Happiness happiness = Happiness.UNDEFINED_HAPPINESS;
+    public Performance performance = Performance.UNDEFINED_PERFORMANCE;
     public PlayerInformation()
     {
 
