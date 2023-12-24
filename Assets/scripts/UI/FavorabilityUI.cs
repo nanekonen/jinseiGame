@@ -9,7 +9,7 @@ public class FavorabilityUI : PartsUI
     public void setLovers(Lovers l)
     {
         List<string> n = l.getAllLoverName();
-        for(int i0 = 0;i0 < n.Count; i0++)
+        for(int i0 = 0;i0 < subjects.Count; i0++)
         {
             Lover lo = l.getLoverByName(n[i0]);
             subjects[i0].setIcon(lo.getIcon());

@@ -51,6 +51,7 @@ public class ExamEvent
             double academic = (double)player.pi.academic.getValue();
             double correctAnsNum = (double)questions.getCorrectAnswerCount();
             int grades = (int)(luck * academic * correctAnsNum);
+            player.pi.performance = new Performance(grades);
 
             ProgressUI.progressUI.setInstructionSpace("あなたの成績は" + grades.ToString() + "です。");
             yield return KeyManager.keyManager.waitForSpace();

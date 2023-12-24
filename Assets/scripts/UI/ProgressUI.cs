@@ -121,8 +121,13 @@ public class ProgressUI : MonoBehaviour
         favorabilityUI.setPercent(l);
     }
 
-    public void updataRnaking(List<PlayerInformation> pi_list)
+    public void updataRnaking(List<Player> p_list)
     {
-        rankUI.updata(pi_list);
+        List<PlayerInformation> list = new List<PlayerInformation>();
+        foreach (Player p in p_list)
+        {
+            list.Add(p.pi);
+        }
+        rankUI.updata(list);
     }
 }

@@ -142,8 +142,9 @@ public class GameMain : MonoBehaviour
         foreach(Player p in players.getAllPlayers())
         {
             p.resetPosition();
+            p.pi.happiness = new Happiness(p.pi.happiness.updata(p.pi));
         }
-
+        ProgressUI.progressUI.updataRnaking(players.getAllPlayers());
     }
 
 }

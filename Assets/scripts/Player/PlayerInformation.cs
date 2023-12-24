@@ -39,10 +39,12 @@ public class PlayerInformation
     {
         this.name = name;   
         this.gender = gender;
+        this.activity = activity;
         this.academic = new Academic();
         this.sprite = sprite;
         this.appearance = new Appearance();
         this.luck = new Luck();
+        // this.performance = new Performance(0);
 
         lovers = new Lovers(gender);
         //list.Add(this);

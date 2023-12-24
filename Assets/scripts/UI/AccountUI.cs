@@ -16,42 +16,41 @@ public class AccountUI : PartsUI
 
     public void change(PlayerInformation pi)
     {
-        bool afi,lov,per;
         int l = 0;
-        if(afi = pi.activity != Activity.UNDEFINED)
+        if(pi.activity != Activity.UNDEFINED)
         {
             affiriateUI.turnOn();
             affiriateUI.setAffiriation(pi.activity);
-            Vector2 r = affiriateUI.rect.position;
+            Vector2 r = affiriateUI.rect.localPosition;
             r.x = 112.5f;
-            affiriateUI.rect.position = r;
+            affiriateUI.rect.localPosition = r;
             l += 35;
         }
         else
         {
             affiriateUI.turnOff();
         }
-        if(lov = pi.lover != Lover.UNDEFINED)
+        if(pi.lover != Lover.UNDEFINED)
         {
             loverUI.turnOn();
             loverUI.setLover(pi.lover, pi.lovers.getLoverByName(pi.lover.getName()).fav.getValue());
             l += 80 + (l == 35 ? 5:0);
-            Vector2 r = loverUI.rect.position;
-            loverUI.rect.position = r;
+            Vector2 r = loverUI.rect.localPosition;
+            loverUI.rect.localPosition = r;
             r.x = 95 + l - 40;
         }
         else
         {
             loverUI.turnOff();
         }
-        if (per = pi.performance != Performance.UNDEFINED_PERFORMANCE)
+        if (pi.performance != Performance.UNDEFINED_PERFORMANCE)
         {
             pointUI.turnOn();
             pointUI.setParameter(pi.performance.getValue());
             l += 75 + (l >= 35?(l == 120?10:5):0) ;
-            Vector2 r = pointUI.rect.position;
+            Vector2 r = pointUI.rect.localPosition;
             r.x = 95 + l - 37.5f;
-            pointUI.rect.position = r;
+            pointUI.rect.localPosition = r;
         }
         else
         {
