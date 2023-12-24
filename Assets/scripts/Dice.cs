@@ -13,7 +13,7 @@ public class Dice
     }
     public int run()
     {
-        int d = Random.Range(1, 6);
+        int d = Random.Range(1, 3);
         ProgressUI.progressUI.setDiceNumber(d);
 
         return d;

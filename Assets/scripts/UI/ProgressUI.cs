@@ -42,9 +42,14 @@ public class ProgressUI : MonoBehaviour
         sentenceUI.change(text);
     }
 
-    public void changeOfTurn(in Player player, in Round round, in Season season)
+    public void changeTurn(in Player player)
     {
-        nowUI.change(player,round,season);
+        parametersUI.change(player.pi);
+        accountUI.change(player.pi);
+    }
+    public void changeTurn(in Player player, in Round round, in Season season)
+    {
+        nowUI.change(round,season);
         parametersUI.change(player.pi);
         accountUI.change(player.pi);
     }

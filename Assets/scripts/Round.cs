@@ -15,7 +15,7 @@ public class Round
 
     public bool checkIsFinished()
     {
-        if( this.value == maxNumberOfRound - 1 )
+        if( this.value >= maxNumberOfRound  )
         {
             return true;
         }

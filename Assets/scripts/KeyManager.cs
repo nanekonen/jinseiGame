@@ -66,6 +66,33 @@ public class KeyManager : MonoBehaviour
         }
 
     }
+    public IEnumerator waitFor1Or2Or3()
+    {
+        int num  = 1;
+        while( true )
+        {
+            if( Input.GetKeyDown(KeyCode.Alpha1) )
+            {
+                num = 1;
+                break;
+            }
+
+            if( Input.GetKeyDown(KeyCode.Alpha2 ) )
+            {
+                num = 2;
+                break;
+            }
+
+            if( Input.GetKeyDown(KeyCode.Alpha3 ) )
+            {
+                num = 3;
+                break;
+            }
+            yield return null;
+        }
+
+        yield return num;
+    }
     public IEnumerator waitForAOrB()
     {
         bool A = true;

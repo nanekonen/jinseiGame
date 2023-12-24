@@ -15,37 +15,9 @@ public class ForcedEvents : MonoBehaviour
 
     public ForcedEvents()
     {
-        using (StreamReader reader = new StreamReader(csvDir + "spring1.csv"))
-        {
-            ForcedEvent fevent;
-            reader.ReadLine();
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-                string[] values = line.Split(',');
 
-                int timing = 0;
-                int.TryParse(values[1], out timing);
-
-                int favorability1 = 0;
-                int.TryParse(values[2], out favorability1); 
-                
-                int favorability2 = 0;
-                int.TryParse(values[3], out favorability2);
-
-                fevent = new SpringForcedEvent
-                (
-                    values[0],
-                    timing,
-                    favorability1,
-                    favorability2
-                );
-                //fevent.setText(values[0]);
-                //foreach (string value in values)
-                //Debug.Log(value);
-                fevents.Add(fevent);
-            }
-        }
+        GWEvent gwEvent = new GWEvent();
+        fevents.Add(gwEvent);
 
     }
 

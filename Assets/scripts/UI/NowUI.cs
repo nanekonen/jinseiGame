@@ -8,7 +8,7 @@ public class NowUI : PartsUI
     public RectTransform rect;
     public TextMeshProUGUI text;
 
-    public void change(in Player player, in Round round, in Season season)
+    public void change(in Round round, in Season season)
     {
         //string[] s = { "t", "‰Ä", "H", "“~" };
         string[] s = { "spring", "summer", "autumn", "winter" };

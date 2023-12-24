@@ -74,7 +74,19 @@ public class Lovers
     }
     public Lover getHightestLover()
     {
-        return Lover.UNDEFINED;
+        Lover highestLover = lovers[0];
+
+        for( int i = 0; i < lovers.Count; i++ )
+        {
+            int fav = lovers[i].fav.getValue();
+            int highestFav = highestLover.fav.getValue();
+
+            if( fav > highestFav )
+            {
+                highestLover = lovers[i];
+            }
+        }
+        return highestLover;
     }
 
     public List<string> getAllLoverName()
