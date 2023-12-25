@@ -77,7 +77,7 @@ public class Map : MonoBehaviour
                 //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:
-                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             default:
                 break;

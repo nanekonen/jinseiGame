@@ -21,7 +21,7 @@ public class NormalSquare : Square
     }
     public override void execute(Player player)
     {
-                Debug.Log("execution");
+        Debug.Log("execution");
         this.player = player;
 
         ProgressUI.progressUI.setInstructionSpace(sentence);
