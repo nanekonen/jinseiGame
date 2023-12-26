@@ -85,7 +85,7 @@ public class GameMain : MonoBehaviour
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            int d = dice.run();
+            int d = dice.run(round,currentPlayer.position);
             currentPlayer.proceed(d);
 
             yield return KeyManager.keyManager.waitForSpace();
