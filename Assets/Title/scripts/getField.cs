@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class GetField : MonoBehaviour
 {
-    public TMP_InputField tmpInputField; // TextMeshProのInputFieldへの参照
-    public Button submitButton;           // ボタンへの参照
-    public static string playerName;
+    public TMP_InputField tmpInputField;
+    public Button submitButton;
+    private string playerName;
 
     // Start is called before the first frame update
     void Start()
@@ -18,8 +18,13 @@ public class GetField : MonoBehaviour
     // ボタンが押されたときの処理
     void OnSubmitButtonClick()
     {
-        // TextMeshProのInputFieldからテキストを取得
-        string playerName = tmpInputField.text;
-        Debug.Log("Input Value: " + playerName);
+        this.playerName = tmpInputField.text;
+
+        tmpInputField.text = "";
+    }
+
+    public string getPlayerName()
+    {
+        return this.playerName;
     }
 }
