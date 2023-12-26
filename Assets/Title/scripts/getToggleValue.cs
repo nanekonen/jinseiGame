@@ -1,15 +1,15 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class getToggleValue : MonoBehaviour
+public class GetToggleValue : MonoBehaviour
 {
-    public ToggleGroup toggleGroup; // Toggle Groupへの参照
-    public static string gender = "";
+    public ToggleGroup toggleGroup; // refer to Toggle Group
+    private string gender = "";
 
     // Start is called before the first frame update
     void Start()
     {
-        // すでに登録されているリスナーをクリア
+        // clear already assigned listener
         foreach (Toggle toggle in toggleGroup.GetComponentsInChildren<Toggle>())
         {
             toggle.onValueChanged.RemoveAllListeners();
@@ -27,10 +27,8 @@ public class getToggleValue : MonoBehaviour
     {
         if (value)
         {
-            // Toggleがオンになった場合の処理
-            Debug.Log("Toggle " + toggle.gameObject.name + " is ON");
             gender = toggle.GetComponentInChildren<Text>().text;
-            Debug.Log("gender: " + gender);
+
         }
     }
 
@@ -41,5 +39,10 @@ public class getToggleValue : MonoBehaviour
         {
             Debug.Log("Toggle " + toggle.gameObject.name + " is " + (toggle.isOn ? "ON" : "OFF"));
         }
+    }
+
+    public string getGender()
+    {
+        return this.gender;
     }
 }
