@@ -7,7 +7,7 @@ public class RankUI : PartsUI
 {
     public List<Score> ranking;
 
-    public void updata(List<PlayerInformation> pi_list)
+    public void updateValue(List<PlayerInformation> pi_list)
     {
         pi_list = pi_list.OrderBy(s => s.happiness.getValue()).ToList();
         pi_list.Reverse();

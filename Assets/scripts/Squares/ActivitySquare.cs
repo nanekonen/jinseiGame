@@ -11,7 +11,7 @@ public class ActivitySquare : Square
     private List<string> nameOfLovers;
 
     private Player player;
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     public ActivitySquare(List<string> sentence, List<int> favorability, List<string> nameOfLovers)
     {
         this.sentence = sentence;

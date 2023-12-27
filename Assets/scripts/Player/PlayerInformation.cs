@@ -23,7 +23,7 @@ public class PlayerInformation
     public Activity activity = Activity.UNDEFINED;
 
     public Happiness happiness = Happiness.UNDEFINED_HAPPINESS;
-    public Performance performance = Performance.UNDEFINED_PERFORMANCE;
+    public Grade grade = Grade.UNDEFINED_GRADE;
     public PlayerInformation()
     {
 
@@ -44,7 +44,7 @@ public class PlayerInformation
         this.sprite = sprite;
         this.appearance = new Appearance();
         this.luck = new Luck();
-        // this.performance = new Performance(0);
+        // this.grade = new Performance(0);
 
         lovers = new Lovers(gender);
         //list.Add(this);

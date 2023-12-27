@@ -8,7 +8,7 @@ public class GetField : MonoBehaviour
     public Button submitButton;           // ボタンへの参照
     public static string playerName;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         // ボタンが押されたときの処理を登録

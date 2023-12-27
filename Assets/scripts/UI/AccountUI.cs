@@ -43,10 +43,10 @@ public class AccountUI : PartsUI
         {
             loverUI.turnOff();
         }
-        if (pi.performance != Performance.UNDEFINED_PERFORMANCE)
+        if (pi.grade != Grade.UNDEFINED_GRADE)
         {
             pointUI.turnOn();
-            pointUI.setParameter(pi.performance.getValue());
+            pointUI.setParameter(pi.grade.getValue());
             l += 75 + (l >= 35?(l == 120?10:5):0) ;
             Vector2 r = pointUI.rect.localPosition;
             r.x = 95 + l - 37.5f;

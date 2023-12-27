@@ -6,7 +6,7 @@ public class getToggleValue : MonoBehaviour
     public ToggleGroup toggleGroup; // Toggle Groupへの参照
     public static string gender = "";
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         // すでに登録されているリスナーをクリア

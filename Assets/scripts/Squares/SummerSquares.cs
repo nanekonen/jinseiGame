@@ -13,7 +13,7 @@ public class SummerSquares : SeasonSquares
         @"Assets\Resources_moved\CSV\activity_squares\SpringBrassBandSquareData.csv",
         @"Assets\Resources_moved\CSV\activity_squares\SpringPartTimeSquareData.csv"
         };
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         

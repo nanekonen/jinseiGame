@@ -47,13 +47,9 @@ public class ExamEvent
                 yield return KeyManager.keyManager.waitForSpace();
             }
 
-            double luck = (double)player.pi.luck.getValue() / 100.0f;
-            double academic = (double)player.pi.academic.getValue();
-            double correctAnsNum = (double)questions.getCorrectAnswerCount();
-            int grades = (int)(luck * academic * correctAnsNum);
-            player.pi.performance = new Performance(grades);
+            player.pi.grade = Grade.GradeFactory(player, questions);
 
-            ProgressUI.progressUI.setInstructionSpace("あなたの成績は" + grades.ToString() + "です。");
+            ProgressUI.progressUI.setInstructionSpace("あなたの成績は" + player.pi.grade.getValue().ToString() + "です。");
             yield return KeyManager.keyManager.waitForSpace();
 
         }

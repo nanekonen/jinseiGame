@@ -7,7 +7,7 @@ public class FollowingCamera : MonoBehaviour
     public Camera mainCamera;
     public Vector3 offset = new Vector3(0, 1, 2);
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         if(mainCamera != null)

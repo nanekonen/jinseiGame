@@ -14,7 +14,7 @@ public class getIcon : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandle
 
     public static Image icon;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         AddClickListener(buttonCircle, "icon_circle");
