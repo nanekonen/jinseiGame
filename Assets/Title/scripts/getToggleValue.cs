@@ -6,7 +6,7 @@ public class GetToggleValue : MonoBehaviour
     public ToggleGroup toggleGroup; // refer to Toggle Group
     private string gender = "";
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         // clear already assigned listener

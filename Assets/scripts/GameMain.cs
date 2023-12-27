@@ -51,7 +51,7 @@ public class GameMain : MonoBehaviour
         pl.pi.setPlayerInfo
         (
             name,
-            Gender.MAN,
+            gender,
             null,
             act
         );
@@ -64,7 +64,7 @@ public class GameMain : MonoBehaviour
     public void generatePlayers()
     {
         players.add(generatePlayer(0, "こうへい",　Gender.MAN, Activity.BASKET));
-        players.add(generatePlayer(1, "ゆうや", Gender.WOMAN, Activity.PART_TIME));
+        players.add(generatePlayer(1, "かえで", Gender.WOMAN, Activity.PART_TIME));
         players.add(generatePlayer(2, "しょうへい", Gender.MAN, Activity.BRASS_BAND));
 
     }
@@ -142,9 +142,9 @@ public class GameMain : MonoBehaviour
         foreach(Player p in players.getAllPlayers())
         {
             p.resetPosition();
-            p.pi.happiness = new Happiness(p.pi.happiness.updata(p.pi));
+            p.pi.happiness = new Happiness(p.pi.happiness.update(p.pi));
         }
-        ProgressUI.progressUI.updataRnaking(players.getAllPlayers());
+        ProgressUI.progressUI.updateRnaking(players.getAllPlayers());
     }
 
 }

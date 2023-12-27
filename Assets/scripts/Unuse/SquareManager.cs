@@ -16,7 +16,7 @@ public class SquareManager : MonoBehaviour
             //ind.Add(list[i].name, i);Debug.Log("name:"+list[i].name);
         }
     }
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     public Square getSquare(string name)
     {
         if (ind.ContainsKey(name))

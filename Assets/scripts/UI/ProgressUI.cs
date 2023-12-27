@@ -22,7 +22,7 @@ public class ProgressUI : MonoBehaviour
 
 
     public LoveUI loveUI;
-    
+
     private void Awake()
     {
         progressUI = this;
@@ -116,18 +116,18 @@ public class ProgressUI : MonoBehaviour
         beingLove();
         loveUI.changeSentence(s);
     }
-    public void updataLoversPercent(Lover l)
+    public void updateLoversPercent(Lover l)
     {
         favorabilityUI.setPercent(l);
     }
 
-    public void updataRnaking(List<Player> p_list)
+    public void updateRnaking(List<Player> p_list)
     {
         List<PlayerInformation> list = new List<PlayerInformation>();
         foreach (Player p in p_list)
         {
             list.Add(p.pi);
         }
-        rankUI.updata(list);
+        rankUI.updateValue(list);
     }
 }

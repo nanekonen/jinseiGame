@@ -11,7 +11,7 @@ public class TestSquare : Square
     private int luck;
 
     private Player player;
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     public TestSquare(string sentence, int academic, int appearance, int luck)
     {
         this.sentence = sentence;

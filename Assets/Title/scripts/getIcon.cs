@@ -20,7 +20,7 @@ public class GetIcon : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandle
 
 
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         images[0] = buttonCircle.GetComponent<Image>();
