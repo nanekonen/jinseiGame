@@ -24,6 +24,8 @@ public class PlayerInformation
 
     public Happiness happiness = Happiness.UNDEFINED_HAPPINESS;
     public Performance performance = Performance.UNDEFINED_PERFORMANCE;
+
+    public Color color;
     public PlayerInformation()
     {
 

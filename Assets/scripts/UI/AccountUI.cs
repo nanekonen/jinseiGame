@@ -13,9 +13,11 @@ public class AccountUI : PartsUI
     public TextMeshProUGUI text;
     public LoverUI loverUI;
     public PointUI pointUI;
+    public Image image;
 
     public void change(PlayerInformation pi)
     {
+        image.color = pi.color;
         int l = 0;
         if(pi.activity != Activity.UNDEFINED)
         {
@@ -33,7 +35,7 @@ public class AccountUI : PartsUI
         if(pi.lover != Lover.UNDEFINED)
         {
             loverUI.turnOn();
-            loverUI.setLover(pi.lover, pi.lovers.getLoverByName(pi.lover.getName()).fav.getValue());
+            loverUI.setLover(pi.lover, pi.lovers.getLoverByName(pi.lover.getName()).fav.getValue(),pi.color);
             l += 80 + (l == 35 ? 5:0);
             Vector2 r = loverUI.rect.localPosition;
             loverUI.rect.localPosition = r;

@@ -82,11 +82,11 @@ public class GameMain : MonoBehaviour
         {
             currentPlayer = players.getPlayer(turn);
             ProgressUI.progressUI.changeTurn(currentPlayer, round, season);
-
+            ProgressUI.progressUI.setSpaceTextEnabled();
             yield return KeyManager.keyManager.waitForSpace();
 
             int d = dice.run(round,currentPlayer.position);
-            currentPlayer.proceed(d);
+            yield return currentPlayer.proceed(d);
 
             yield return KeyManager.keyManager.waitForSpace();
 

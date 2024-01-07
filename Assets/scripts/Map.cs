@@ -16,8 +16,8 @@ public class Map : MonoBehaviour
 
     private List<Vector3> route = new List<Vector3>();
 
-    private List<RealSquare> realSquares = new List<RealSquare>();
-    private List<Square> nowSquare = new List<Square>();
+    private List<RealSquare> nowSquares = new List<RealSquare>();
+    //private List<Square> nowSquare = new List<Square>();
     private List<int> positions = new List<int>();
     private List<List<int>> arragement = new List<List<int>>();
 
@@ -53,45 +53,52 @@ public class Map : MonoBehaviour
         {
             RealSquare rs = Instantiate(squareObject, v, Quaternion.identity);
             rs.transform.SetParent(transform);
-            realSquares.Add(rs);
+            nowSquares.Add(rs);
         }
     }
 
     public async void changeOfSeason(Season season)
     {
+        /*
         string[] se = { "spring", "summer", "autumn", "winter" };
         SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[Season.UNDEFINED == season.getID()?Season.SPRING:season.getID()]).Task;
         for (int i = 0; i < sprite.spriteCount; i++)
         {
-            realSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
+            nowSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
         }
         Addressables.Release(sprite);
+        */
+        List<Square> squares = new List<Square>();
         switch (season.getID())
         {
             case Season.SPRING:
-                nowSquare = new SpringSquares().changeOfSquares(realSquares);
+                squares = new SpringSquares().changeOfSquares();
                 //nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
-                nowSquare = new SummerSquares().changeOfSquares(realSquares);
+                squares = new SummerSquares().changeOfSquares();
                 //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:
-                nowSquare = new TestSeason().changeOfSquares(realSquares);
+                squares = new TestSeason().changeOfSquares();
                 break;
             default:
                 break;
+        }
+        for(int i0 = 0;i0 < squares.Count&&i0 < nowSquares.Count; i0++)
+        {
+            nowSquares[i0].change(squares[i0]);
         }
     }
 
     public List<RealSquare> getRealSquares()
     {
-        return realSquares;
+        return nowSquares;
     }
 
     public Square getSquare(int n)
     {
-        return nowSquare[n % Season.lengthOfSeason];
+        return nowSquares[n % Season.lengthOfSeason].square;
     }
     public void addPosition(int id)
     { 

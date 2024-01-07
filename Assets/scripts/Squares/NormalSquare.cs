@@ -5,6 +5,7 @@ using TMPro;
 
 public class NormalSquare : Square
 {
+
     private string sentence;
     private int academic;
     private int appearance;
@@ -18,6 +19,8 @@ public class NormalSquare : Square
         this.academic = academic;
         this.appearance = appearance;
         this.luck = luck;
+
+        this.path_image = "Squares/square";
     }
     public override void execute(Player player)
     {

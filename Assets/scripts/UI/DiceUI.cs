@@ -13,9 +13,9 @@ public class DiceUI : PartsUI
         {
             i.enabled = false;
         }
-        if(0 <= n&&n < dices.Count)
+        if(0 < n&&n - 1 < dices.Count)
         {
-            dices[n].enabled = true;
+            dices[n - 1].enabled = true;
         }
     }
 }
