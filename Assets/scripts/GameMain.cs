@@ -78,6 +78,8 @@ public class GameMain : MonoBehaviour
 
     IEnumerator main()
     {
+        yield return Square.loadSquares();
+        Map.map.changeOfSeason(season);
         while( true )
         {
             currentPlayer = players.getPlayer(turn);
@@ -107,7 +109,7 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        Map.map.changeOfSeason(season);
+        
     }
     private IEnumerator turnEnd()
     {

@@ -55,8 +55,15 @@ public class ProgressUI : MonoBehaviour
         accountUI.change(player.pi);
         if(player.pi.activity != Activity.UNDEFINED)
         {
-            favorabilityUI.turnOn();
-            favorabilityUI.setLovers(player.pi.lovers);
+            if(player.pi.lover != Lover.UNDEFINED)
+            {
+                favorabilityUI.turnOff();
+            }
+            else
+            {
+                favorabilityUI.turnOn();
+                favorabilityUI.setLovers(player.pi.lovers);
+            }
         }
         else
         {
@@ -67,6 +74,7 @@ public class ProgressUI : MonoBehaviour
     public void setDiceNumber(int dice)
     {
         diceUI.rolling(dice);
+        setInstructionSpace("");
     }
 
     public void setSpaceTextEnabled()

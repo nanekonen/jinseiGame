@@ -18,7 +18,7 @@ public class ActivitySquare : Square
         this.favorability = favorability;
         this.nameOfLovers = nameOfLovers;
 
-        this.path_image = "Squares/clubpartSquare";
+        this.square_type = "ActivitySquare";
     }
     public override void execute(Player player)
     {

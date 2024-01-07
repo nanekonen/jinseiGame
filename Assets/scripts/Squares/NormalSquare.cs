@@ -19,8 +19,6 @@ public class NormalSquare : Square
         this.academic = academic;
         this.appearance = appearance;
         this.luck = luck;
-
-        this.path_image = "Squares/square";
     }
     public override void execute(Player player)
     {

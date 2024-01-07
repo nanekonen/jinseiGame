@@ -59,15 +59,6 @@ public class Map : MonoBehaviour
 
     public async void changeOfSeason(Season season)
     {
-        /*
-        string[] se = { "spring", "summer", "autumn", "winter" };
-        SpriteAtlas sprite = await Addressables.LoadAssetAsync<SpriteAtlas>("season/" + se[Season.UNDEFINED == season.getID()?Season.SPRING:season.getID()]).Task;
-        for (int i = 0; i < sprite.spriteCount; i++)
-        {
-            nowSquares[i].sr.sprite = sprite.GetSprite(i.ToString("0"));
-        }
-        Addressables.Release(sprite);
-        */
         List<Square> squares = new List<Square>();
         switch (season.getID())
         {

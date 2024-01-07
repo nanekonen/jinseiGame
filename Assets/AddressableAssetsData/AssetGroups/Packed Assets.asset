@@ -52,28 +52,8 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 11cfed3bc36c3604d94240f4c10864e7
-    m_Address: Squares
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9a31d71c322d457418ef743563bca726
-    m_Address: Squares/clubpartSquare
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: d99d86a701c4a9d4bba03d639c14ccc4
-    m_Address: Squares/loveSquare
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 638bc23868197824892cc2dd80ef5501
-    m_Address: Squares/springSquare
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2aa6c0f883a8d3343a449c19bbff4ed1
-    m_Address: Squares/square
+  - m_GUID: 2c6230706fab7e845a2c00dbba91c9d7
+    m_Address: squares
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
