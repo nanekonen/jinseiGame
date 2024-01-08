@@ -44,6 +44,6 @@ public class Happiness
     public int update(PlayerInformation pi)
     {
         return pi.grade.getValue()
-            + (pi.partner != Lover.UNDEFINED ? pi.lovers.getLoverByName(pi.partner.getName()).fav.getValue() : 0);
+            + (pi.lover != Lover.UNDEFINED ? pi.lovers.getLoverByName(pi.lover.getName()).fav.getValue() : 0);
     }
 }
