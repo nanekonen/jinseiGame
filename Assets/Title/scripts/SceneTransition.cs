@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,8 @@ public class SceneTransition : MonoBehaviour
     }
     void OnButtonClicked()
     {
+        SEManager se = SEManager.Instance;
+        se.PlaySE();
         SceneManager.LoadScene(targetSceneName);
     }
 }

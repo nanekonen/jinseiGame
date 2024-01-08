@@ -16,6 +16,8 @@ public class GWEvent : ForcedEvent
         if (season.getID() != Season.SPRING) yield break;
         if (round.getRound() != 2) yield break;
 
+        //ProgressUI.progressUI.setLove("");
+
         ProgressUI.progressUI.changeTurn(player);
 
         ProgressUI.progressUI.setInstructionSpace( player.pi.name + "さんの強制イベントです！！");

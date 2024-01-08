@@ -525,3 +525,11 @@ Private int value;
 - public bool checkIsFinished()
 - public void increment()
 - public void reset()
+
+
+
+----------------
+
+
+
+# 

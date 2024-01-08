@@ -22,7 +22,7 @@ public class CharacterMover : MonoBehaviour
     private bool isAnimationStarted = false;
     private RectTransform rectTransform;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     void Start()
     {
         //initialize

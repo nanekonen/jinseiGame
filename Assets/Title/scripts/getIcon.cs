@@ -2,93 +2,66 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class getIcon : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
+public class GetIcon : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
 {
     public Button buttonCircle;
     public Button buttonSquare;
     public Button buttonTriangle;
 
-    private Image lastClickedImage;
-    private GameObject checkmark;
-    private Vector3 originalScale;
+    public Sprite spriteCircle;
+    public Sprite spriteSquare;
+    public Sprite spriteTriangle;
 
-    public static Image icon;
+    public float changeTransparency = 0.3f;
+    private Sprite clickedSprite;
+    private Image[] images = new Image[3];
+    private Color currentColor;
 
-    // Start is called before the first frame update
+
+
+
+    // Start is called before the first frame updateValue
     void Start()
     {
-        AddClickListener(buttonCircle, "icon_circle");
-        AddClickListener(buttonSquare, "icon_square");
-        AddClickListener(buttonTriangle, "icon_triangle");
-
-        // 初期のスケールを記録
-        originalScale = buttonCircle.transform.localScale;
+        images[0] = buttonCircle.GetComponent<Image>();
+        images[1] = buttonSquare.GetComponent<Image>();
+        images[2] = buttonTriangle.GetComponent<Image>();
+        AddClickListener(buttonCircle, spriteCircle, images[0]);
+        AddClickListener(buttonSquare, spriteSquare, images[1]);
+        AddClickListener(buttonTriangle, spriteTriangle, images[2]);
     }
 
-    void AddClickListener(Button button, string iconName)
+    void AddClickListener(Button button, Sprite sprite, Image image)
     {
         if (button != null)
         {
-            button.onClick.AddListener(() => OnButtonClick(button, iconName));
+            button.onClick.AddListener(() => OnButtonClick(sprite, image));
         }
     }
 
-    void OnButtonClick(Button clickedButton, string iconName)
+    void OnButtonClick(Sprite sprite, Image image)
     {
-        //// 直前にクリックされたButtonのチェックマークを非表示にする
-        //if (lastClickedImage != null)
-        //{
-        //    HideCheckmark(lastClickedImage);
-        //}
+        this.clickedSprite = sprite;
 
-        //// クリックされたButtonにチェックマークを表示する
-        //ShowCheckmark(clickedButton);
-
-        //// 直前にクリックされたButtonを更新
-        //lastClickedImage = clickedButton.image;
-
-        Debug.Log("Button " + iconName + " clicked!");
-        icon = clickedButton.image;
-        // ここにクリックされたButtonに対する処理を追加する
+        if (image.color.a <= 1.0f)
+        {
+            currentColor = image.color;
+            currentColor.a = 1f;
+            image.color = currentColor;
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            if (images[i] != image)
+            {
+                currentColor = images[i].color;
+                currentColor.a = 0.7f;
+                images[i].color = currentColor;
+            }
+        }
     }
 
-    //void ShowCheckmark(Button button)
-    //{
-    //    if (checkmark == null)
-    //    {
-    //        // チェックマークがまだ作成されていない場合は作成
-    //        checkmark = new GameObject("Checkmark");
-    //        checkmark.transform.SetParent(button.transform, false);
-
-    //        // チェックマークのイメージコンポーネントを追加
-    //        Image checkmarkImage = checkmark.AddComponent<Image>();
-    //        checkmarkImage.sprite = Resources.Load<Sprite>("checkmark"); // チェックマークの画像は適切な画像に変更してください
-    //        checkmarkImage.rectTransform.sizeDelta = new Vector2(30, 30); // チェックマークのサイズを適切なサイズに変更してください
-    //    }
-
-    //    checkmark.transform.position = button.image.transform.position;
-    //    checkmark.SetActive(true);
-    //}
-
-    //void HideCheckmark(Image image)
-    //{
-    //    if (checkmark != null)
-    //    {
-    //        checkmark.SetActive(false);
-    //    }
-    //}
-
-    //public void OnPointerEnter(PointerEventData eventData)
-    //{
-    //    // マウスカーソルがButton上にあるときの処理
-    //    // イメージを少し浮かせる
-    //    eventData.pointerEnter.transform.localScale = originalScale * 1.1f;
-    //}
-
-    //public void OnPointerExit(PointerEventData eventData)
-    //{
-    //    // マウスカーソルがButton上から離れたときの処理
-    //    // イメージのスケールを元に戻す
-    //    eventData.pointerEnter.transform.localScale = originalScale;
-    //}
+    public Sprite getClickedSprite()
+    {
+        return clickedSprite;
+    }
 }
