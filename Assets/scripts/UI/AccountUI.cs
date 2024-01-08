@@ -30,10 +30,10 @@ public class AccountUI : PartsUI
         {
             affiriateUI.turnOff();
         }
-        if(pi.lover != Lover.UNDEFINED)
+        if(pi.partner != Lover.UNDEFINED)
         {
             loverUI.turnOn();
-            loverUI.setLover(pi.lover, pi.lovers.getLoverByName(pi.lover.getName()).fav.getValue());
+            loverUI.setLover(pi.partner, pi.lovers.getLoverByName(pi.partner.getName()).fav.getValue());
             l += 80 + (l == 35 ? 5:0);
             Vector2 r = loverUI.rect.localPosition;
             loverUI.rect.localPosition = r;

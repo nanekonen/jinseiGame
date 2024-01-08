@@ -18,7 +18,7 @@ public class PlayerInformation
     public Luck luck = Luck.UNDEFINED_LUCK;
 
     public Lovers lovers;
-    public Lover lover = Lover.UNDEFINED;
+    public Lover partner = Lover.UNDEFINED;
 
     public Activity activity = Activity.UNDEFINED;
 
@@ -46,7 +46,7 @@ public class PlayerInformation
         this.luck = new Luck();
         // this.grade = new Performance(0);
 
-        lovers = new Lovers(gender);
+        lovers = new Lovers(gender , activity);
         //list.Add(this);
         //Debug.Log("ADD" + list.Count);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class NormalSquare : Square
 {
@@ -23,12 +24,15 @@ public class NormalSquare : Square
     {
         Debug.Log("execution");
         this.player = player;
-
-        ProgressUI.progressUI.setInstructionSpace(sentence);
-
         player.pi.academic.add(academic);
         player.pi.appearance.add(appearance);
         player.pi.luck.add(luck);
 
+        ProgressUI.progressUI.setInstructionSpace(
+            sentence +
+            ((academic != 0) ? "学力が" + Math.Abs(academic) + ((academic > 0) ? "上がった。" : "下がった。") : "") +
+            ((appearance != 0) ? "容姿が" + Math.Abs(appearance) + ((appearance > 0) ? "上がった。" : "下がった。") : "") +
+            ((luck != 0) ? "学力が" + Math.Abs(luck) + ((luck > 0) ? "上がった。" : "下がった。") : "")
+            );
     }
 }

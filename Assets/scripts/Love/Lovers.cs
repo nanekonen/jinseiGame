@@ -21,25 +21,45 @@ public class Lovers
     public Lover yuto = new Lover("悠斗", "田中悠斗", new Favorability(30));
     public Lover yusuke = new Lover("悠介先輩", "中村悠介", new Favorability(30));
     public Lover daiti = new Lover("大地", "小林大地", new Favorability(30));
-    public Lovers(Gender gender)
+
+    public Lovers(Gender gender, Activity activity)
     {
-        if( gender == Gender.WOMAN )
+        if (gender == Gender.WOMAN)
         {
-            add(ren);
-            add(kenta);
-            add(kentaro);
-            add(yuto);
-            add(yusuke);
-            add(daiti);
+            switch (activity)
+            {
+                case Activity.BASKET:
+                    add(ren);
+                    add(kenta);
+                    break;
+                case Activity.BRASS_BAND:
+                    add(kentaro);
+                    add(yuto);
+                    break;
+                case Activity.PART_TIME:
+                    add(yusuke);
+                    add(daiti);
+                    break;
+            }
+
         }
         else
         {
-            add(mio);
-            add(yuna);
-            add(kasumi);
-            add(miyu);
-            add(misaki);
-            add(akari);
+            switch (activity)
+            {
+                case Activity.BASKET:
+                    add(mio);
+                    add(yuna);
+                    break;
+                case Activity.BRASS_BAND:
+                    add(kasumi);
+                    add(miyu);
+                    break;
+                case Activity.PART_TIME:
+                    add(misaki);
+                    add(akari);
+                    break;
+            }
         }
     }
 
@@ -50,7 +70,7 @@ public class Lovers
 
     public Lover getLoverByName(in string name)
     {
-        for( int i = 0; i < lovers.Count; i++ )
+        for (int i = 0; i < lovers.Count; i++)
         {
             if (lovers[i].getName() == name)
             {
@@ -62,7 +82,7 @@ public class Lovers
     }
     public Lover getLoverByFullName(in string fullName)
     {
-        for( int i = 0; i < lovers.Count; i++ )
+        for (int i = 0; i < lovers.Count; i++)
         {
             if (lovers[i].getFullName() == fullName)
             {
@@ -76,12 +96,12 @@ public class Lovers
     {
         Lover highestLover = lovers[0];
 
-        for( int i = 0; i < lovers.Count; i++ )
+        for (int i = 0; i < lovers.Count; i++)
         {
             int fav = lovers[i].fav.getValue();
             int highestFav = highestLover.fav.getValue();
 
-            if( fav > highestFav )
+            if (fav > highestFav)
             {
                 highestLover = lovers[i];
             }
@@ -93,9 +113,9 @@ public class Lovers
     {
         List<string> names = new List<string>();
 
-        for( int i = 0; i < lovers.Count; i++ )
+        for (int i = 0; i < lovers.Count; i++)
         {
-            names.Add(lovers[i].getName() );
+            names.Add(lovers[i].getName());
         }
 
         return names;

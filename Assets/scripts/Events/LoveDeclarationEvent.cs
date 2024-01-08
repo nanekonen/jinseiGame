@@ -41,7 +41,7 @@ public class LoveDeclarationEvent
 
         if (AorB == "A")
         {
-            player.pi.lover = highestLover;
+            player.pi.partner = highestLover;
             ProgressUI.progressUI.setInstructionSpace
             (
                 "こうして二人はめでたく結ばれましたとさ。"
