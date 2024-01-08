@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class NormalSquare : Square
 {
@@ -11,7 +12,7 @@ public class NormalSquare : Square
     private int luck;
 
     private Player player;
-    // Start is called before the first frame update
+    // Start is called before the first frame updateValue
     public NormalSquare(string sentence, int academic, int appearance, int luck)
     {
         this.sentence = sentence;
@@ -21,14 +22,17 @@ public class NormalSquare : Square
     }
     public override void execute(Player player)
     {
-                Debug.Log("execution");
+        Debug.Log("execution");
         this.player = player;
-
-        ProgressUI.progressUI.setInstructionSpace(sentence);
-
         player.pi.academic.add(academic);
         player.pi.appearance.add(appearance);
         player.pi.luck.add(luck);
 
+        ProgressUI.progressUI.setInstructionSpace(
+            sentence +
+            ((academic != 0) ? "学力が" + Math.Abs(academic) + ((academic > 0) ? "上がった。" : "下がった。") : "") +
+            ((appearance != 0) ? "容姿が" + Math.Abs(appearance) + ((appearance > 0) ? "上がった。" : "下がった。") : "") +
+            ((luck != 0) ? "学力が" + Math.Abs(luck) + ((luck > 0) ? "上がった。" : "下がった。") : "")
+            );
     }
 }
