@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Cysharp.Threading.Tasks;
 using TMPro;
 
@@ -148,5 +150,4 @@ public class GameMain : MonoBehaviour
         }
         ProgressUI.progressUI.updataRnaking(players.getAllPlayers());
     }
-
 }

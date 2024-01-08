@@ -53,6 +53,11 @@ public class PlayerInformation
         //Debug.Log("ADD" + list.Count);
     }
 
+    public void setActivity(Activity a)
+    {
+        this.activity = a;
+        lovers.setActivity(gender, a);
+    }
 
     //public static PlayerInformation getInformation(int id)
     //{

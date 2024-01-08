@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class Player:MonoBehaviour
 {
@@ -46,13 +47,23 @@ public class Player:MonoBehaviour
             }
         }
     }
-    public void initialize(int id)
+    public async void initialize(int id)
     {
         this.id = id;
 
         position = 0;
         sr.color = new Color(Random.value, Random.value, Random.value, 1f);
         pi.color = sr.color;
+        /*
+        Sprite s = await Addressables.LoadAssetAsync<Sprite>("icon_player/boy1.jpeg").Task;
+        pi.sprite = s;
+        Addressables.Release(s);
+        */
+        Addressables.LoadAssetAsync<Sprite>("icon_player/boy" + (id + 1).ToString("0") + ".jpg").Completed += handle =>
+        {
+            // ƒ[ƒh‚É¬Œ÷‚µ‚½ê‡‚Ìˆ—‚ğ‚±‚±‚É
+            pi.sprite = handle.Result;
+        };
         Map.map.addPosition(id);
         arrange();
     }
@@ -74,14 +85,14 @@ public class Player:MonoBehaviour
     {
         start = transform.position;
         goal = Map.map.getRoute((Map.map.getPosition(id) + 1) % Season.lengthOfSeason);
-        if(number == 1)
-        {
-            Map.map.setPosition(id, (Map.map.getPosition(id) + number) % Season.lengthOfSeason);
-            int a = Map.map.getArragement(id);
-            goal += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
-        }
         for(int i0 = 0;i0 < number; i0++)
-        {
+        {   
+            if(i0 + 1 == number)
+            {
+                Map.map.setPosition(id, (Map.map.getPosition(id) + number) % Season.lengthOfSeason);
+                int a = Map.map.getArragement(id);
+                goal += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
+            }
             middle = ((start + goal) / 2 + new Vector3(0, (start - goal).sqrMagnitude, 0));
             moving = true;
             movingTimer = 0;
@@ -91,20 +102,12 @@ public class Player:MonoBehaviour
             }
             start = Map.map.getRoute((Map.map.getPosition(id) + i0 + 1) % Season.lengthOfSeason);
             goal = Map.map.getRoute((Map.map.getPosition(id) + i0 + 2) % Season.lengthOfSeason);
-            if(i0 + 2 == number)
-            {
-                Map.map.setPosition(id, (Map.map.getPosition(id) + number) % Season.lengthOfSeason);
-                int a = Map.map.getArragement(id);
-                goal += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
-            }
         }
-        
     }
 
     public IEnumerator proceed(int number)
     {
         Debug.Log("proceed");
-        //Map.map.setPosition(id,(Map.map.getPosition(id) + number)%Season.lengthOfSeason);
         yield return move(number);
         arrange();
         Map.map.getSquare(position).execute(this);
