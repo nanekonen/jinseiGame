@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class GetToggleValue : MonoBehaviour
 {
     public ToggleGroup toggleGroup; // refer to Toggle Group
-    private string gender = "";
+    private string val = "";
 
     // Start is called before the first frame update
     void Start()
@@ -14,11 +14,15 @@ public class GetToggleValue : MonoBehaviour
         {
             toggle.onValueChanged.RemoveAllListeners();
         }
-
+        
         // Toggle Group内のすべてのToggleに対して新しいイベントリスナーを追加
         foreach (Toggle toggle in toggleGroup.GetComponentsInChildren<Toggle>())
         {
             toggle.onValueChanged.AddListener((bool value) => OnToggleValueChanged(toggle, value));
+            if (toggle.isOn)
+            {
+                val = toggle.GetComponentInChildren<Text>().text;
+            }
         }
     }
 
@@ -27,8 +31,7 @@ public class GetToggleValue : MonoBehaviour
     {
         if (value)
         {
-            gender = toggle.GetComponentInChildren<Text>().text;
-
+            val = toggle.GetComponentInChildren<Text>().text;
         }
     }
 
@@ -41,8 +44,8 @@ public class GetToggleValue : MonoBehaviour
         }
     }
 
-    public string getGender()
+    public string getValue()
     {
-        return this.gender;
+        return this.val;
     }
 }
