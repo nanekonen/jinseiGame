@@ -23,7 +23,7 @@ public class GetField : MonoBehaviour
         tmpInputField.text = "";
     }
 
-    public string getPlayerName()
+    public string getValue ()
     {
         return this.playerName;
     }
