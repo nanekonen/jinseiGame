@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Cysharp.Threading.Tasks;
 using TMPro;
 
@@ -78,15 +80,17 @@ public class GameMain : MonoBehaviour
 
     IEnumerator main()
     {
+        yield return Square.loadSquares();
+        Map.map.changeOfSeason(season);
         while( true )
         {
             currentPlayer = players.getPlayer(turn);
             ProgressUI.progressUI.changeTurn(currentPlayer, round, season);
-
+            ProgressUI.progressUI.setSpaceTextEnabled();
             yield return KeyManager.keyManager.waitForSpace();
 
-            int d = dice.run();
-            currentPlayer.proceed(d);
+            int d = dice.run(round,currentPlayer.position);
+            yield return currentPlayer.proceed(d);
 
             yield return KeyManager.keyManager.waitForSpace();
 
@@ -107,7 +111,7 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        Map.map.changeOfSeason(season);
+        
     }
     private IEnumerator turnEnd()
     {
@@ -146,5 +150,4 @@ public class GameMain : MonoBehaviour
         }
         ProgressUI.progressUI.updateRnaking(players.getAllPlayers());
     }
-
 }

@@ -120,4 +120,44 @@ public class Lovers
 
         return names;
     }
+
+    public void setActivity(Gender g,Activity a)
+    {
+        switch (g) {
+            case Gender.WOMAN:
+                lovers = new List<Lover>();
+                switch (a) {
+                    case Activity.BASKET:
+                        lovers.Add(ren);
+                        lovers.Add(kenta);
+                        break;
+                    case Activity.BRASS_BAND:
+                        lovers.Add(kentaro);
+                        lovers.Add(yuto);
+                        break;
+                    case Activity.PART_TIME:
+                        lovers.Add(yusuke);
+                        lovers.Add(daiti);
+                        break;
+                }
+                break;
+            case Gender.MAN:
+                lovers = new List<Lover>();
+                switch (a) {
+                    case Activity.BASKET:
+                        lovers.Add(mio);
+                        lovers.Add(yuna);
+                        break;
+                    case Activity.BRASS_BAND:
+                        lovers.Add(kasumi);
+                        lovers.Add(miyu);
+                        break;
+                    case Activity.PART_TIME:
+                        lovers.Add(misaki);
+                        lovers.Add(akari);
+                        break;
+                }
+                break;
+        }
+    }
 }

@@ -7,7 +7,7 @@ using System.IO;
 
 public abstract class SeasonSquares
 {
-    public abstract List<Square> changeOfSquares(List<RealSquare>rsquares);
+    public abstract List<Square> changeOfSquares();
 
     public List<string[]> ReadCSVFile(string csvFilePath)
     {

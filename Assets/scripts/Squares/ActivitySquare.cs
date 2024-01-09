@@ -17,6 +17,8 @@ public class ActivitySquare : Square
         this.sentence = sentence;
         this.favorability = favorability;
         this.nameOfLovers = nameOfLovers;
+
+        this.square_type = "ActivitySquare";
     }
     public override void execute(Player player)
     {

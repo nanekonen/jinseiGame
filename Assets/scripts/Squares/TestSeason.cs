@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestSeason : SeasonSquares
 {
 
-    public override List<Square> changeOfSquares(List<RealSquare> rsquares)
+    public override List<Square> changeOfSquares()
     {
         List<Square> sl = new List<Square>();
         for(int i = 0;i < Season.lengthOfSeason; i++)

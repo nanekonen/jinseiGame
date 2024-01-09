@@ -24,6 +24,8 @@ public class PlayerInformation
 
     public Happiness happiness = Happiness.UNDEFINED_HAPPINESS;
     public Grade grade = Grade.UNDEFINED_GRADE;
+
+    public Color color;
     public PlayerInformation()
     {
 
@@ -51,6 +53,11 @@ public class PlayerInformation
         //Debug.Log("ADD" + list.Count);
     }
 
+    public void setActivity(Activity a)
+    {
+        this.activity = a;
+        lovers.setActivity(gender, a);
+    }
 
     //public static PlayerInformation getInformation(int id)
     //{

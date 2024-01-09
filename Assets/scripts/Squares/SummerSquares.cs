@@ -26,7 +26,7 @@ public class SummerSquares : SeasonSquares
     {
 
     }
-    public override List<Square> changeOfSquares(List<RealSquare> rsquares)
+    public  override List<Square> changeOfSquares()
     {
 
         List<Square> squares = new List<Square>();

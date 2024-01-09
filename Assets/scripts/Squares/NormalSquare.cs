@@ -6,6 +6,7 @@ using System;
 
 public class NormalSquare : Square
 {
+
     private string sentence;
     private int academic;
     private int appearance;
