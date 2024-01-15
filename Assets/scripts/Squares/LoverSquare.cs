@@ -77,13 +77,7 @@ public class LoverSquare : Square
 
             ProgressUI.progressUI.setInstructionSpace
                 (
-                player.pi.partner.getName() + ":「ごめん別れよ」 \n"
-                );
-
-            yield return KeyManager.keyManager.waitForSpace();
-
-            ProgressUI.progressUI.setInstructionSpace
-                (
+                player.pi.partner.getName() + ":「ごめん別れよ」 \n" +
                 player.pi.partner.getName() + "と別れました。"
                 );
         }
