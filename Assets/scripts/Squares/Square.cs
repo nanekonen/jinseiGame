@@ -13,7 +13,7 @@ public abstract class Square
     public string square_type = "NormalSquare";
 
     private static Dictionary<string, Sprite> dic_Sprite;
-    public abstract void execute(Player player);
+    public abstract IEnumerator execute(Player player);
 
     public static IEnumerator loadSquares()
     {
