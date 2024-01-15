@@ -99,25 +99,20 @@ public class ProgressUI : MonoBehaviour
         }
         loveUI.turnOff();
     }
-    public async void setLove(string path_back,string path_sub,string sentence,string name)
+    public async void setLove(Sprite background,Sprite subject,string sentence,string name)
     {
         beingLove();
-        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path_back).Task;
-        loveUI.changeBackGround(s);
-        Addressables.Release(s);
-        s = await Addressables.LoadAssetAsync<Sprite>(path_sub).Task;
-        loveUI.changeBackGround(s);
-        Addressables.Release(s);
+        loveUI.changeBackGround(background);
+        loveUI.changeSubject(subject);
         loveUI.changeSentence(sentence);
         loveUI.changeName(name);
     }
-    public async void setLove_sentenc_subject(string path_sub,string sentence)
+    public async void setLove_sentenc_subject(Sprite subject,string sentence)
     {
         beingLove();
-        Sprite s = await Addressables.LoadAssetAsync<Sprite>(path_sub).Task;
-        loveUI.changeBackGround(s);
-        Addressables.Release(s);
+        loveUI.changeSubject(subject);
         loveUI.changeSentence(sentence);
+        loveUI.changeName(name);
     }
     public void setLove_sentence(string s)
     {

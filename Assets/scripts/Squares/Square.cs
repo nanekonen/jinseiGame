@@ -18,7 +18,6 @@ public abstract class Square
     public static IEnumerator loadSquares()
     {
         dic_Sprite = new Dictionary<string, Sprite>();
-        Dictionary<string, Sprite> dic_Sprite2 = new Dictionary<string, Sprite>();
         string[] ar_key =
         {
             "NormalSquare","ActivitySquare","LoverSquare","springSquare"
