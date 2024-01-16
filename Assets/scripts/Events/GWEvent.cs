@@ -22,7 +22,7 @@ public class GWEvent : ForcedEvent
 
         ProgressUI.progressUI.setInstructionSpace( player.pi.name + "さんの強制イベントです！！");
         yield return KeyManager.keyManager.waitForSpace();
-
+        
         ProgressUI.progressUI.setInstructionSpace
         (
             "ゴールデンウィーク到来！遊園地に遊びに行きます。思い切り楽しんで、素敵な時間を過ごしましょう！ 心から楽しい時間を過ごすために、どちらの" 
@@ -53,10 +53,10 @@ public class GWEvent : ForcedEvent
         {
             friendName = friendNames[1];
         }
-
+        ProgressUI.progressUI.setLove(background[6], player.pi.lovers.getLoverByName(friendName).getPrivate(), "",friendName);
         if( player.pi.gender == Gender.WOMAN )
         {
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 friendName + 
                 ":「今日は楽しかったね。遊園地めっちゃ盛り上がった！」 "
@@ -64,7 +64,7 @@ public class GWEvent : ForcedEvent
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 friendName + 
                 ":「今日は楽しかったね。遊園地めっちゃ盛り上がった！」\r\n" + "" +
@@ -73,7 +73,7 @@ public class GWEvent : ForcedEvent
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 friendName + 
                 ":「今日は楽しかったね。遊園地めっちゃ盛り上がった！」 \r\n" + "" +
@@ -84,7 +84,7 @@ public class GWEvent : ForcedEvent
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 "A．「そうだね、私もすごく楽しかった。ありがとう。」 \r\n" + "" +
                 "B．「また行きたくなっちゃったね！一緒に行ける日を楽しみにしてるね」"
@@ -96,14 +96,14 @@ public class GWEvent : ForcedEvent
         }
         else if( player.pi.gender == Gender.MAN )
         {
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 "あなた:「今日は楽しかったね。遊園地めっちゃ盛り上がった！」"
             );
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 friendName + 
                 ":「うん、最高だった。ジェットコースターも観覧車もすごかったね。」"
@@ -111,7 +111,7 @@ public class GWEvent : ForcedEvent
 
             yield return KeyManager.keyManager.waitForSpace();
 
-            ProgressUI.progressUI.setInstructionSpace
+            ProgressUI.progressUI.setLove_sentence
             (
                 "A．「君と一緒にいると、どんな場所も楽しいな。」 \r\n" + "" +
                 "B．「また行こうぜ！次はもっと楽しい時間を過ごそう！」"
@@ -123,7 +123,7 @@ public class GWEvent : ForcedEvent
         }
 
 
-        ProgressUI.progressUI.setInstructionSpace
+        ProgressUI.progressUI.setLove_sentence
         (
             "主人公とデート相手はメリーゴーランドで楽しさを共有し、" + 
             "次に観覧車に乗り、高みからの景色を眺めながら、二人の絆がさらに深まりました。 \r\n" + 
@@ -135,7 +135,6 @@ public class GWEvent : ForcedEvent
         Lover thatFriend = player.pi.lovers.getLoverByName(friendName);
         thatFriend.fav.add(50);
         Debug.Log( player.pi.lovers.getLoverByName( friendName ).fav.getValue() );
-
           yield return base.lde.execute(player);
 
     }

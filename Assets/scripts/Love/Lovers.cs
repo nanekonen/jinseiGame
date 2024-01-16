@@ -7,20 +7,20 @@ public class Lovers
     private List<Lover> lovers = new List<Lover>();
 
     // woman
-    public Lover mio = new Lover("未央", "松本未央", new Favorability(30));
-    public Lover yuna = new Lover("優奈", "中島優奈", new Favorability(30));
-    public Lover kasumi = new Lover("香澄", "渡辺香澄", new Favorability(30));
-    public Lover miyu = new Lover("みゆ", "富岡みゆ", new Favorability(30));
-    public Lover misaki = new Lover("美咲先輩", "齋藤美咲", new Favorability(30));
-    public Lover akari = new Lover("明莉", "高橋明莉", new Favorability(30));
+    public Lover mio = new Lover("未央", "松本未央", new Favorability(30), Gender.WOMAN, "brass-band_club");//"basketball_club");
+    public Lover yuna = new Lover("優奈", "中島優奈", new Favorability(30),Gender.WOMAN, "brass-band_club");//"manager");
+    public Lover kasumi = new Lover("香澄", "渡辺香澄", new Favorability(30),Gender.WOMAN,"brass-band_club");
+    public Lover miyu = new Lover("みゆ", "富岡みゆ", new Favorability(30),Gender.WOMAN,"classmate");
+    public Lover misaki = new Lover("美咲先輩", "齋藤美咲", new Favorability(30),Gender.WOMAN,"part-time_job");
+    public Lover akari = new Lover("明莉", "高橋明莉", new Favorability(30),Gender.WOMAN,"classmate");
 
     // man
-    public Lover ren = new Lover("レン", "大河内レン", new Favorability(30));
-    public Lover kenta = new Lover("健太", "高島健太", new Favorability(30));
-    public Lover kentaro = new Lover("健太郎", "渡辺健太郎", new Favorability(30));
-    public Lover yuto = new Lover("悠斗", "田中悠斗", new Favorability(30));
-    public Lover yusuke = new Lover("悠介先輩", "中村悠介", new Favorability(30));
-    public Lover daiti = new Lover("大地", "小林大地", new Favorability(30));
+    public Lover ren = new Lover("レン", "大河内レン", new Favorability(30),Gender.MAN, "brass-band_club");//"basketball_club");
+    public Lover kenta = new Lover("健太", "高島健太", new Favorability(30),Gender.MAN, "brass-band_club");//"manager");
+    public Lover kentaro = new Lover("健太郎", "渡辺健太郎", new Favorability(30),Gender.MAN,"brass-band_club");
+    public Lover yuto = new Lover("悠斗", "田中悠斗", new Favorability(30),Gender.MAN,"classmate");
+    public Lover yusuke = new Lover("悠介先輩", "中村悠介", new Favorability(30),Gender.MAN,"part-time_job");
+    public Lover daiti = new Lover("大地", "小林大地", new Favorability(30),Gender.MAN,"classmate");
 
     public Lovers(Gender gender, Activity activity)
     {
