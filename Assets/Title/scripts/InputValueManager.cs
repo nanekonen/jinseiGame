@@ -56,10 +56,16 @@ public class InputValueManager : MonoBehaviour
         inputValue[titleInputFormCnt][0] = field.getValue();
         inputValue[titleInputFormCnt][1] = genderToggle.getValue();
         inputValue[titleInputFormCnt][2] = icon.getValue();
+
+        canvas1.sortingOrder = 0;
+        canvas2.sortingOrder = 10;
     }
 
     IEnumerator getInputValues2()
     {
+        canvas1.sortingOrder = 10;
+        canvas2.sortingOrder = 0;
+
         yield return new WaitForSeconds(1 / 10);
 
         inputValue[titleInputFormCnt][3] = affiliationToggle.getValue();

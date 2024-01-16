@@ -22,9 +22,7 @@ public class SceneTransition : MonoBehaviour
         }
     }
     void OnButtonClicked()
-    {
-        SEManager se = SEManager.Instance;
-        se.PlaySE();
+    { 
         SceneManager.LoadScene(targetSceneName);
     }
 }
