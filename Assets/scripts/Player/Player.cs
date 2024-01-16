@@ -110,7 +110,7 @@ public class Player:MonoBehaviour
         Debug.Log("proceed");
         yield return move(number);
         arrange();
-        yield return Map.map.getSquare(position).execute(this);
+        Map.map.getSquare(position).execute(this);
         yield return null;
     }
 

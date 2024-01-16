@@ -17,7 +17,6 @@ public class Map : MonoBehaviour
     private List<Vector3> route = new List<Vector3>();
 
     private List<RealSquare> nowSquares = new List<RealSquare>();
-    //private List<Square> nowSquare = new List<Square>();
     private List<int> positions = new List<int>();
     private List<List<int>> arragement = new List<List<int>>();
 
@@ -64,14 +63,12 @@ public class Map : MonoBehaviour
         {
             case Season.SPRING:
                 squares = new SpringSquares().changeOfSquares();
-                //nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
                 squares = new SummerSquares().changeOfSquares();
-                //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:
-                squares = new SpringSquares().changeOfSquares();
+                squares = new TestSeason().changeOfSquares();
                 break;
             default:
                 break;
