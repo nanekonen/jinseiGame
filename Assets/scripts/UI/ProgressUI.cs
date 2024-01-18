@@ -79,7 +79,7 @@ public class ProgressUI : MonoBehaviour
 
     public void setSpaceTextEnabled()
     {
-        sentenceUI.change("Push your space");
+        sentenceUI.change("スペースキーを押して、サイコロを振ろう！");
     }
 
     public void beingLove()
@@ -137,6 +137,7 @@ public class ProgressUI : MonoBehaviour
 
     public void updateRnaking(List<Player> p_list)
     {
+        rankUI.turnOn();
         List<PlayerInformation> list = new List<PlayerInformation>();
         foreach (Player p in p_list)
         {

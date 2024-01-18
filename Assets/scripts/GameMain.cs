@@ -49,7 +49,6 @@ public class GameMain : MonoBehaviour
     {
         Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
         pl.transform.SetParent(transform);
-        pl.initialize(id);
         pl.pi.setPlayerInfo
         (
             name,
@@ -57,6 +56,7 @@ public class GameMain : MonoBehaviour
             null,
             act
         );
+        pl.initialize(id);
 
         return pl;
 
@@ -108,9 +108,10 @@ public class GameMain : MonoBehaviour
         generatePlayers();
 
         List<RealSquare> tl = Map.map.getRealSquares();
+        tl[0].text.text = "スタート";
         for (int s = 0; s < Season.lengthOfSeason; s++)
         {
-            tl[s].text.text = s.ToString("0");
+            tl[s + 1].text.text = (s + 1).ToString("0");
         }
         
     }

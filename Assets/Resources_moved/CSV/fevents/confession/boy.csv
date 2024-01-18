@@ -1,4 +1,4 @@
-﻿"name 0:player,1:subject,2:narration,3:selection",sentence $->player %->subject,row
+﻿name 0:player,1:subject,2:narration,3:selection,sentence $->player %->subject,row
 2,主人公：夕焼けの空、星が一つずつ輝いている中、,3
 2,学校の屋上に登っています。制服の襟を整えながら、,3
 2,ほんのり緊張している様子です。,3

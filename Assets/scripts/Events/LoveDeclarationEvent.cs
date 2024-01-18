@@ -33,19 +33,25 @@ public class LoveDeclarationEvent
 
         yield return KeyManager.keyManager.waitForSpace();
         string g = Gender.MAN == player.pi.gender ? "boy" : "girl";
-        string[] n = { player.name, highestLover.getName(), "ナレーション", "選択" };
+        string[] n = { player.pi.name, highestLover.getName(), "ナレーション", "選択" };
         ProgressUI.progressUI.setLove(ForcedEvent.background[3], highestLover.getNormal(), "", "ナレーション");
-        AsyncOperationHandle<TextAsset> a = Addressables.LoadAssetAsync<TextAsset>(csvPath + g + ".csv");
-        yield return a.Task;
-        StreamReader sr = new StreamReader(a.Result.text);
-        sr.ReadLine(); string AorB = "";
-        while (!sr.EndOfStream)
+        AsyncOperationHandle<TextAsset> a = Addressables.LoadAssetAsync<TextAsset>(csvPath + "/" + g + ".csv");
+        yield return a;
+        TextAsset ta = a.Result;
+        Debug.Log(ta.text);
+        string[] sr = a.Result.text.Split('\n');
+        int ind = 1;
+        string AorB = "";
+        while (ind != sr.Length)
         {
-            string[] l = sr.ReadLine().Split(',');
+            string[] l = sr[ind].Split(',');
+            Debug.Log(sr[ind]);
             string se = l[1];
+            Debug.Log(l[2]);
             for (int i = 0; i < int.Parse(l[2]) - 1; i++)
             {
-                se += "\n" + sr.ReadLine().Split(',')[1];
+                ind++;
+                se += "\n" + sr[ind].Split(',')[1];
             }
             ProgressUI.progressUI.setLove_sentence_name(se, n[int.Parse(l[0])]);
             if (l[0] == "3")
@@ -59,27 +65,36 @@ public class LoveDeclarationEvent
             {
                 yield return KeyManager.keyManager.waitForSpace();
             }
-
+            ind++;
         }
-        a = Addressables.LoadAssetAsync<TextAsset>(csvPath + g + AorB + ".csv");
-        yield return a.Task;
+        a = Addressables.LoadAssetAsync<TextAsset>(csvPath + "/" + g + AorB + ".csv");
+        yield return a;
         if (AorB.Equals("B"))
         {
             player.pi.partner = highestLover;
             ProgressUI.progressUI.changeTurn(player);
         }
-        sr = new StreamReader(a.Result.text);
-        while (!sr.EndOfStream)
+        sr = a.Result.text.Split('\n');
+        ind = 1;
+        while (ind != sr.Length)
         {
-            string[] l = sr.ReadLine().Split(',');
+            string[] l = sr[ind].Split(',');
+            if(l.Length != 3)
+            {
+                break;
+            }
             string se = l[1];
+            Debug.Log(l[2]);
             for (int i = 0; i < int.Parse(l[2]) - 1; i++)
             {
-                se += "\n" + sr.ReadLine().Split(',')[1];
+                ind++;
+                se += "\n" + sr[ind].Split(',')[1];
             }
             ProgressUI.progressUI.setLove_sentence_name(se, n[int.Parse(l[0])]);
             yield return KeyManager.keyManager.waitForSpace();
+            ind++;
         }
         ProgressUI.progressUI.beingSugoroku();
+        yield break;
     }
 }

@@ -29,77 +29,41 @@ public class Lover
     
     private async void loadImage(Gender g,string path)
     {
-        string p = "image_subject/" + (Gender.WOMAN == g ? "girl" : "boy") + "_";
-        string sub = p + "brass-band_club_";
-        p += path + "_";
-
-        var a = Addressables.LoadResourceLocationsAsync(p + "normal.png");
-
-        await a.Task;
-        if (a.Status == AsyncOperationStatus.Succeeded && a.Result != null &&0 < a.Result.Count)
+        string p = "image_subject/" + (Gender.WOMAN == g ? "girl" : "boy") + "_" + path + "_";
+        Addressables.LoadAssetAsync<Sprite>(p + "normal.png").Completed += op =>
         {
-            Addressables.LoadAssetAsync<Sprite>(p + "normal.png").Completed += op =>
+            if (op.Status == AsyncOperationStatus.Succeeded)
             {
-                if (op.Status == AsyncOperationStatus.Succeeded)
-                {
-                    normal = op.Result;
-                }
-                else
-                {
-                    Debug.Log("OMG");
-                }
-            };
-        }
-        else
+                normal = op.Result;
+            }
+            else
+            {
+                Debug.Log("OMG");
+            }
+        };
+        Addressables.LoadAssetAsync<Sprite>(p + "private.png").Completed += op =>
         {
-            Debug.Log("OMG");
-            Addressables.LoadAssetAsync<Sprite>(sub + "normal.png").Completed += op =>
+            if (op.Status == AsyncOperationStatus.Succeeded)
             {
-                if (op.Status == AsyncOperationStatus.Succeeded)
-                {
-                    normal = op.Result;
-                }
-                else
-                {
-                    Debug.Log("OMG");
-                }
-            };
-        }
-
-        a = Addressables.LoadResourceLocationsAsync(p + "private.png");
-
-        await a.Task;
-        if (a.Status == AsyncOperationStatus.Succeeded && a.Result != null && 0 < a.Result.Count)
+                privat = op.Result;
+            }
+            else
+            {
+                Debug.Log("OMG");
+            }
+        };
+        Addressables.LoadAssetAsync<Sprite>("icon_subject/" + (Gender.WOMAN == g ? "girl" : "boy") + "_" + path + ".png").Completed += op =>
         {
-            Addressables.LoadAssetAsync<Sprite>(p + "private.png").Completed += op =>
+            if (op.Status == AsyncOperationStatus.Succeeded)
             {
-                if (op.Status == AsyncOperationStatus.Succeeded)
-                {
-                    privat = op.Result;
-                }
-                else
-                {
-                    Debug.Log("OMG");
-                }
-            };
-        }
-        else
-        {
-            Debug.Log("OMG");
-            Addressables.LoadAssetAsync<Sprite>(sub + "private.png").Completed += op =>
+                icon = op.Result;
+            }
+            else
             {
-                if (op.Status == AsyncOperationStatus.Succeeded)
-                {
-                    privat = op.Result;
-                }
-                else
-                {
-                    Debug.Log("OMG");
-                }
-            };
-        }
+                Debug.Log("OMG");
+            }
+        };
     }
-    
 
     public string getName()
     {

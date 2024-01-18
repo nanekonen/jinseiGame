@@ -1,7 +1,7 @@
-"name 0:player,1:subject,2:narration,3:selection"	sentence $->player %->subject	row
-0	�u���A�{���ɁH�����c���́A�����C�����������́B�v	1
-1	�u�����A�}�W�ŁH�������ȁc�v	1
-0	�u������A�ꏏ�ɂ��������Ďv���Ă��񂾂�ˁB�v	1
-1	�u����Ȃ�A�ꏏ�ɂ��悤�B�v	1
-2	��l�͂��݂��̋C�������m���ߍ����A	2
-2	���݂��ɍD�ӂ������Ă������Ƃ��킩��A�J�b�v���ɂȂ�܂��B	2
+﻿name 0:player/1:subject/2:narration/3:selection,sentence $->player %->subject,row
+0,「え、本当に？私も…実は、同じ気持ちだったの。」,1
+1,「えっ、マジで？嬉しいな…」,1
+0,「だから、一緒にいたいって思ってたんだよね。」,1
+1,「それなら、一緒にいよう。」,1
+2,二人はお互いの気持ちを確かめ合い、,2
+2,お互いに好意を持っていたことがわかり、カップルになります。,2

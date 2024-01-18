@@ -54,12 +54,7 @@ public class Player:MonoBehaviour
         position = 0;
         sr.color = new Color(Random.value, Random.value, Random.value, 1f);
         pi.color = sr.color;
-        /*
-        Sprite s = await Addressables.LoadAssetAsync<Sprite>("icon_player/boy1.jpeg").Task;
-        pi.sprite = s;
-        Addressables.Release(s);
-        */
-        Addressables.LoadAssetAsync<Sprite>("icon_player/boy" + (id + 1).ToString("0") + ".jpg").Completed += handle =>
+        Addressables.LoadAssetAsync<Sprite>("icon_player/" + (Gender.WOMAN == pi.gender ? "girl" : "boy") + (id + 1).ToString("0") + ".jpg").Completed += handle =>
         {
             // ƒ[ƒh‚É¬Œ÷‚µ‚½ê‡‚Ìˆ—‚ğ‚±‚±‚É
             pi.sprite = handle.Result;
@@ -93,7 +88,7 @@ public class Player:MonoBehaviour
                 int a = Map.map.getArragement(id);
                 goal += new Vector3((a % 3 - 1) * 0.3125f, (1 - a / 3) * 0.3125f, 0);
             }
-            middle = ((start + goal) / 2 + new Vector3(0, (start - goal).sqrMagnitude, 0));
+            middle = ((start + goal) / 2 + new Vector3(0, Map.map.getPosition(id) == 0?1f:(start - goal).sqrMagnitude, 0));
             moving = true;
             movingTimer = 0;
             while (moving)

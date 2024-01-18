@@ -73,12 +73,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9d6b909035f6a54591f83be34075c3f
-    m_Address: Assets/Resources_moved/CSV/fevents/confession
+    m_Address: confession
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 58a93b5538dad784f8d2061bf749c3b6
-    m_Address: Assets/Resources_moved/icon_subject
+    m_Address: icon_subject
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

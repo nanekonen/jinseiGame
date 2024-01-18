@@ -17,11 +17,7 @@ public abstract class Square
 
     public static IEnumerator loadSquares()
     {
-        sprites = new Sprite[4];
-        string[] ar_key =
-        {
-            "NormalSquare","ActivitySquare","LoverSquare","springSquare"
-        };
+        sprites = new Sprite[5];
         Addressables.LoadAssetAsync<SpriteAtlas>("squares").Completed += op =>
         {
             if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
@@ -32,20 +28,6 @@ public abstract class Square
                 }
             }
         };
-        /*
-        var result =  Addressables.LoadAssetAsync<SpriteAtlas>("squares");
-        yield return result.Task;
-        
-        result.Result.GetSprites(ar);
-        
-        
-        foreach(string s in ar_key)
-        {
-            dic_Sprite.Add(s, result.Result.GetSprite(s));
-            Debug.Log(dic_Sprite[s]);
-        }
-        
-        Addressables.Release(result);*/
         Debug.Log("FINISH LOAD");
         yield break;
     }

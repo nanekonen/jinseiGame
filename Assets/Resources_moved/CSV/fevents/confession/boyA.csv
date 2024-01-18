@@ -1,7 +1,7 @@
-"name 0:player,1:subject,2:narration,3:selection	sentence $->player %->subject	row"
-"0	�u���肪�Ƃ��A�������B	2"
-"0	""	�ł��A���͗F�B�Ƃ��Ĉꏏ�ɂ������ȁB�v""	2"
-"1	�i���΂݂Ȃ���j	2"
-"1	�u�킩�����A���肪�Ƃ��B�ł��A���ꂩ������ǂ����ĂˁB�v 	2"
-"2	��l�͗F�B�Ƃ��Ă̊֌W���؂ɂ��A	2"
-"2	��������Ȃ����b�𑱂��܂��B	2"
+﻿name 0:player/1:subject/2:narration/3:selection,sentence $->player %->subject,row
+0,「ありがとう、嬉しい。,2
+0,でも、今は友達として一緒にいたいな。」,2
+1,（微笑みながら）,2
+1,「わかった、ありがとう。でも、これからも仲良くしてね。」 ,2
+2,二人は友達としての関係を大切にし、,2
+2,星空を見ながら会話を続けます。,2
