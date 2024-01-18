@@ -19,7 +19,7 @@ public class ActivitySquare : Square
         this.favorability = favorability;
         this.nameOfLovers = nameOfLovers;
     }
-    public override void execute(Player player)
+    public override IEnumerator execute(Player player)
     {
         Debug.Log("execution");
         this.player = player;
@@ -32,6 +32,7 @@ public class ActivitySquare : Square
                 sentence[(int)player.pi.activity].
                 Replace("Name",nameOfLovers[(int)player.pi.activity*2 + Math.Abs((int)player.pi.gender-1)]));
         }
-        
+
+        yield break;
     }
 }

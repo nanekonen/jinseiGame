@@ -19,7 +19,7 @@ public class TestSquare : Square
         this.appearance = appearance;
         this.luck = luck;
     }
-    public override void execute(Player player)
+    public override IEnumerator execute(Player player)
     {
         Debug.Log("execution");
         this.player = player;
@@ -30,5 +30,6 @@ public class TestSquare : Square
         player.pi.appearance.add(appearance);
         player.pi.luck.add(luck);
 
+        yield break;
     }
 }

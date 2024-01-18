@@ -9,8 +9,10 @@ public class StartSquare : Square
         this.id = 4;
     }
 
-    public override void execute(Player player)
+    public override IEnumerator execute(Player player)
     {
         ProgressUI.progressUI.setInstructionSpace("Welcome to Âtƒƒ‚ƒŠ[ƒY");
+
+        yield break;
     }
 }

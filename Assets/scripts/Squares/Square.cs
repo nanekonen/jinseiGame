@@ -13,7 +13,7 @@ public abstract class Square
     protected int id = -1;
 
     private static Sprite[]sprites;
-    public abstract void execute(Player player);
+    public abstract IEnumerator execute(Player player);
 
     public static IEnumerator loadSquares()
     {

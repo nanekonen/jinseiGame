@@ -22,7 +22,7 @@ public class NormalSquare : Square
         this.appearance = appearance;
         this.luck = luck;
     }
-    public override void execute(Player player)
+    public override IEnumerator execute(Player player)
     {
         Debug.Log("execution");
         this.player = player;
@@ -36,5 +36,7 @@ public class NormalSquare : Square
             ((appearance != 0) ? "容姿が" + Math.Abs(appearance) + ((appearance > 0) ? "上がった。" : "下がった。") : "") +
             ((luck != 0) ? "学力が" + Math.Abs(luck) + ((luck > 0) ? "上がった。" : "下がった。") : "")
             );
+
+        yield break;
     }
 }
