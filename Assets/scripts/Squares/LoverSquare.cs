@@ -26,7 +26,7 @@ public class LoverSquare : Square
     {
         Debug.Log("execution");
         this.player = player;
-        string targetLoverName = nameOfLovers[(int)player.pi.activity + Math.Abs((int)player.pi.gender - 1)];
+        string targetLoverName = nameOfLovers[((int)player.pi.activity * 2) + Math.Abs((int)player.pi.gender - 1)];
         int referenceFavorability = favorability[(int)player.pi.activity];
 
         if (player.pi.activity == Activity.UNDEFINED)
@@ -71,21 +71,16 @@ public class LoverSquare : Square
 
         if (player.pi.partner != Lover.UNDEFINED && player.pi.partner.fav.getValue() < 30)//振られるイベント
         {
+            yield return KeyManager.keyManager.waitForSpace();
+
+            yield return BreakUp.execute(player);
+
+            ProgressUI.progressUI.setInstructionSpace
+                (
+                player.pi.partner.getName() +
+                "と別れました."
+                );
             player.pi.partner = Lover.UNDEFINED;
-
-            yield return KeyManager.keyManager.waitForSpace();
-
-            ProgressUI.progressUI.setInstructionSpace
-                (
-                player.pi.partner.getName() + ":「ごめん別れよ」 \n"
-                );
-
-            yield return KeyManager.keyManager.waitForSpace();
-
-            ProgressUI.progressUI.setInstructionSpace
-                (
-                player.pi.partner.getName() + "と別れました。"
-                );
         }
         yield return null;
     }
