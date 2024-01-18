@@ -17,7 +17,6 @@ public class Map : MonoBehaviour
     private List<Vector3> route = new List<Vector3>();
 
     private List<RealSquare> nowSquares = new List<RealSquare>();
-    //private List<Square> nowSquare = new List<Square>();
     private List<int> positions = new List<int>();
     private List<List<int>> arragement = new List<List<int>>();
 
@@ -37,17 +36,18 @@ public class Map : MonoBehaviour
     }
     public void generateSquare()
     {
+        route.Add(new Vector3(0, 2.25f, 0));
         for(int s = 0;s < 10; s++)
         {
-            route.Add(new Vector3((float)s - 5f, 1f,0));
+            route.Add(new Vector3((float)s - 5f + 0.5f, 1f,0));
         }
         for (int s = 0; s < 10; s++)
         {
-            route.Add(new Vector3((float)4 - s, 0, 0));
+            route.Add(new Vector3((float)4 - s + 0.5f, 0, 0)) ;
         }
         for (int s = 0; s < 10; s++)
         {
-            route.Add(new Vector3((float)s - 5f, -1f, 0));
+            route.Add(new Vector3((float)s - 5f + 0.5f, -1f, 0));
         }
         foreach (Vector3 v in route)
         {
@@ -64,21 +64,20 @@ public class Map : MonoBehaviour
         {
             case Season.SPRING:
                 squares = new SpringSquares().changeOfSquares();
-                //nowSquare = new SpringSquares().changeOfSquares(realSquares);
                 break;
             case Season.SUMMER:
                 squares = new SummerSquares().changeOfSquares();
-                //nowSquare = new SummerSquares().changeOfSquares(realSquares);
                 break;
             case Season.UNDEFINED:
-                squares = new SpringSquares().changeOfSquares();
+                squares = new TestSeason().changeOfSquares();
                 break;
             default:
                 break;
         }
+        nowSquares[0].change(new StartSquare());
         for(int i0 = 0;i0 < squares.Count&&i0 < nowSquares.Count; i0++)
         {
-            nowSquares[i0].change(squares[i0]);
+            nowSquares[i0 + 1].change(squares[i0]);
         }
     }
 
@@ -93,14 +92,13 @@ public class Map : MonoBehaviour
     }
     public void addPosition(int id)
     { 
-        for(int i = 0;arragement.Count < 30; i++)
+        for(int i = 0;arragement.Count < 31; i++)
         {
             arragement.Add(new List<int>());
         }
         if(id == positions.Count)
         {
             positions.Add(0);
-            
             arragement[0].Add(id);
         }
     }

@@ -22,10 +22,15 @@ public class GWEvent : ForcedEvent
 
         ProgressUI.progressUI.setInstructionSpace( player.pi.name + "さんの強制イベントです！！");
         yield return KeyManager.keyManager.waitForSpace();
-        
+
         ProgressUI.progressUI.setInstructionSpace
         (
-            "ゴールデンウィーク到来！遊園地に遊びに行きます。思い切り楽しんで、素敵な時間を過ごしましょう！ 心から楽しい時間を過ごすために、どちらの" 
+            "ゴールデンウィーク到来！遊園地に遊びに行きます。\n" +
+            "思い切り楽しんで、素敵な時間を過ごしましょう！ ");
+        yield return KeyManager.keyManager.waitForSpace();
+
+        ProgressUI.progressUI.setInstructionSpace(
+            "心から楽しい時間を過ごすために、\nどちらの" 
             + ( (player.pi.gender == Gender.MAN)? "女" : "男" )  
             + "性と過ごすか選択してください。 "
         );
@@ -68,7 +73,7 @@ public class GWEvent : ForcedEvent
             (
                 friendName + 
                 ":「今日は楽しかったね。遊園地めっちゃ盛り上がった！」\r\n" + "" +
-                "あなた:「うん、最高だった。ジェットコースターも観覧車もすごかったね。」 "
+                "あなた:「うん、最高だった。\nジェットコースターも観覧車もすごかったね。」 "
             );
 
             yield return KeyManager.keyManager.waitForSpace();
@@ -77,7 +82,7 @@ public class GWEvent : ForcedEvent
             (
                 friendName + 
                 ":「今日は楽しかったね。遊園地めっちゃ盛り上がった！」 \r\n" + "" +
-                "あなた「うん、最高だった。ジェットコースターも観覧車もすごかったね。」 \r\n" + 
+                "あなた「うん、最高だった。\nジェットコースターも観覧車もすごかったね。」 \n" + 
                 friendName + 
                 ":「君と一緒にいると、どんな場所も楽しいな。」"
             );
@@ -87,7 +92,7 @@ public class GWEvent : ForcedEvent
             ProgressUI.progressUI.setLove_sentence
             (
                 "A．「そうだね、私もすごく楽しかった。ありがとう。」 \r\n" + "" +
-                "B．「また行きたくなっちゃったね！一緒に行ける日を楽しみにしてるね」"
+                "B．「また行きたくなっちゃったね！\n一緒に行ける日を楽しみにしてるね」"
             );
 
             IEnumerator waitForAOrB = KeyManager.keyManager.waitForAOrB();
@@ -106,7 +111,7 @@ public class GWEvent : ForcedEvent
             ProgressUI.progressUI.setLove_sentence
             (
                 friendName + 
-                ":「うん、最高だった。ジェットコースターも観覧車もすごかったね。」"
+                ":「うん、最高だった。\nジェットコースターも観覧車もすごかったね。」"
             );
 
             yield return KeyManager.keyManager.waitForSpace();
@@ -125,9 +130,12 @@ public class GWEvent : ForcedEvent
 
         ProgressUI.progressUI.setLove_sentence
         (
-            "主人公とデート相手はメリーゴーランドで楽しさを共有し、" + 
-            "次に観覧車に乗り、高みからの景色を眺めながら、二人の絆がさらに深まりました。 \r\n" + 
-            "キュートな雰囲気とドキドキのシーンが、思い出の中に刻まれました。 \r\n" + 
+            "主人公とデート相手はメリーゴーランドで楽しさを共有し、" +
+            "次に観覧車に乗り、高みからの景色を眺めながら、\n" +
+            "二人の絆がさらに深まりました。 ");
+        ProgressUI.progressUI.setLove_sentence(
+            "キュートな雰囲気とドキドキのシーンが、" +
+            "\n思い出の中に刻まれました。 \n\n" + 
             friendName + 
             "のあなたに対する好感度が30上がった。"
         );

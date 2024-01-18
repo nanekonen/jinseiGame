@@ -79,7 +79,7 @@ public class ProgressUI : MonoBehaviour
 
     public void setSpaceTextEnabled()
     {
-        sentenceUI.change("Push your space");
+        sentenceUI.change("スペースキーを押して、サイコロを振ろう！");
     }
 
     public void beingLove()
@@ -107,17 +107,28 @@ public class ProgressUI : MonoBehaviour
         loveUI.changeSentence(sentence);
         loveUI.changeName(name);
     }
-    public async void setLove_sentenc_subject(Sprite subject,string sentence)
+    public async void setLove_sentenc_subject(Sprite subject,string sentence,string name)
     {
         beingLove();
         loveUI.changeSubject(subject);
         loveUI.changeSentence(sentence);
         loveUI.changeName(name);
     }
+    public void setLove_sentence_name(string s,string n)
+    {
+        beingLove();
+        loveUI.changeSentence(s);
+        loveUI.changeName(n);
+    }
     public void setLove_sentence(string s)
     {
         beingLove();
         loveUI.changeSentence(s);
+    }
+    public void setLove_name(string name)
+    {
+        beingLove();
+        loveUI.changeName(name);
     }
     public void updateLoversPercent(Lover l)
     {
@@ -126,6 +137,7 @@ public class ProgressUI : MonoBehaviour
 
     public void updateRnaking(List<Player> p_list)
     {
+        rankUI.turnOn();
         List<PlayerInformation> list = new List<PlayerInformation>();
         foreach (Player p in p_list)
         {

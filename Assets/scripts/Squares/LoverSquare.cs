@@ -16,6 +16,7 @@ public class LoverSquare : Square
     // Start is called before the first frame update
     public LoverSquare(List<string> sentence, List<int> favorability, List<string> nameOfLovers, string partnerSentence, int partnerFavorability)
     {
+        this.id = 2;
         this.sentence = sentence;
         this.favorability = favorability;
         this.nameOfLovers = nameOfLovers;
@@ -82,6 +83,5 @@ public class LoverSquare : Square
                 );
             player.pi.partner = Lover.UNDEFINED;
         }
-        yield return null;
     }
 }

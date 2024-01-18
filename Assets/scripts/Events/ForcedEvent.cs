@@ -18,7 +18,6 @@ public abstract class ForcedEvent
             if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
             {
                 op.Result.GetSprites(background);
-                Debug.Log("OMGaaaaaa");
             }
         };
         if(background == null)

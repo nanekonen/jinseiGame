@@ -10,35 +10,29 @@ public abstract class Square
     public SpriteRenderer sr;
     public TextMeshPro text;
 
-    public string square_type = "NormalSquare";
+    protected int id = -1;
 
-    private static Dictionary<string, Sprite> dic_Sprite;
-    public abstract IEnumerator execute(Player player);
+    private static Sprite[]sprites;
+    public abstract void execute(Player player);
 
     public static IEnumerator loadSquares()
     {
-        dic_Sprite = new Dictionary<string, Sprite>();
-        Dictionary<string, Sprite> dic_Sprite2 = new Dictionary<string, Sprite>();
-        string[] ar_key =
+        sprites = new Sprite[5];
+        Addressables.LoadAssetAsync<SpriteAtlas>("squares").Completed += op =>
         {
-            "NormalSquare","ActivitySquare","LoverSquare","springSquare"
+            if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            {
+                for(int i = 0;i < sprites.Length; i++)
+                {
+                    sprites[i] = op.Result.GetSprite(i.ToString("0"));
+                }
+            }
         };
-        var result =  Addressables.LoadAssetAsync<SpriteAtlas>("squares");
-        yield return result;
-        foreach(string s in ar_key)
-        {
-            dic_Sprite.Add(s, result.Result.GetSprite(s));
-            Debug.Log(dic_Sprite[s]);
-        }
-        Addressables.Release(result);
         Debug.Log("FINISH LOAD");
+        yield break;
     }
     public void changeImage()
     {
-        square_type = this.GetType().FullName;
-        Debug.Log(square_type + "  " + dic_Sprite.Count);
-        
-        sr.sprite = dic_Sprite[square_type];
-        Debug.Log(dic_Sprite[square_type]);
+        sr.sprite = sprites[id];
     }
 }

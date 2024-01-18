@@ -10,8 +10,8 @@ public class NowUI : PartsUI
 
     public void change(in Round round, in Season season)
     {
-        //string[] s = { "t", "‰Ä", "H", "“~" };
-        string[] s = { "spring", "summer", "autumn", "winter" };
+        string[] s = { "t", "‰Ä", "H", "“~" };
+        //string[] s = { "spring", "summer", "autumn", "winter" };
 
         string t =
             s
@@ -22,7 +22,7 @@ public class NowUI : PartsUI
             ] +
             ":" +
             round.getRoundInStr() +
-            "th";
+            "ƒ‰ƒEƒ“ƒh";
         Vector2 v = rect.sizeDelta;
         v.x = 20 + text.fontSize * t.Length;
         rect.sizeDelta = v;

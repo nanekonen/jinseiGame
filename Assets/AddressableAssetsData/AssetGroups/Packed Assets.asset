@@ -52,7 +52,7 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2c6230706fab7e845a2c00dbba91c9d7
+  - m_GUID: 370e462930fce6242aba61f1b9bc9191
     m_Address: squares
     m_ReadOnly: 0
     m_SerializedLabels: []
@@ -67,8 +67,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e34d1b0838c60e8469c46e777d233f04
+  - m_GUID: 9c4acbe3a90a38944836601249b0d4ec
     m_Address: background
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9d6b909035f6a54591f83be34075c3f
+    m_Address: confession
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58a93b5538dad784f8d2061bf749c3b6
+    m_Address: icon_subject
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

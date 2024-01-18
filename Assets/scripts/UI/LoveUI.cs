@@ -7,7 +7,9 @@ using TMPro;
 public class LoveUI : PartsUI
 {
     public Image background;
+
     public Image subject;
+    public AspectRatioFitter arf;
 
     public RectTransform rect;
     public TextMeshProUGUI name;
@@ -22,7 +24,7 @@ public class LoveUI : PartsUI
     public void changeName(string n)
     {
         Vector2 v = rect.sizeDelta;
-        v.y = 20 + n.Length * name.fontSize;
+        v.x = 100 + n.Length * name.fontSize;
         rect.sizeDelta = v;
         name.text = n;
     }
@@ -34,6 +36,8 @@ public class LoveUI : PartsUI
 
     public void changeSubject(Sprite s)
     {
+        subject.sprite = null;
         subject.sprite = s;
+        arf.aspectRatio = s.rect.width / s.rect.height;
     }
 }
