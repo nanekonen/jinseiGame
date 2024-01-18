@@ -17,7 +17,6 @@ public class BGMPlayer : MonoBehaviour
             DontDestroyOnLoad(this);
         }
     }
-
     void Update()
     {
         if(SceneManager.GetActiveScene().name == "gameScene")
@@ -33,4 +32,5 @@ public class BGMPlayer : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 }

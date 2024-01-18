@@ -54,13 +54,10 @@ public class PrologueManager : MonoBehaviour
             if(clickCnt < 4)
             {
                 canvases[clickCnt].alpha = 0;
-                if(clickCnt < 5)
+                textCanvases[clickCnt].alpha = 0;
+                if (clickCnt + 1 < textCanvases.Length)
                 {
-                    textCanvases[clickCnt].alpha = 0;
-                    if (clickCnt + 1 < textCanvases.Length)
-                    {
-                        textCanvases[++clickCnt].alpha = 1;
-                    }
+                    textCanvases[++clickCnt].alpha = 1;
                 }
             }
             else

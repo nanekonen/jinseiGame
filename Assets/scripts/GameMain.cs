@@ -81,6 +81,7 @@ public class GameMain : MonoBehaviour
     IEnumerator main()
     {
         yield return Square.loadSquares();
+        ForcedEvent.loadBackground();
         Map.map.changeOfSeason(season);
         while( true )
         {
