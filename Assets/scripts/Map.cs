@@ -112,7 +112,7 @@ public class Map : MonoBehaviour
     }
     public void setPosition(int id,int n)
     {
-        arragement[positions[id]].Remove(arragement[positions[id]].IndexOf(id));
+        arragement[positions[id]].Remove(id);
         positions[id] = n;
         arragement[n].Add(id);
     }

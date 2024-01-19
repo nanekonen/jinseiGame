@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using TMPro;
 
 public abstract class Square
@@ -18,16 +19,16 @@ public abstract class Square
     public static IEnumerator loadSquares()
     {
         sprites = new Sprite[5];
-        Addressables.LoadAssetAsync<SpriteAtlas>("squares").Completed += op =>
+        for(int i = 0;i < sprites.Length; i++)
         {
-            if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            AsyncOperationHandle<Sprite> ie = Addressables.LoadAssetAsync<Sprite>("square/" + i.ToString("0") + ".png");
+            yield return ie;
+            if (ie.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
             {
-                for(int i = 0;i < sprites.Length; i++)
-                {
-                    sprites[i] = op.Result.GetSprite(i.ToString("0"));
-                }
+                sprites[i] = ie.Result;
             }
-        };
+        }
+        
         Debug.Log("FINISH LOAD");
         yield break;
     }

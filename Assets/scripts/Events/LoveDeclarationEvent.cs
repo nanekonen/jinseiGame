@@ -53,6 +53,7 @@ public class LoveDeclarationEvent
                 ind++;
                 se += "\n" + sr[ind].Split(',')[1];
             }
+            se = se.Replace("$", n[0]).Replace("%",n[1]);
             ProgressUI.progressUI.setLove_sentence_name(se, n[int.Parse(l[0])]);
             if (l[0] == "3")
             {
@@ -90,6 +91,7 @@ public class LoveDeclarationEvent
                 ind++;
                 se += "\n" + sr[ind].Split(',')[1];
             }
+            se = se.Replace("$", n[0]).Replace("%", n[1]);
             ProgressUI.progressUI.setLove_sentence_name(se, n[int.Parse(l[0])]);
             yield return KeyManager.keyManager.waitForSpace();
             ind++;

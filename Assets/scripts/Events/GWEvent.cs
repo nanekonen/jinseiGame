@@ -43,13 +43,13 @@ public class GWEvent : ForcedEvent
 
         ProgressUI.progressUI.setInstructionSpace
         (
-           friendNames[0] + ":右矢印 " + friendNames[1] + ":左矢印"
+            friendNames[1] + ":左矢印" + friendNames[0] + ":右矢印 "
         );
         
         IEnumerator waitForRightOrLeftArrow = KeyManager.keyManager.waitForRightOrLeftArrow();
         yield return waitForRightOrLeftArrow;
         string leftOrRight = (string)waitForRightOrLeftArrow.Current;
-
+        Debug.Log(leftOrRight);
         if (leftOrRight == "right")
         {
             friendName = friendNames[0];

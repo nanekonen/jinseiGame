@@ -121,8 +121,12 @@ public class GameMain : MonoBehaviour
         if( turn.checkIsFinished() )
         {
             round.increment();
-
-            yield return StartCoroutine(fevents.execute(season, round, players.getRandomPlayer()));
+            foreach(Player p in players.getAllPlayers())
+            {
+                ProgressUI.progressUI.changeTurn(p, round, season);
+                yield return StartCoroutine(fevents.execute(season, round, p));
+            }
+            
             yield return StartCoroutine(examEvent.execute(season, round, players));
             //yield return fevents.execute(season, round, players.getRandomPlayer());
 

@@ -98,6 +98,10 @@ public class ProgressUI : MonoBehaviour
             c.enabled = true;
         }
         loveUI.turnOff();
+        if (!rankUI.getRank())
+        {
+            rankUI.turnOff();
+        }
     }
     public async void setLove(Sprite background,Sprite subject,string sentence,string name)
     {

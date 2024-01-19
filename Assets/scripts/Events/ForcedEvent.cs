@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.U2D;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public abstract class ForcedEvent
 {
@@ -13,16 +14,10 @@ public abstract class ForcedEvent
     public abstract IEnumerator execute(Season season, Round round, Player player);
     public static async void loadBackground()
     {
-        Addressables.LoadAssetAsync<SpriteAtlas>("background").Completed += op =>
+        for(int i = 0;i < background.Length; i++)
         {
-            if (op.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-            {
-                op.Result.GetSprites(background);
-            }
-        };
-        if(background == null)
-        {
-            Debug.Log("OMG");
+            background[i] = await Addressables.LoadAssetAsync<Sprite>("background/" + i.ToString("0") + ".jpeg").Task;
         }
+        
     }
 }
