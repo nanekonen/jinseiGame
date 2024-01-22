@@ -35,7 +35,7 @@ public class GameMain : MonoBehaviour
         gameMain = this;
 
 
-        season = new Season( Season.SPRING );
+        season = new Season(Season.SPRING);
         //season = new Season(Season.UNDEFINED);
     }
 
@@ -65,10 +65,9 @@ public class GameMain : MonoBehaviour
     }
     public void generatePlayers()
     {
-        players.add(generatePlayer(0, "こうへい",　Gender.MAN, Activity.BASKET));
-        players.add(generatePlayer(1, "かえで", Gender.WOMAN, Activity.PART_TIME));
-        players.add(generatePlayer(2, "しょうへい", Gender.MAN, Activity.BRASS_BAND));
-
+        players.add(generatePlayer(0, (string)InputValueManager.inputValue[0][0], (Gender)InputValueManager.inputValue[0][1], (Activity)InputValueManager.inputValue[0][3]));
+        players.add(generatePlayer(1, (string)InputValueManager.inputValue[1][0], (Gender)InputValueManager.inputValue[1][1], (Activity)InputValueManager.inputValue[1][3]));
+        players.add(generatePlayer(2, (string)InputValueManager.inputValue[2][0], (Gender)InputValueManager.inputValue[2][1], (Activity)InputValueManager.inputValue[2][3]));
     }
     void Start()
     {
@@ -83,14 +82,14 @@ public class GameMain : MonoBehaviour
         yield return Square.loadSquares();
         ForcedEvent.loadBackground();
         Map.map.changeOfSeason(season);
-        while( true )
+        while (true)
         {
             currentPlayer = players.getPlayer(turn);
             ProgressUI.progressUI.changeTurn(currentPlayer, round, season);
             ProgressUI.progressUI.setSpaceTextEnabled();
             yield return KeyManager.keyManager.waitForSpace();
 
-            int d = dice.run(round,currentPlayer.position);
+            int d = dice.run(round, currentPlayer.position);
             yield return currentPlayer.proceed(d);
 
             yield return KeyManager.keyManager.waitForSpace();
@@ -112,12 +111,12 @@ public class GameMain : MonoBehaviour
         {
             tl[s].text.text = s.ToString("0");
         }
-        
+
     }
     private IEnumerator turnEnd()
     {
         turn.increment();
-        if( turn.checkIsFinished() )
+        if (turn.checkIsFinished())
         {
             round.increment();
 
@@ -127,7 +126,7 @@ public class GameMain : MonoBehaviour
 
             turn.reset();
 
-            if(round.checkIsFinished())
+            if (round.checkIsFinished())
             {
                 changeSeason();
             }
@@ -144,7 +143,7 @@ public class GameMain : MonoBehaviour
 
         Debug.Log(season.getID());
         Map.map.changeOfSeason(season);
-        foreach(Player p in players.getAllPlayers())
+        foreach (Player p in players.getAllPlayers())
         {
             p.resetPosition();
             p.pi.happiness = new Happiness(p.pi.happiness.update(p.pi));

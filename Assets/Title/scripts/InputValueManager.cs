@@ -15,9 +15,9 @@ public class InputValueManager : MonoBehaviour
     public Canvas canvas2;
     public ToggleGroup clubToggleGroup;
 
-    static object[][] inputValue =
+    public static object[][] inputValue =
     {
-        new object[4],
+        new object[4],  // 0:name 1:gender 2:icon's sprite 3:activity
         new object[4],
         new object[4]
     };
@@ -54,7 +54,7 @@ public class InputValueManager : MonoBehaviour
         yield return new WaitForSeconds(1/10);
 
         inputValue[titleInputFormCnt][0] = field.getValue();
-        inputValue[titleInputFormCnt][1] = genderToggle.getValue();
+        inputValue[titleInputFormCnt][1] = (genderToggle.getValue() == "男性" ? 0 : 1);
         inputValue[titleInputFormCnt][2] = icon.getValue();
 
         canvas1.sortingOrder = 0;
@@ -68,10 +68,14 @@ public class InputValueManager : MonoBehaviour
 
         yield return new WaitForSeconds(1 / 10);
 
-        inputValue[titleInputFormCnt][3] = affiliationToggle.getValue();
+        string tmp = affiliationToggle.getValue();
+        if (tmp == "バスケ部") inputValue[titleInputFormCnt][3] = 0;
+        else if (tmp == "吹奏楽部") inputValue[titleInputFormCnt][3] = 1;
+        else if (tmp == "ファミレスバイト") inputValue[titleInputFormCnt][3] = 2;
+
         foreach (Toggle toggle in clubToggleGroup.GetComponentsInChildren<Toggle>())
         {
-            if (toggle.GetComponentInChildren<Text>().text == (string)inputValue[titleInputFormCnt][3])
+            if (toggle.GetComponentInChildren<Text>().text == tmp)
             {
                 toggle.interactable = false;
                 toggle.isOn = false;
@@ -94,7 +98,7 @@ public class InputValueManager : MonoBehaviour
         }
         else
         {
-            playerNum.text = "Player" + (titleInputFormCnt + 1);
+            playerNum.text = "プレイヤー" + (titleInputFormCnt + 1);
         }
     }
 }
