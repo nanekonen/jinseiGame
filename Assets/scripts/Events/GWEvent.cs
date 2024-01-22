@@ -133,11 +133,14 @@ public class GWEvent : ForcedEvent
             "主人公とデート相手はメリーゴーランドで楽しさを共有し、" +
             "次に観覧車に乗り、高みからの景色を眺めながら、\n" +
             "二人の絆がさらに深まりました。 ");
+
+        yield return KeyManager.keyManager.waitForSpace();
+
         ProgressUI.progressUI.setLove_sentence(
             "キュートな雰囲気とドキドキのシーンが、" +
             "\n思い出の中に刻まれました。 \n\n" + 
             friendName + 
-            "のあなたに対する好感度が30上がった。"
+            "のあなたに対する好感度が50上がった。"
         );
 
         Lover thatFriend = player.pi.lovers.getLoverByName(friendName);

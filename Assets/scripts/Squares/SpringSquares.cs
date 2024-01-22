@@ -14,6 +14,7 @@ public class SpringSquares : SeasonSquares
         @"Assets/Resources_moved/CSV/lover_squares/Spring/PartTimeSquareData.csv"
         };
     private const string partnerSquareCsvFilePath = @"Assets/Resources_moved/CSV/lover_squares/Spring/PartnerSquareData.csv";
+    private const string ickSquareCsvFilePath = @"Assets/Resources_moved/CSV/lover_squares/Spring/IckSquareData.csv";
 
     // Start is called before the first frame update
     void Start()
@@ -39,28 +40,33 @@ public class SpringSquares : SeasonSquares
         loverSquareData.Add(ReadCSVFile(loverSquareCsvFilePath[2]));
 
         List<string[]> partnerSquareData = ReadCSVFile(partnerSquareCsvFilePath);
+        List<string[]> ickSquareData = ReadCSVFile(ickSquareCsvFilePath);
 
-        foreach(string[] squareData in normalSquareData){//通常マスの追加
-            squares.Add(new NormalSquare(squareData[0],int.Parse(squareData[1]),int.Parse(squareData[2]),int.Parse(squareData[3])));
-        }
+        for (int i = 0; i < 10; i++)
+        {
+            //通常マスの追加
+            squares.Add(new NormalSquare(normalSquareData[i][0], int.Parse(normalSquareData[i][1]), int.Parse(normalSquareData[i][2]), int.Parse(normalSquareData[i][3])));
+            squares.Add(new NormalSquare(normalSquareData[i + 10][0], int.Parse(normalSquareData[i + 10][1]), int.Parse(normalSquareData[i + 10][2]), int.Parse(normalSquareData[i + 10][3])));
 
-        for(int i = 0; i < loverSquareData[0].Count; i++){//部活マスの追加
             List<string> sentence = new List<string>();
             List<int> favorability = new List<int>();
             List<string> nameOfLovers = new List<string>();
-            string partnerSentence = partnerSquareData[i % (loverSquareData[0].Count/2)][0];
+            string partnerSentence = partnerSquareData[i % (loverSquareData[0].Count / 2)][0];
             int partnerFavorability = int.Parse(partnerSquareData[i % (loverSquareData[0].Count / 2)][1]);
-            
-            foreach(List<string[]> dataByActivity in loverSquareData){
+            string ickSentence = ickSquareData[i % (loverSquareData[0].Count / 2)][0];
+
+            //部活マスの追加
+            foreach (List<string[]> dataByActivity in loverSquareData)
+            {
                 sentence.Add(dataByActivity[i][0]);
                 favorability.Add(int.Parse(dataByActivity[i][1]));
                 nameOfLovers.Add(dataByActivity[i][2]);
                 nameOfLovers.Add(dataByActivity[i][3]);
             }
 
-            squares.Add(new LoverSquare(sentence,favorability,nameOfLovers,partnerSentence,partnerFavorability));
+            squares.Add(new LoverSquare(sentence, favorability, nameOfLovers, partnerSentence, partnerFavorability, ickSentence));
         }
- 
+
         return squares;
     }
 }
