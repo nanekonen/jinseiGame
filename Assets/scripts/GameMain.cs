@@ -44,7 +44,8 @@ public class GameMain : MonoBehaviour
         int id,
         string name,
         Gender gender,
-        Activity act
+        Activity act,
+        Sprite icon
     )
     {
         Player pl = Instantiate(playerObject, Vector3.zero, Quaternion.identity);
@@ -53,10 +54,9 @@ public class GameMain : MonoBehaviour
         (
             name,
             gender,
-            null,
+            icon,
             act
-        );
-        pl.initialize(id);
+        );pl.initialize(id);
 
         return pl;
 
@@ -65,9 +65,21 @@ public class GameMain : MonoBehaviour
     }
     public void generatePlayers()
     {
-        players.add(generatePlayer(0, "こうへい",　Gender.MAN, Activity.BASKET));
-        players.add(generatePlayer(1, "かえで", Gender.WOMAN, Activity.PART_TIME));
-        players.add(generatePlayer(2, "しょうへい", Gender.MAN, Activity.BRASS_BAND));
+        if (InputValueManager.share)
+        {
+            for(int i = 0;i < InputValueManager.pis.Length; i++)
+            {
+                PlayerInformation pi = InputValueManager.pis[i];
+                players.add(generatePlayer(i, pi.name, pi.gender, pi.activity, pi.sprite));
+            }
+        }
+        else
+        {
+            players.add(generatePlayer(0, "こうへい",　Gender.MAN, Activity.BASKET,null));
+            players.add(generatePlayer(1, "かえで", Gender.WOMAN, Activity.PART_TIME,null));
+            players.add(generatePlayer(2, "しょうへい", Gender.MAN, Activity.BRASS_BAND,null));
+        }
+        
 
     }
     void Start()

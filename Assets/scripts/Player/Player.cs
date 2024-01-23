@@ -54,11 +54,15 @@ public class Player:MonoBehaviour
         position = 0;
         sr.color = new Color(Random.value, Random.value, Random.value, 1f);
         pi.color = sr.color;
-        Addressables.LoadAssetAsync<Sprite>("icon_player/" + (Gender.WOMAN == pi.gender ? "girl" : "boy") + (id + 1).ToString("0") + ".jpg").Completed += handle =>
+        if (!InputValueManager.share)
         {
-            // ロードに成功した場合の処理をここに
-            pi.sprite = handle.Result;
-        };
+            Addressables.LoadAssetAsync<Sprite>("icon_player/" + (Gender.WOMAN == pi.gender ? "girl" : "boy") + (id + 1).ToString("0") + ".jpg").Completed += handle =>
+            {
+                // ロードに成功した場合の処理をここに
+                pi.sprite = handle.Result;
+            };
+        }
+        
         Map.map.addPosition(id);
         arrange();
     }

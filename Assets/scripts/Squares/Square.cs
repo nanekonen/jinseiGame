@@ -23,8 +23,9 @@ public abstract class Square
         {
             AsyncOperationHandle<Sprite> ie = Addressables.LoadAssetAsync<Sprite>("square/" + i.ToString("0") + ".png");
             yield return ie;
-            if (ie.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            if (ie.Status == AsyncOperationStatus.Succeeded)
             {
+                Debug.Log(i);
                 sprites[i] = ie.Result;
             }
         }

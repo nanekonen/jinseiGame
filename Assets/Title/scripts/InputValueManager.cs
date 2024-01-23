@@ -15,6 +15,13 @@ public class InputValueManager : MonoBehaviour
     public Canvas canvas2;
     public ToggleGroup clubToggleGroup;
 
+    public static PlayerInformation[] pis =
+    {
+        new PlayerInformation(),
+        new PlayerInformation(),
+        new PlayerInformation()
+    };
+    public static bool share = true;
     static object[][] inputValue =
     {
         new object[4],
@@ -53,6 +60,15 @@ public class InputValueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1/10);
 
+        if (share)
+        {
+            //PlayerInformation pi = new PlayerInformation();
+            pis[titleInputFormCnt].name = field.getValue();
+            pis[titleInputFormCnt].gender = (genderToggle.getValue().Equals("男性") ? Gender.MAN : Gender.WOMAN);
+            pis[titleInputFormCnt].sprite = icon.getValue();
+            //pis[titleInputFormCnt] = pi;
+        }
+
         inputValue[titleInputFormCnt][0] = field.getValue();
         inputValue[titleInputFormCnt][1] = genderToggle.getValue();
         inputValue[titleInputFormCnt][2] = icon.getValue();
@@ -69,6 +85,14 @@ public class InputValueManager : MonoBehaviour
         yield return new WaitForSeconds(1 / 10);
 
         inputValue[titleInputFormCnt][3] = affiliationToggle.getValue();
+        Debug.Log(affiliationToggle.getValue());
+        if (share)
+        {
+            string a = affiliationToggle.getValue();
+            pis[titleInputFormCnt].activity = 
+                (a == "バスケ部" ? Activity.BASKET : 
+                a == "ファミレスバイト" ? Activity.PART_TIME : Activity.BRASS_BAND);
+        }
         foreach (Toggle toggle in clubToggleGroup.GetComponentsInChildren<Toggle>())
         {
             if (toggle.GetComponentInChildren<Text>().text == (string)inputValue[titleInputFormCnt][3])
@@ -94,7 +118,7 @@ public class InputValueManager : MonoBehaviour
         }
         else
         {
-            playerNum.text = "Player" + (titleInputFormCnt + 1);
+            playerNum.text = "プレイヤー" + (titleInputFormCnt + 1);
         }
     }
 }

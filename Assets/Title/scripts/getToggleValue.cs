@@ -29,10 +29,8 @@ public class GetToggleValue : MonoBehaviour
     // Toggleの値が変更されたときに呼ばれるメソッド
     void OnToggleValueChanged(Toggle toggle, bool value)
     {
-        if (value)
-        {
-            val = toggle.GetComponentInChildren<Text>().text;
-        }
+        val = toggle.GetComponentInChildren<Text>().text;
+            LogToggleStates();
     }
 
     // すべてのToggleの状態をログに表示するメソッド（デバッグ用）
