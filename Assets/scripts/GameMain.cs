@@ -44,6 +44,7 @@ public class GameMain : MonoBehaviour
         int id,
         string name,
         Gender gender,
+        Sprite sprite,
         Activity act
     )
     {
@@ -54,7 +55,7 @@ public class GameMain : MonoBehaviour
         (
             name,
             gender,
-            null,
+            sprite,
             act
         );
 
@@ -65,9 +66,9 @@ public class GameMain : MonoBehaviour
     }
     public void generatePlayers()
     {
-        players.add(generatePlayer(0, (string)InputValueManager.inputValue[0][0], (Gender)InputValueManager.inputValue[0][1], (Activity)InputValueManager.inputValue[0][3]));
-        players.add(generatePlayer(1, (string)InputValueManager.inputValue[1][0], (Gender)InputValueManager.inputValue[1][1], (Activity)InputValueManager.inputValue[1][3]));
-        players.add(generatePlayer(2, (string)InputValueManager.inputValue[2][0], (Gender)InputValueManager.inputValue[2][1], (Activity)InputValueManager.inputValue[2][3]));
+        players.add(generatePlayer(0, (string)InputValueManager.inputValue[0][0], (Gender)InputValueManager.inputValue[0][1], (Sprite)InputValueManager.inputValue[0][2], (Activity)InputValueManager.inputValue[0][3]));
+        players.add(generatePlayer(1, (string)InputValueManager.inputValue[1][0], (Gender)InputValueManager.inputValue[1][1], (Sprite)InputValueManager.inputValue[1][2], (Activity)InputValueManager.inputValue[1][3]));
+        players.add(generatePlayer(2, (string)InputValueManager.inputValue[2][0], (Gender)InputValueManager.inputValue[2][1], (Sprite)InputValueManager.inputValue[2][2], (Activity)InputValueManager.inputValue[2][3]));
     }
     void Start()
     {
