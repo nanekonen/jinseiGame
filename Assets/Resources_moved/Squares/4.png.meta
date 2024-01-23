@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Resources_moved/Squares/4.png.meta
 guid: dcdbc7f2f8f06584db987fe6fea611bb
+=======
+guid: b625ac6aed511a644bd7796ea30e5b41
+>>>>>>> origin/yamaguchi6:Assets/Resources_moved/background/amusement-park_evening.jpeg.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

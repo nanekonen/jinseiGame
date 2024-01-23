@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build.Pipeline.Utilities;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 
 public class Player:MonoBehaviour
 {
@@ -17,10 +16,6 @@ public class Player:MonoBehaviour
 
     private float movingTimer;
     private bool moving  = false;
-
-    private Vector3 start;
-    private Vector3 middle;
-    private Vector3 goal;
 
     public PlayerInformation pi = new PlayerInformation();
 

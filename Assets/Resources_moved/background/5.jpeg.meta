@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 55f7ed923fd70bb4696562a00c0491b7
+=======
+guid: f60f14f5e3675f749b3a55ffe8a5d369
+>>>>>>> origin/yamaguchi6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

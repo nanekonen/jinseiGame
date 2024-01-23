@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/images/back/mask.png.meta
 guid: aa6013e89932a244da81415017140099
+=======
+guid: c398d2aba2a8c054d9a341cb97c4347f
+>>>>>>> origin/yamaguchi6:Assets/Resources_moved/background/basketball_club.jpeg.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
